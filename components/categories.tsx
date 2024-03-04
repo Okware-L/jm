@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button"
 
 export default function Categories() {
   return (
-    <div className="flex flex-col items-center justify-center bg-gray-100 pb-16 pt-3">
-      <h2 className="text-xl font-semibold uppercase text-black tracking-wider mb-16">What we offer</h2>
+    <div className="flex flex-col items-center justify-center bg-gray-100 pb-16 pt-1">
+      <h2 className="text-1xl font-light uppercase text-black tracking-wider mb-16">What we offer</h2>
       <div className="grid md:grid-cols-2 gap-10">
         <Card className="w-[350px] ">
           <CardHeader>

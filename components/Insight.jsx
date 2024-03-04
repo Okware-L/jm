@@ -8,11 +8,11 @@ import Image from "next/image"
 
 export default function Insight() {
   return (
-    <div className="px-4 sm:px-6 lg:px-8 bg-gray-100 text-black py-5 pt-11">
+    <div className="px-4 sm:px-6 lg:px-8 bg-gray-100 text-black py-5 pt-11 font-extralight">
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center">
         <div className="lg:w-1/2 p-5">
-          <h2 className="text-3xl font-semibold leading-tight">Three wealth mistakes of Succession’s Roy family</h2>
-          <p className="mt-4 text-base leading-relaxed">
+          <h2 className="text-3xl font-normal leading-tight">Three wealth mistakes of Succession’s Roy family</h2>
+          <p className="mt-4 font-light text-base leading-relaxed">
             If you were a Roy, what would you have done? Last summer, HBO’s Succession finished its four-season run to
             critical acclaim. In the calamitous finale, we watched the ultra-high-net-worth family fall apart at the
             seams – so
@@ -28,7 +28,7 @@ export default function Insight() {
         <div className="lg:w-1/2 mt-8 lg:mt-0">
           <Image
             alt="Succession’s Roy family"
-            className="rounded-none"
+            className="rounded-none hover:scale-105 ease-out duration-500"
             height="400"
             src="/placeholder1.jpg"
             style={{

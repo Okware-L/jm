@@ -1,6 +1,6 @@
 /**
  * v0 by Vercel.
- * @see https://v0.dev/t/H5KzG3EohJT
+ * @see https://v0.dev/t/kNSxhmXdQlR
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 import Link from "next/link"
@@ -8,68 +8,102 @@ import Image from "next/image"
 
 export default function About() {
   return (
-    <section className="py-15 px-8 bg-gray-100 text-black">
-      <h2 className="text-xl font-semibold text-center mb-6">About JM-Qafri</h2>
-      <p className="text-center text-lg leading-relaxed max-w-3xl mx-auto py-8">
-        For over 130 years, we have been focusing on one thing: helping people achieve their financial goals. As a
-        global wealth manager, we understand your needs, and take the long view when it comes to your assets. Whether
-        you&#39;re starting a company, planning for your retirement, or want to ensure your loved ones will be taken care of
-        in the future; our experts will help find the solution that is right for you.
-      </p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
-        <div className="flex flex-col">
+    <section className="py-16 px-4 bg-gray-50 text-black font-extralight">
+      <div className="text-center text-4xl font-light mb-12">ABOUT</div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div className="group relative">
           <Image
             alt="Our company"
-            className="mb-4"
-            height="240"
-            src="/placeholder.jpg"
+            className="w-full h-auto"
+            height="300"
+            src="/placeholder1.jpg"
             style={{
-              aspectRatio: "360/240",
+              aspectRatio: "400/300",
               objectFit: "cover",
             }}
-            width="360"
+            width="400"
           />
-          <h3 className="text-lg font-semibold mb-2">Our company</h3>
-          <Link className="text-sm text-blue-600 hover:underline" href="#">
-            DISCOVER MORE →
-          </Link>
+          <div className="absolute inset-0 bg-black bg-opacity-20 flex items-end p-4 group-hover:bg-opacity-40 transition duration-300 ease-in-out">
+            <div>
+              <h3 className="text-white text-lg font-semibold">Our company</h3>
+              <Link className="text-white text-sm mt-2 inline-flex items-center hover:underline" href="#">
+                DISCOVER MORE
+                <ArrowRightIcon className="ml-2 w-4 h-4" />
+              </Link>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col">
+        <div className="group relative">
           <Image
             alt="What we do"
-            className="mb-4"
-            height="240"
-            src="/placeholder.jpg"
+            className="w-full h-auto"
+            height="300"
+            src="/placeholder1.jpg"
             style={{
-              aspectRatio: "360/240",
+              aspectRatio: "400/300",
               objectFit: "cover",
             }}
-            width="360"
+            width="400"
           />
-          <h3 className="text-lg font-semibold mb-2">What we do</h3>
-          <Link className="text-sm text-blue-600 hover:underline" href="#">
-            DISCOVER MORE →
-          </Link>
+          <div className="absolute inset-0 bg-black bg-opacity-20 flex items-end p-4 group-hover:bg-opacity-40 transition duration-300 ease-in-out">
+            <div>
+              <h3 className="text-white text-lg font-semibold">What we do</h3>
+              <Link className="text-white text-sm mt-2 inline-flex items-center hover:underline" href="#">
+                DISCOVER MORE
+                <ArrowRightIcon className="ml-2 w-4 h-4" />
+              </Link>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col mb-10">
+        <div className="group relative">
           <Image
             alt="Our locations"
-            className="mb-4"
-            height="240"
-            src="/placeholder.jpg"
+            className="w-full h-auto"
+            height="300"
+            src="/placeholder1.jpg"
             style={{
-              aspectRatio: "360/240",
+              aspectRatio: "400/300",
               objectFit: "cover",
             }}
-            width="360"
+            width="400"
           />
-          <h3 className="text-lg font-semibold mb-2">Our locations</h3>
-          <Link className="text-sm text-blue-600 hover:underline" href="#">
-            DISCOVER MORE →
-          </Link>
+          <div className="absolute inset-0 bg-black bg-opacity-20 flex items-end p-4 group-hover:bg-opacity-40 transition duration-300 ease-in-out">
+            <div>
+              <h3 className="text-white text-lg font-semibold">Our locations</h3>
+              <Link className="text-white text-sm mt-2 inline-flex items-center hover:underline" href="#">
+                DISCOVER MORE
+                <ArrowRightIcon className="ml-2 w-4 h-4" />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
+      <p className="text-center text-base font-light leading-relaxed max-w-3xl mx-auto py-10">
+        For over 130 years, we have been focusing on one thing: helping people achieve their financial goals. As a
+        global wealth manager, we understand your needs, and take the long view when it comes to your assets. Whether
+        you’re starting a company, planning for your retirement, or want to ensure your loved ones will be taken care of
+        in the future; our experts will help find the solution that is right for you.
+      </p>
     </section>
   )
 }
 
+function ArrowRightIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M5 12h14" />
+      <path d="m12 5 7 7-7 7" />
+    </svg>
+  )
+}

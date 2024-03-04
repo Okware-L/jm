@@ -9,7 +9,7 @@ import Footer from '../components/Footer'
 
 export default function Home() {
   return (
-  <body className="" >
+  <body className="font-times" >
    <Navbar/>
    <Hero/>
    <Categories/>

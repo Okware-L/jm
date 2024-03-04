@@ -1,34 +1,14 @@
-"use client"
+
 
 import React from 'react'
-import { useState, useEffect } from 'react';
+
+import Link from 'next/link';
 
 const Navbar = () => {
-  const TOP_OFFSET = 50;
-  const [showBackground, setShowBackground] = useState(false)
-
-
-
-    useEffect(() => {
-    const handleScroll = () => {
-      console.log(window.scrollY)
-      if (window.scrollY >= TOP_OFFSET) {
-        setShowBackground(true)
-      } else {
-        setShowBackground(false)
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    }
-  }, []);
 
   return (
     <div>
-<div className="navbar bg-white text-white backdrop-filter backdrop-blur-lg bg-opacity-50 py-5 fixed top-0 z-40">
+<div className="navbar bg-gray-100 text-black fixed py-5">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -45,11 +25,11 @@ const Navbar = () => {
     </div>
   </div>
   <div className="navbar-center">
-    <a className="text-xl">JM-Qafri</a>
+    <a className="text-2xl font-extralight ">JM-Qafri</a>
   </div>
   <div className="navbar-end">
-    <button className='btn btn-ghost hidden md:block'>Careers</button>
-    <button className='btn btn-ghost hidden md:block'>Contact</button>
+    <Link href="#" className=' hidden md:block mx-3 text-sm hover:underline font-light'>Careers</Link>
+    <Link href="#" className=' hidden md:block text-sm hover:underline mx-3 font-light'>Contact</Link>
     <button className="btn btn-ghost btn-circle">
       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
     </button>

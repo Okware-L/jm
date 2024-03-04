@@ -6,14 +6,14 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
-export default function Component() {
+export default function Footer() {
   return (
-    <div className="flex flex-col items-center justify-center bg-gray-100 text-black py-16">
-      <h1 className="text-3xl font-bold my-8">News</h1>
+    <div className="flex flex-col items-center justify-center bg-gray-100 text-black py-16 p-5">
+      <h1 className="text-2xl font-light my-8">More Updates</h1>
       <div className="max-w-4xl w-full">
         <article className="mb-8">
-          <h2 className="text-xl font-semibold mb-1">
-            Presentation of the 2023 full-year results for the Julius Baer Group
+          <h2 className="text-base font-normal mb-1">
+            JMAFRI Network Architecture Contest for Sustainability and Innovation
           </h2>
           <div className="flex items-center justify-between mb-4">
             <time className="text-sm" dateTime="2024-02-01">
@@ -23,16 +23,13 @@ export default function Component() {
               <Link className="text-sm" href="#">
                 EN
               </Link>
-              <Link className="text-sm" href="#">
-                DE
-              </Link>
             </div>
           </div>
           <hr />
         </article>
         <article className="mb-8">
-          <h2 className="text-xl font-semibold mb-1">
-            Julius Baer renews partnership with the Elbphilharmonie Hamburg
+          <h2 className="text-base font-normal mb-1">
+            Invest in Farmers' Project - Choose Your Farm, Meet the Farmers
           </h2>
           <div className="flex items-center justify-between mb-4">
             <time className="text-sm" dateTime="2023-12-07">
@@ -42,16 +39,14 @@ export default function Component() {
               <Link className="text-sm" href="#">
                 EN
               </Link>
-              <Link className="text-sm" href="#">
-                DE
-              </Link>
+
             </div>
           </div>
           <hr />
         </article>
         <article className="mb-8">
-          <h2 className="text-xl font-semibold mb-1">
-            Update on private debt exposure in light of recent market developments
+          <h2 className="text-base font-normal mb-1">
+             Empowering Students through our Education Program
           </h2>
           <div className="flex items-center justify-between mb-4">
             <time className="text-sm" dateTime="2023-11-27">
@@ -61,9 +56,7 @@ export default function Component() {
               <Link className="text-sm" href="#">
                 EN
               </Link>
-              <Link className="text-sm" href="#">
-                DE
-              </Link>
+
             </div>
           </div>
           <hr />
@@ -84,7 +77,7 @@ export default function Component() {
                 Legal
               </Link>
             </div>
-            <div className="flex gap-4">
+            <div className="gap-4 hidden md:flex">
               <Link className="text-sm" href="#">
                 Data Privacy Policy for Electronic Services
               </Link>
@@ -99,11 +92,8 @@ export default function Component() {
               </Link>
             </div>
           </div>
-          <p className="text-sm text-center mt-4">
-            Certain products and services of the Julius Baer Group are not accessible to residents and/or nationals of
-            certain countries. Website users are therefore asked to consult the Terms of use applicable to this website
-            and to contact their nearest Julius Baer entity (“Locations”) for information on products and services
-            available in their country. Furthermore, users may consult their legal/tax advisors should they require any
+          <p className="text-sm text-center mt-4 font-normal">
+            Users may consult their legal/tax advisors should they require any
             clarifications on the interpretation of the Terms of use.
           </p>
           <div className="flex justify-center gap-4 mt-4">
@@ -113,7 +103,7 @@ export default function Component() {
             <LinkedinIcon className="h-6 w-6" />
             <InstagramIcon className="h-6 w-6" />
           </div>
-          <p className="text-sm text-center mt-4">©2024 JULIUS BAER</p>
+          <p className="text-sm text-center mt-4">©2024 JM-Qafri</p>
         </footer>
       </div>
     </div>

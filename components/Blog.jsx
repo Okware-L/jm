@@ -14,7 +14,7 @@ export default function Blog() {
           <div className="aspect-w-16 aspect-h-9">
             <Image
               alt="Nico Rosberg"
-              className="object-cover"
+              className="object-cover hover:scale-105 ease-in-out duration-500"
               height="180"
               src="/placeholder1.jpg"
               style={{
@@ -25,23 +25,20 @@ export default function Blog() {
             />
           </div>
           <div className="space-y-2">
-            <h3 className="text-lg font-semibold">Nico Rosberg: Driving family wealth into the future</h3>
+            <h3 className="text-base font-light">JMAFRI Network's New Channels for Global Business Investment</h3>
             <div className="flex items-center space-x-2 text-sm text-gray-500">
-              <CalendarIcon className="h-5 w-5" />
-              <span>01.03.2024</span>
-              <ClockIcon className="h-5 w-5" />
+              <CalendarIcon className="h-3 w-3" />
+              <span >01.03.2024</span>
+              <ClockIcon className="h-3 w-3" />
               <span>5 MIN</span>
             </div>
-            <Button className="px-4 py-2 text-xs uppercase" variant="outline">
-              Family
-            </Button>
           </div>
         </div>
         <div className="space-y-4">
           <div className="aspect-w-16 aspect-h-9">
             <Image
               alt="Generative AI's massive rally"
-              className="object-cover"
+              className="object-cover hover:scale-105 ease-in-out duration-500"
               height="180"
               src="/placeholder1.jpg"
               style={{
@@ -52,24 +49,21 @@ export default function Blog() {
             />
           </div>
           <div className="space-y-2">
-            <h3 className="text-lg font-semibold">Generative AI&#39;s massive rally</h3>
+            <h3 className="text-base font-light">Join the JMAFRI Network Architecture Contest for Sustainability and Innovation</h3>
             <div className="flex items-center space-x-2 text-sm text-gray-500">
-              <CalendarIcon className="h-5 w-5" />
+              <CalendarIcon className="h-3 w-3" />
               <span>28.02.2024</span>
-              <ClockIcon className="h-5 w-5" />
+              <ClockIcon className="h-3 w-3" />
               <span>3 MIN</span>
             </div>
-            <Button className="px-4 py-2 text-xs uppercase" variant="outline">
-              Market Outlook
-            </Button>
           </div>
-          <Button className="w-full">See All</Button>
+          
         </div>
         <div className="space-y-4">
           <div className="aspect-w-16 aspect-h-9">
             <Image
               alt="Emerging markets: A sweet spot in fixed income"
-              className="object-cover"
+              className="object-cover hover:scale-105 ease-in-out duration-500"
               height="180"
               src="/placeholder1.jpg"
               style={{
@@ -80,19 +74,20 @@ export default function Blog() {
             />
           </div>
           <div className="space-y-2">
-            <h3 className="text-lg font-semibold">Emerging markets: A sweet spot in fixed income</h3>
+            <h3 className="text-base font-light">Coffee Project - Ethically Sourcing Fairly Traded Coffee</h3>
             <div className="flex items-center space-x-2 text-sm text-gray-500">
-              <CalendarIcon className="h-5 w-5" />
+              <CalendarIcon className="h-3 w-3" />
               <span>27.02.2024</span>
-              <ClockIcon className="h-5 w-5" />
+              <ClockIcon className="h-3 w-3" />
               <span>4 MIN</span>
             </div>
-            <Button className="px-4 py-2 text-xs uppercase" variant="outline">
-              Market Outlook
-            </Button>
           </div>
         </div>
       </div>
+      <div className="flex justify-center my-5">
+        <button className="btn btn-wide my-10  text-white hover:animate-bounce duration-500 ease-in-out">See All</button>
+      </div>
+      
     </div>
   )
 }
