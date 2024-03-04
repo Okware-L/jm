@@ -87,8 +87,8 @@ export default function Footer() {
               <Link className="text-sm" href="#">
                 Cookie Settings
               </Link>
-              <Link className="text-sm" href="#">
-                News Alert
+              <Link className="text-sm" href="/FAQ">
+                F.A.Q
               </Link>
             </div>
           </div>

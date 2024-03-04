@@ -15,7 +15,7 @@ const Navbar = () => {
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
       </div>
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white text-black rounded-box w-52 ">
-        <li><a>About</a></li>
+        <li><a href='/About'>About</a></li>
         <li><a>Careers</a></li>
         <li><a>Learn</a></li>
         <li><a>Invest</a></li>
@@ -25,11 +25,11 @@ const Navbar = () => {
     </div>
   </div>
   <div className="navbar-center">
-    <a className="text-2xl font-extralight ">JM-Qafri</a>
+    <a className="text-2xl font-extralight " href='/'>JM-Qafri</a>
   </div>
   <div className="navbar-end">
-    <Link href="#" className=' hidden md:block mx-3 text-sm hover:underline font-light'>Careers</Link>
-    <Link href="#" className=' hidden md:block text-sm hover:underline mx-3 font-light'>Contact</Link>
+    <Link href="/careers" className=' hidden md:block mx-3 text-sm hover:underline font-light'>Careers</Link>
+    <Link href="/contact" className=' hidden md:block text-sm hover:underline mx-3 font-light'>Contact</Link>
     <button className="btn btn-ghost btn-circle">
       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
     </button>

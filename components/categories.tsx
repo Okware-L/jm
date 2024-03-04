@@ -15,7 +15,7 @@ export default function Categories() {
             <CardTitle>Wealth planning</CardTitle>
             <CardDescription>
               Our wealth planning services are designed to help you navigate every stage of your life.
-              Our wealth planning services are designed to help you navigate every stage of your life.
+
             </CardDescription>
           </CardHeader>
           <CardFooter>

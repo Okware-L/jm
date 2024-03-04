@@ -2,12 +2,13 @@
 
 export const contents = [
   {
-    heading: "Invest",
-    text: "Brief intro text for Heading 1",
+    heading: "JM-QAFRI NETWORK ",
+    text: "Support system for you and your business",
   },
-  {
-    heading: "Secure Your Future",
-    text: "Brief intro text for Heading 2",
+    {
+    heading: "JM-QAFRI NETWORK ",
+    text: "Support system for you and your business",
   },
+
   // Add more headings and texts as needed
 ];
