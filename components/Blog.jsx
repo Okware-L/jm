@@ -4,6 +4,7 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 export default function Blog() {
   return (
@@ -11,7 +12,7 @@ export default function Blog() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         <div className="space-y-4">
           <div className="aspect-w-16 aspect-h-9">
-            <img
+            <Image
               alt="Nico Rosberg"
               className="object-cover"
               height="180"
@@ -38,7 +39,7 @@ export default function Blog() {
         </div>
         <div className="space-y-4">
           <div className="aspect-w-16 aspect-h-9">
-            <img
+            <Image
               alt="Generative AI's massive rally"
               className="object-cover"
               height="180"
@@ -66,7 +67,7 @@ export default function Blog() {
         </div>
         <div className="space-y-4">
           <div className="aspect-w-16 aspect-h-9">
-            <img
+            <Image
               alt="Emerging markets: A sweet spot in fixed income"
               className="object-cover"
               height="180"

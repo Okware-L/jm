@@ -4,6 +4,7 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 export default function Insight() {
   return (
@@ -25,7 +26,7 @@ export default function Insight() {
           <Button className="mt-4 bg-gray-200 text-gray-800">Succession</Button>
         </div>
         <div className="lg:w-1/2 mt-8 lg:mt-0">
-          <img
+          <Image
             alt="Succession’s Roy family"
             className="rounded-none"
             height="400"

@@ -5,6 +5,7 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 import Link from "next/link"
+import Image from "next/image"
 
 export default function Page() {
   return (
@@ -21,7 +22,7 @@ export default function Page() {
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="flex flex-col">
-          <img
+          <Image
             alt="Our company"
             className="mb-4"
             height="240"
@@ -38,7 +39,7 @@ export default function Page() {
           </Link>
         </div>
         <div className="flex flex-col">
-          <img
+          <Image
             alt="What we do"
             className="mb-4"
             height="240"
@@ -55,7 +56,7 @@ export default function Page() {
           </Link>
         </div>
         <div className="flex flex-col">
-          <img
+          <Image
             alt="Our locations"
             className="mb-4"
             height="240"
