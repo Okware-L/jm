@@ -52,7 +52,7 @@ export default function Blog() {
             />
           </div>
           <div className="space-y-2">
-            <h3 className="text-lg font-semibold">Generative AI's massive rally</h3>
+            <h3 className="text-lg font-semibold">Generative AI&#39;s massive rally</h3>
             <div className="flex items-center space-x-2 text-sm text-gray-500">
               <CalendarIcon className="h-5 w-5" />
               <span>28.02.2024</span>

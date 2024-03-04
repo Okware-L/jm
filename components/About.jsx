@@ -13,7 +13,7 @@ export default function About() {
       <p className="text-center text-lg leading-relaxed max-w-3xl mx-auto py-8">
         For over 130 years, we have been focusing on one thing: helping people achieve their financial goals. As a
         global wealth manager, we understand your needs, and take the long view when it comes to your assets. Whether
-        you’re starting a company, planning for your retirement, or want to ensure your loved ones will be taken care of
+        you&#39;re starting a company, planning for your retirement, or want to ensure your loved ones will be taken care of
         in the future; our experts will help find the solution that is right for you.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
