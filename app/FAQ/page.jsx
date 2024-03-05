@@ -5,11 +5,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import Navbar from '@/components/Navbar'
 
 
 
 const page = () => {
   return (
+    <>
+    <Navbar/>
     <div className='min-h-screen bg-white pt-20 p-5'>
         
    <h1 className='text-3xl font-light  text-center text-black pt-20'> F.A.Q</h1>
@@ -106,6 +109,7 @@ const page = () => {
 </Accordion>
 </div>
 </div>
+</>
   )
 }
 

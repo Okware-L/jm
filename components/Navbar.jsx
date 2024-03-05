@@ -1,14 +1,15 @@
 
 
 import React from 'react'
-
+import Image from 'next/image';
 import Link from 'next/link';
+
 
 const Navbar = () => {
 
   return (
     <div>
-<div className="navbar bg-gray-100 text-black fixed py-5">
+<div className="navbar bg-gray-100 text-black fixed ">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -25,7 +26,9 @@ const Navbar = () => {
     </div>
   </div>
   <div className="navbar-center">
-    <a className="text-2xl font-extralight " href='/'>JM-Qafri</a>
+    <a href="/">
+    <Image src="/jmlogoblack.svg" width="84" height="54" href='/'/>
+    </a>
   </div>
   <div className="navbar-end">
     <Link href="/careers" className=' hidden md:block mx-3 text-sm hover:underline font-light'>Careers</Link>
