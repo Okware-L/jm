@@ -1,11 +1,24 @@
-
+"use client"
 
 import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+
 
 
 const Navbar = () => {
+  const [position, setPosition] = React.useState("bottom")
 
   return (
     <div>
@@ -15,12 +28,11 @@ const Navbar = () => {
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
       </div>
-      <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white text-black rounded-box w-52 ">
-        <li><a href='/About'>About</a></li>
-        <li><a>Careers</a></li>
-        <li><a>Learn</a></li>
-        <li><a>Invest</a></li>
-        <li><a>Defi</a></li>
+      <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white text-black font-light rounded-sm after:w-52 ">
+        <li><a href='/About'>About us</a></li>
+        <li><a>Investors</a></li>
+        <li><a>Our Solutions</a></li>
+        <li><a>F.A.Q</a></li>
         <li className='md:hidden'><a>Contact</a></li>
       </ul>
     </div>
@@ -31,18 +43,16 @@ const Navbar = () => {
     </a>
   </div>
   <div className="navbar-end">
-    <Link href="/careers" className=' hidden md:block mx-3 text-sm hover:underline font-light'>Careers</Link>
-    <Link href="/contact" className=' hidden md:block text-sm hover:underline mx-3 font-light'>Contact</Link>
-    <button className="btn btn-ghost btn-circle">
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-    </button>
-    <button className="btn btn-ghost btn-circle">
-      <div className="indicator">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-        <span className="badge badge-xs badge-primary indicator-item"></span>
-      </div>
-    </button>
-  </div>
+    <Link href="/careers" className=' hidden md:block mx-3 text-sm hover:underline font-normal'>Careers</Link>
+    <Link href="/contact" className=' hidden md:block text-sm hover:underline mx-3 font-normal'>Contact</Link>
+
+    <Link  href='/user'>
+        <Avatar className='mx-3'>
+          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>     
+    </Link>
+</div>
 </div>
     </div>
   )
