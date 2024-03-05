@@ -4,21 +4,9 @@ import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-
-
 
 
 const Navbar = () => {
-  const [position, setPosition] = React.useState("bottom")
 
   return (
     <div>
@@ -30,8 +18,9 @@ const Navbar = () => {
       </div>
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white text-black font-light rounded-sm after:w-52 ">
         <li><a href='/About'>About us</a></li>
-        <li><a>Investors</a></li>
+        <li><a href ='/Invest'>Investors</a></li>
         <li><a>Our Solutions</a></li>
+        <li><a>JM-Qafri Forum</a></li>
         <li><a>F.A.Q</a></li>
         <li className='md:hidden'><a>Contact</a></li>
       </ul>
