@@ -11,7 +11,7 @@ export default function Component() {
           <h1 className="text-3xl font-light text-center text-black">Investment Opportunities</h1>
           <p className="text-gray-900 text-center">Secure our expert insights ;</p>
         </div>
-        <div className="grid gap-4 md:gap-6 px-20 pb-20">
+        <div className="grid gap-4 md:gap-6 lg:px-20 px-5 pb-20">
           <Card>
             <CardContent className="p-4 grid gap-2">
               <div className="flex flex-col gap-1.5">
