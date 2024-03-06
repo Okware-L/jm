@@ -75,10 +75,12 @@ export default function About() {
         </div>
       </div>
       <p className="text-center text-base font-light leading-relaxed max-w-3xl mx-auto py-10">
-        For over 130 years, we have been focusing on one thing: helping people achieve their financial goals. As a
-        global wealth manager, we understand your needs, and take the long view when it comes to your assets. Whether
-        you’re starting a company, planning for your retirement, or want to ensure your loved ones will be taken care of
-        in the future; our experts will help find the solution that is right for you.
+        As a leading global wealth manager, we recognize the significance of your financial objectives and adopt
+         a forward-thinking approach to safeguarding your assets. Whether you're embarking on a new venture,
+          strategizing for retirement, or securing the future well-being of your family, our team of experts is 
+          dedicated to identifying tailored solutions that resonate with you. In today&#39;s rapidly evolving financial landscape,
+           our commitment to understanding your needs and leveraging innovative solutions, including DeFi, ensures
+            that we remain relevant and equipped to guide you toward your financial goals.
       </p>
     </section>
   )
