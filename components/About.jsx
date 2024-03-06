@@ -76,7 +76,7 @@ export default function About() {
       </div>
       <p className="text-center text-base font-light leading-relaxed max-w-3xl mx-auto py-10">
         As a leading global wealth manager, we recognize the significance of your financial objectives and adopt
-         a forward-thinking approach to safeguarding your assets. Whether you're embarking on a new venture,
+         a forward-thinking approach to safeguarding your assets. Whether you&#39;re embarking on a new venture,
           strategizing for retirement, or securing the future well-being of your family, our team of experts is 
           dedicated to identifying tailored solutions that resonate with you. In today&#39;s rapidly evolving financial landscape,
            our commitment to understanding your needs and leveraging innovative solutions, including DeFi, ensures
