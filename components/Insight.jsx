@@ -7,11 +7,11 @@ export default function Insight() {
     <div className="px-4 sm:px-6 lg:px-8 bg-gray-100 text-black py-5 pt-11 font-extralight">
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center">
         <div className="lg:w-1/2 p-5">
-          <h2 className="text-3xl font-normal leading-tight">Three wealth mistakes of Succession’s Roy family</h2>
+          <h2 className="text-3xl font-normal leading-tight">Demystifying DeFi: A Beginner&#39;s Guide to Decentralized Finance</h2>
           <p className="mt-4 font-light text-base leading-relaxed">
-            If you were a Roy, what would you have done? Last summer, HBO’s Succession finished its four-season run to
-            critical acclaim. In the calamitous finale, we watched the ultra-high-net-worth family fall apart at the
-            seams – so
+          Welcome to the world of DeFi, where traditional finance meets blockchain technology.
+           In this blog post, we&#39;ll explore the basics of Decentralized Finance (DeFi) and how 
+           it&#39;s revolutionizing the way we think about money, banking, and investing.
           </p>
           <div className="flex items-center space-x-4 mt-6">
             <CalendarIcon className="text-gray-500" />
@@ -19,7 +19,7 @@ export default function Insight() {
             <ClockIcon className="text-gray-500" />
             <span className="text-sm">6 MIN</span>
           </div>
-          <Button className="mt-4 bg-gray-200 text-gray-800">Succession</Button>
+          <Button className="mt-4 bg-gray-200 text-gray-800">Blockchain</Button>
         </div>
         <div className="lg:w-1/2 mt-8 lg:mt-0">
           <Image
