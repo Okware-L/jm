@@ -21,7 +21,7 @@ export default function Blog() {
             />
           </div>
           <div className="space-y-2">
-            <h3 className="text-base font-light">JMAFRI Network's New Channels for Global Business Investment</h3>
+            <h3 className="text-base font-light">JMAFRI Network&apos;s New Channels for Global Business Investment</h3>
             <div className="flex items-center space-x-2 text-sm text-gray-500">
               <CalendarIcon className="h-3 w-3" />
               <span >01.03.2024</span>

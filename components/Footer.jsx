@@ -25,7 +25,7 @@ export default function Footer() {
         </article>
         <article className="mb-8">
           <h2 className="text-base font-normal mb-1">
-            Invest in Farmers' Project - Choose Your Farm, Meet the Farmers
+            Invest in Farmers&#39; Project - Choose Your Farm, Meet the Farmers
           </h2>
           <div className="flex items-center justify-between mb-4">
             <time className="text-sm" dateTime="2023-12-07">

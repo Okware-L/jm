@@ -28,7 +28,7 @@ const Navbar = () => {
   </div>
   <div className="navbar-center">
     <a href="/">
-    <Image src="/jmlogoblack.svg" width="84" height="54" href='/'/>
+    <Image src="/jmlogoblack.svg" alt='img' width="84" height="54" href='/'/>
     </a>
   </div>
   <div className="navbar-end">
