@@ -34,7 +34,7 @@ export default function Categories() {
           <CardHeader>
             <CardTitle>Financing</CardTitle>
             <CardDescription>
-              We offer customised Lombard lending solutions to meet your individual financing and trading needs.
+              We offer customised solutions to meet your individual/startup financing and trading needs.
             </CardDescription>
           </CardHeader>
           <CardFooter>
