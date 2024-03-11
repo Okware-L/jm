@@ -3,6 +3,8 @@ import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card }
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import {investmentData} from '../../investments'
+import Footer from '../../components/Footer'
+
 
 export default function Component() {
   return (
@@ -13,7 +15,7 @@ export default function Component() {
 
         <h1 className="text-5xl font-light mb-4 text-black">INVESTING</h1>
         <p className="text-lg text-gray-700 font-light">
-          Providing you with the tools, advice, and solutions to help you invest successfully.
+          secure our insights, advice, and solutions to help you invest successfully.
         </p>
       </div>
       <div className="sm:flex justify-center sm:space-x-8  space-y-3 grid">
@@ -73,6 +75,7 @@ export default function Component() {
     </Card>
     ))}
     </div>
+    <Footer/>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import {jobsData} from '../../jobs'
 import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
 import { Button } from "@/components/ui/button"
 import { CardContent, CardFooter, Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -38,13 +39,13 @@ const page = () => {
           {jobsData.map((job, index) => (
       <div 
       key={index}
-      className="grid ">
+      className="grid pb-10">
         
         <Card >
           <CardContent className="grid gap-4 p-5">
             <div>
               <h3 className="text-2xl font-light">{job.title}</h3>
-              <p className="text-gray-500 dark:text-gray-400">{job.role}</p>
+              
             </div>
             <div className="grid gap-2 hidden md:block">
               <div>
@@ -97,6 +98,7 @@ const page = () => {
       </div>
       ))}
     </div>
+    <Footer/>
     </div>
      </>
   )

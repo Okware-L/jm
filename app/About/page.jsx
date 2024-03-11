@@ -1,8 +1,10 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import Navbar from "../components/Navbar"
-import Blog from "../components/Blog"
+import Navbar from "../../components/Navbar"
+import Blog from "../../components/Blog"
+import Footer from '../../components/Footer'
+
 
 
 export default function Page() {
@@ -10,12 +12,14 @@ export default function Page() {
     <>
     <Navbar/>
     <div className="bg-white min-h-screen pt-20 text-black grid justify-center place-items-center ">
+            <Image src="/company.jpg" alt="hm" width="800" height="500"/>
+
     <div className="w-full py-6">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col gap-4 min-h-[600px]">
           <div className="space-y-2">
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">About Us</h1>
-            <p className="max-w-prose  text-black font-extralight text-sm md:text-base">
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center">About Us</h1>
+            <p className=" text-black font-extralight text-sm md:text-base">
 The Jmqafri Network is a dynamic and influential community of business leaders, dedicated to fostering collaboration, growth, and innovation. Our network brings together forward-thinking entrepreneurs, executives, and industry experts from various sectors and backgrounds, creating a powerful ecosystem that drives meaningful change in the business world.
 At the core of the Jmqafri Network is a shared vision of advancing entrepreneurship, leadership, and sustainable business practices. We believe that by connecting like-minded individuals and providing a platform for knowledge exchange, we can collectively overcome challenges and unlock new opportunities.
 Our network members encompass a diverse range of industries, including technology, finance, healthcare, manufacturing, and many more. This diversity fuels the richness of our discussions and enables cross-pollination of ideas, leading to groundbreaking solutions and breakthrough innovations. From startup founders to seasoned CEOs, we embrace individuals at every stage of their professional journey, recognizing the value of both experience and fresh perspectives.
@@ -28,8 +32,8 @@ Together, we can shape the future of business and create a more sustainable and 
           </div>
           <div className="space-y-4">
             <div className="space-y-2">
-              <h2 className="text-2xl font-bold tracking-tight">Our Vision</h2>
-              <p className="max-w-prose   text-black font-extralight text-sm md:text-base">
+              <h2 className="text-2xl font-bold tracking-tight text-center">Our Vision</h2>
+              <p className=" text-black font-extralight text-sm md:text-base">
                 Our vision at the JMQafri Network is to be the premier platform for business leaders,
                  renowned for fostering a dynamic community that fuels collaboration, growth, and continuous
                   learning. We aspire to create an ecosystem where innovative minds converge, exchange ideas,
@@ -42,8 +46,8 @@ Together, we can shape the future of business and create a more sustainable and 
               </p>
             </div>
             <div className="space-y-2">
-              <h2 className="text-2xl font-bold tracking-tight">Our Mission</h2>
-              <p className="max-w-prose  text-black font-extralight text-sm md:text-base">
+              <h2 className="text-2xl font-bold tracking-tight text-center">Our Mission</h2>
+              <p className=" text-black font-extralight text-sm md:text-base">
                 To foster a vibrant community of business leaders, united by a shared vision of collaboration, 
                 growth, and knowledge sharing. We aim to bring together forward-thinking individuals who are
                  passionate about building and innovating, creating an environment where they can connect,
@@ -61,6 +65,7 @@ Together, we can shape the future of business and create a more sustainable and 
     </div>
     <h1 className="text-2xl font-normal text-center bg-white text-black py-10">INSIGHTS</h1>
     <Blog/>
+    <Footer/>
     </>
   )
 }
