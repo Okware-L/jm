@@ -1,8 +1,8 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import Navbar from "@/components/Navbar"
-import Blog from "@/components/Blog"
+import Navbar from "../components/Navbar"
+import Blog from "../components/Blog"
 
 
 export default function Page() {

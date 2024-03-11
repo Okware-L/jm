@@ -1,5 +1,5 @@
-import Navbar from "@/components/Navbar"
-import { CardContent, Card } from "@/components/ui/card"
+import Navbar from "../components/Navbar"
+import { CardContent, Card } from "../components/ui/card"
 
 export default function Component() {
   return (

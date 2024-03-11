@@ -4,8 +4,8 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"
-import Navbar from '@/components/Navbar'
+} from "../components/ui/accordion"
+import Navbar from '../components/Navbar'
 
 
 
