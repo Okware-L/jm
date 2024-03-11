@@ -39,7 +39,7 @@ const Navbar = () => {
     </a>
   </div>
   <div className="navbar-end">
-    <Link href="/" className=' hidden md:block mx-3 text-sm hover:underline font-normal'>Careers</Link>
+    <Link href="/careers" className=' hidden md:block mx-3 text-sm hover:underline font-normal'>Careers</Link>
     <Link href="/contact" className=' hidden md:block text-sm hover:underline mx-3 font-normal'>Contact</Link>
 
     <div>

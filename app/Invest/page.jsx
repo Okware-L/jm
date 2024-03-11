@@ -1,108 +1,78 @@
-import Navbar from "../components/Navbar"
-import { CardContent, Card } from "../components/ui/card"
+import Navbar from "../../components/Navbar"
+import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import {investmentData} from '../../investments'
 
 export default function Component() {
   return (
     <div className="min-h-screen bg-white ">
         <Navbar/>
-    <section className="pt-40">
-      <div className="grid gap-6 lg:gap-8 px-4">
-        <div className="flex flex-col gap-2">
-          <h1 className="text-3xl font-light text-center text-black">Investment Opportunities</h1>
-          <p className="text-gray-900 text-center">Secure our expert insights ;</p>
-        </div>
-        <div className="grid gap-4 md:gap-6 lg:px-20 px-5 pb-20">
-          <Card>
-            <CardContent className="p-4 grid gap-2">
-              <div className="flex flex-col gap-1.5">
-                <h3 className="text-lg font-semibold leading-none">Agriculture Project</h3>
-                <p className="text-sm text-gray-900">Invest in sustainable farming practices.</p>                 
+      <div className=" mx-auto px-6 pb-10 pt-40">
+      <div className="text-center mb-12">
 
-              </div>
-              <div className="flex items-center">
-                <ArrowRightIcon className="w-4 h-4 mr-2 flex-shrink-0 text-gray-500 dark:text-gray-400" />
-                <span className="text-sm font-medium leading-none">View Project</span>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4 grid gap-2">
-              <div className="flex flex-col gap-1.5">
-                <h3 className="text-lg font-semibold leading-none">Fintech</h3>
-                <p className="text-sm text-gray-900">Blockchain & embracing new technologies.</p>
-              </div>
-              <div className="flex items-center">
-                <ArrowRightIcon className="w-4 h-4 mr-2 flex-shrink-0 text-gray-500 dark:text-gray-400" />
-                <span className="text-sm font-medium leading-none">View Project</span>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4 grid gap-2">
-              <div className="flex flex-col gap-1.5">
-                <h3 className="text-lg font-semibold leading-none">Pharmtech</h3>
-                <p className="text-sm text-gray-900">AI and medicine.</p>
-              </div>
-              <div className="flex items-center">
-                <ArrowRightIcon className="w-4 h-4 mr-2 flex-shrink-0 text-gray-500 dark:text-gray-400" />
-                <span className="text-sm font-medium leading-none">View Project</span>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4 grid gap-2">
-              <div className="flex flex-col gap-1.5">
-                <h3 className="text-lg font-semibold leading-none">Art</h3>
-                <p className="text-sm text-gray-900">Art auctions, competitions and more</p>
-              </div>
-              <div className="flex items-center">
-                <ArrowRightIcon className="w-4 h-4 mr-2 flex-shrink-0 text-gray-500 dark:text-gray-400" />
-                <span className="text-sm font-medium leading-none">View Project</span>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4 grid gap-2">
-              <div className="flex flex-col gap-1.5">
-                <h3 className="text-lg font-semibold leading-none">Education Initiative</h3>
-                <p className="text-sm text-gray-900">
-                  Supporting educational infrastructure in underprivileged areas.
-                </p>
-              </div>
-              <div className="flex items-center">
-                <ArrowRightIcon className="w-4 h-4 mr-2 flex-shrink-0 text-gray-500 dark:text-gray-400" />
-                <span className="text-sm font-medium leading-none">View Project</span>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4 grid gap-2">
-              <div className="flex flex-col gap-1.5">
-                <h3 className="text-lg font-semibold leading-none">Renewable Energy Venture</h3>
-                <p className="text-sm text-gray-900">Invest in solar and wind energy projects.</p>
-              </div>
-              <div className="flex items-center">
-                <ArrowRightIcon className="w-4 h-4 mr-2 flex-shrink-0 text-gray-900" />
-                <span className="text-sm font-medium leading-none">View Project</span>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4 grid gap-2">
-              <div className="flex flex-col gap-1.5">
-                <h3 className="text-lg font-semibold leading-none">Biotech</h3>
-                <p className="text-sm text-gray-900">Biology to develop products, methods and organisms intended to improve human health and society</p>
-              </div>
-              <div className="flex items-center">
-                <ArrowRightIcon className="w-4 h-4 mr-2 flex-shrink-0 text-gray-500 dark:text-gray-400" />
-                <span className="text-sm font-medium leading-none">View Project</span>
-              </div>
-            </CardContent>
-          </Card>
+        <h1 className="text-5xl font-light mb-4 text-black">INVESTING</h1>
+        <p className="text-lg text-gray-700 font-light">
+          Providing you with the tools, advice, and solutions to help you invest successfully.
+        </p>
+      </div>
+      <div className="sm:flex justify-center sm:space-x-8  space-y-3 grid">
+        <div className="bg-white p-6 shadow-lg w-80">
+          <h2 className="text-xl font-normal text-black mb-2">Enhanced Advisory Services</h2>
+          <p className="text-gray-600 mb-4 font-light">Access JM-Qafri&#39;s extensive knowledge and capabilities to optimize your investment strategies with our advisory mandates.</p>
+          <Link className="text-blue-600 hover:underline" href="#">
+            Discover more →
+          </Link>
+        </div>
+        <div className="bg-white p-6 shadow-lg w-80">
+          <h2 className="text-xl font-normal text-black mb-2">Expert-Managed Investments</h2>
+          <p className="text-gray-600 mb-4 font-light">Let our committed specialists take charge of your investments, ensuring tailored solutions and expert oversight.</p>
+          <Link className="text-blue-600 hover:underline" href="#">
+            Discover more →
+          </Link>
+        </div>
+        <div className="bg-white p-6 shadow-lg w-80">
+          <h2 className="text-xl font-normal mb-2 text-black">Other solutions</h2>
+          <p className="text-gray-600 mb-4 font-light">Explore our comprehensive range of additional solutions and products.</p>
+          <Link className="text-blue-600 hover:underline" href="#">
+            Discover more →
+          </Link>
         </div>
       </div>
-      
-    </section>
+    </div>
+    <h1 className="text-center font-light text-2xl text-black ">Investment Opportunities</h1>
+    
+    <div  className="flex flex-nowrap overflow-x-auto mx-10 py-10 space-x-3 space-y-3"> 
+    {investmentData.map((investmentData, index) => (
+        <Card key={index}>
+      <CardHeader>
+        <div className="space-y-1">
+          <CardTitle>{investmentData.title}</CardTitle>
+          <CardDescription>{investmentData.description}</CardDescription>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <div className="grid grid-cols-2 gap-4 text-sm">
+          <div className="space-y-1">
+            <h3 className="text-sm font-medium tracking-wide">Current Value</h3>
+            <p className="text-sm font-medium tracking-wide">{investmentData.value}</p>
+          </div>
+          <div className="space-y-1">
+            <h3 className="text-sm font-medium tracking-wide">Return Rate</h3>
+            <p className="text-sm font-medium tracking-wide">{investmentData.roi} (YTD)</p>
+          </div>
+          <div className="space-y-1">
+            <h3 className="text-sm font-medium tracking-wide">Investment Period</h3>
+            <p className="text-sm font-medium tracking-wide">{investmentData.period}</p>
+          </div>
+        </div>
+      </CardContent>
+      <CardFooter>
+        <button className='btn btn-wide' size="sm">View Details</button>
+      </CardFooter>
+    </Card>
+    ))}
+    </div>
     </div>
   )
 }

@@ -1,10 +1,10 @@
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero"
-import Categories from './components/categories'
-import About from './components/About'
-import Insight from './components/Insight'
-import Blog from './components/Blog'
-import Footer from './components/Footer'
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero"
+import Categories from '../components/categories'
+import About from '../components/About'
+import Insight from '../components/Insight'
+import Blog from '../components/Blog'
+import Footer from '../components/Footer'
 
 
 

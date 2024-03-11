@@ -1,19 +1,24 @@
 import React from 'react'
 
-import Navbar from '../components/Navbar'
+import Navbar from '../../components/Navbar'
+import Contact from '../../components/contact'
 
 
 const page = () => {
   return (
     <>
     <Navbar/>
-    <div className='min-h-screen bg-white py-40'>
+    <div className='min-h-screen bg-gray-100 py-40 px-5'>
       
-        <h1 className='text-center text-3xl font-extralight text-black'> CONTACT FORM </h1>
+        <h1 className='text-center text-3xl font-extralight text-black py-5'> CONTACT FORM </h1>
         <div className='p-5 px-20'>
-        <p className='text-center font-light text-base text-blue-900 py-10'> We look forward to assisting you with any questions or enquiries you might have, and will respond to your message as soon as possible.</p>
+
 
         </div>
+        <div className='sm:mx-10'>
+          <Contact/>
+        </div>
+        
     </div>
     </>
   )

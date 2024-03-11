@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react';
-import { contents } from '../../data.js';
+import { contents } from '../data.js';
 
 export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
