@@ -42,6 +42,10 @@ export default function Component() {
         </div>
       </div>
     </div>
+    <p className="p-10 sm:px-40 sm:py-10 font-light text-base text-black bg-inherit">
+      At JM-Qafri, we've been cultivating our investment expertise and offerings for generations. Throughout our history, we've recognized that each individual's investment requirements are distinct and personalized. That's why our first priority is gaining a comprehensive understanding of your circumstances, aspirations, and risk tolerance.
+With a clear grasp of your needs and objectives, we can then assist you in pinpointing and executing the ideal solution. Whether it involves a discretionary or advisory mandate, investing in a particular asset class, crafting a customized structured product, or providing execution support, you'll leverage our extensive investment experience and global network to your advantage.
+    </p>
     <h1 className="text-center font-light text-2xl text-black ">Investment Opportunities</h1>
     
     <div  className="flex flex-nowrap overflow-x-auto mx-10 py-10 space-x-3 space-y-3"> 
