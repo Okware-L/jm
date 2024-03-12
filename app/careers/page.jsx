@@ -23,6 +23,11 @@ const page = () => {
             <p className="max-w-3xl text-gray-900 font-extralight last:md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               Search for jobs and internships. Discover the role that is right for you.
             </p>
+            <div className='text-black py-5'>
+              <Link href="/careers/tenders">
+              <h1 >See Available Tenders</h1>
+              </Link>
+            </div>
           </div>
           <div className="space-y-4">
             <div className="space-y-2">
