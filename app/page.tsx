@@ -5,6 +5,7 @@ import About from '../components/About'
 import Insight from '../components/Insight'
 import Blog from '../components/Blog'
 import Footer from '../components/Footer'
+import Newsletter from '../components/Newsletter'
 
 
 
@@ -20,6 +21,7 @@ export default function Home() {
    
    <Insight/>
    <Blog/>
+    <Newsletter/>
    <Footer/>
   </body>
 

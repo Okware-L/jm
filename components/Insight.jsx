@@ -4,7 +4,7 @@ import Image from "next/image"
 
 export default function Insight() {
   return (
-    <div className="px-4 sm:px-6 lg:px-8 bg-gray-100 text-black py-5 pt-11 font-extralight">
+    <div className="px-4 sm:px-6 lg:px-8 bg-gray-100 text-black py-11 pt-11 font-extralight pb-11">
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center">
         <div className="lg:w-1/2 p-5">
           <h2 className="text-3xl font-normal leading-tight">Demystifying DeFi: A Beginner&#39;s Guide to Decentralized Finance</h2>
