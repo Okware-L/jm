@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { CardContent, CardFooter, Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
+import Image from 'next/image'
 
 const page = () => {
   return (
@@ -20,7 +21,7 @@ const page = () => {
           <div className="space-y-2">
             <h1 className="text-3xl font-light tracking-tighter sm:text-5xl text-black">Find your dream job</h1>
             <p className="max-w-3xl text-gray-900 font-extralight last:md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Search for jobs and internships. Discover the companies and roles that are right for you.
+              Search for jobs and internships. Discover the role that is right for you.
             </p>
           </div>
           <div className="space-y-4">
@@ -67,7 +68,7 @@ const page = () => {
           <CardFooter className='hidden md:flex'>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <img
+                <Image
                   alt="Company logo"
                   className="rounded-full"
                   height="40"
@@ -81,7 +82,7 @@ const page = () => {
                 <div className="text-sm font-medium">
                   <h4>JM-Qafri Methuselah</h4>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                    We're on a mission to make finance more accessible.
+                    We&#39;re on a mission to make finance more accessible.
                   </p>
                 </div>
               </div>

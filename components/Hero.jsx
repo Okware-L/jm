@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { contents } from '../data.js';
+import Link from 'next/link.js';
 
 export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,9 +30,11 @@ export default function Hero() {
           <p className="text-base font-light">{contents[currentIndex].text}</p>
           
         </div>
+        <Link href="/About">
           <button className="btn btn-wide rounded-none text-sm transition duration-500 ease-in-out text-white hover:scale-105">
           Discover More
-          </button>
+          </button></Link>
+          
 
       </div>
     </div>
