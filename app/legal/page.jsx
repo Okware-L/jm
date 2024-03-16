@@ -8,7 +8,7 @@ const page = () => {
         <div className='font-light text-black p-5 sm:px-20'>
             <h1 className='text-center py-5 pt-20'>Legal Disclaimer: JM-Qafri Methuselah Ltd Web3 Investment Site</h1>
 
-<p>Welcome to the Web3 Investment Site operated by JM-Qafri Methuselah Ltd (referred to as "JM-Qafri Methuselah," "we," "us," or "our"). By accessing or using our website (the "Site"), you acknowledge that you have read, understood, and agree to be bound by the terms and conditions set forth in this legal disclaimer (the "Disclaimer"). Please read this Disclaimer carefully before using the Site.</p>
+<p>Welcome to the Web3 Investment Site operated by JM-Qafri Methuselah Ltd (referred to as &#34;JM-Qafri Methuselah,&#34; &#34;we,&#34; &#34;us,&#34; or &#34;our&#34;). By accessing or using our website jmqafri.com, you acknowledge that you have read, understood, and agree to be bound by the terms and conditions set forth in this legal disclaimer. Please read this Disclaimer carefully before using the Site.</p>
 
 
             <div className='space-y-5 pt-10'>
@@ -30,7 +30,7 @@ const page = () => {
 <p className='pb-10'>You are solely responsible for ensuring that your use of the Site and any investments you make comply with applicable laws and regulations in your jurisdiction. JM-Qafri Methuselah does not provide any assurance or representation that the Site or its content complies with laws or regulations outside of our jurisdiction.</p>
 
 <span>6. No Warranty:</span>
-<p className='pb-10'>The Site and its content are provided on an "as is" and "as available" basis without any warranties of any kind, either express or implied. JM-Qafri Methuselah does not warrant the accuracy, completeness, or reliability of the Site or its content.</p>
+<p className='pb-10'>The Site and its content are provided on an &#34;as is&#34; and &#34;as available&#34; basis without any warranties of any kind, either express or implied. JM-Qafri Methuselah does not warrant the accuracy, completeness, or reliability of the Site or its content.</p>
 
 <span>7. Limitation of Liability:</span>
 <p className='pb-10'>In no event shall JM-Qafri Methuselah be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising out of or in connection with your use of the Site or its content, even if we have been advised of the possibility of such damages.</p>
