@@ -63,26 +63,19 @@ export default function Footer() {
         <footer className="border-t pt-4 pb-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="flex gap-4">
-              <Link className="text-sm" href="#">
+              <Link className="text-sm" href="/About">
                 About Us
               </Link>
-              <Link className="text-sm" href="#">
+              <Link className="text-sm" href="/contact">
                 Contact
               </Link>
-              <Link className="text-sm" href="#">
+              <Link className="text-sm" href="/legal">
                 Legal
               </Link>
             </div>
             <div className="gap-4 hidden md:flex">
-              <Link className="text-sm" href="#">
-                Data Privacy Policy for Electronic Services
-              </Link>
-              <Link className="text-sm" href="#">
-                Terms of Use
-              </Link>
-              <Link className="text-sm" href="#">
-                Cookie Settings
-              </Link>
+
+              
               <Link className="text-sm" href="/FAQ">
                 F.A.Q
               </Link>
