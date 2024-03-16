@@ -35,8 +35,11 @@ const TenderItem = ({ category, description, items, badge }) => (
           </div>
         ))}
       </div>
+
+
+      <div className='flex flex-col'>
 <Drawer >
-  <DrawerTrigger className='sm:hidden'>See list</DrawerTrigger>
+  <DrawerTrigger className='md:hidden text-start'>See list</DrawerTrigger>
   <DrawerContent>
     <DrawerHeader>
       <DrawerTitle>{category}</DrawerTitle>
@@ -58,6 +61,8 @@ const TenderItem = ({ category, description, items, badge }) => (
 </Drawer>
 
       <button className='btn btn-wide my-5 hover:animate-bounce'>Apply</button>
+      </div>
+
     </div>
     
   </div>

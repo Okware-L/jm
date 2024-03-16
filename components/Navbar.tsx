@@ -4,11 +4,7 @@ import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
-import {
-  ConnectWallet,
-  useAddress,
-  useAuth,
-} from "@thirdweb-dev/react";
+
 
 
 const Navbar = () => {
@@ -26,7 +22,7 @@ const Navbar = () => {
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white text-black font-light rounded-sm after:w-52 ">
         <li><a href='/About'>About us</a></li>
         <li><a href ='/Invest'>Invest</a></li>
-        <li><a>Our Solutions</a></li>
+        <li><a href='/careers'>careers</a></li>
         <li><a>JM-Qafri Forum</a></li>
         <li><a href='/FAQ'>F.A.Q</a></li>
         <li className='md:hidden'><a>Contact</a></li>
