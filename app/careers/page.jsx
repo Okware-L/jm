@@ -19,9 +19,9 @@ const page = () => {
       <div className="container grid max-w-6xl gap-6 px-4 py-6 lg:gap-10 lg:px-6 lg:py-12 ">
         <div className="space-y-6">
           <div className="space-y-2">
-            <h1 className="text-3xl font-light tracking-tighter sm:text-5xl text-black">Find your dream job</h1>
+            <h1 className="text-3xl font-light tracking-tighter sm:text-5xl text-black">Search for jobs and internships with JM-Qafri & NWCW.</h1>
             <p className="max-w-3xl text-gray-900 font-extralight last:md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Search for jobs and internships. Discover the role that is right for you.
+              Discover the role that is right for you.
             </p>
             <div className='text-black py-5'>
               <Link href="/careers/tenders">

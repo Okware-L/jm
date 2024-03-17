@@ -6,6 +6,9 @@ import Navbar from '@/components/Navbar';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
+import { CardFooter } from "@/components/ui/card"
+import Image from 'next/image';
+
 import {
   Drawer,
   DrawerClose,
@@ -21,14 +24,14 @@ import {
 
 const TenderItem = ({ category, description, items, badge }) => (
   <div className="mb-8 ">
-    <div className="bg-gray-100 p-4 rounded-lg shadow-md">
+    <div className="bg-white p-4 rounded-lg shadow-md">
       <div className='flex justify-between'>
         <h2 className="text-xl font-bold mb-4">{category}</h2>
         <Badge>{badge}</Badge>
       </div>
       
       <p className=" text-gray-600 mb-4 p-5">{description}</p>
-      <div className="sm:grid sm:grid-cols-4 gap-2 shadow-inner p-5 bg-gray-200 hidden">
+      <div className="sm:grid sm:grid-cols-4 gap-2 shadow-inner p-5 bg-gray-100 hidden">
         {items.map((item, index) => (
           <div key={index}>
             <p className="font-light text-sm">.{item}</p>
@@ -36,6 +39,30 @@ const TenderItem = ({ category, description, items, badge }) => (
         ))}
       </div>
 
+          <CardFooter className='hidden md:flex my-5'>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <Image
+                  alt="Company logo"
+                  className="rounded-full"
+                  height="40"
+                  src="/jmlogoblack.svg"
+                  style={{
+                    aspectRatio: "40/40",
+                    objectFit: "cover",
+                  }}
+                  width="40"
+                />
+                <div className="text-sm font-medium">
+                  <h4>JM-Qafri Methuselah</h4>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    Support system for you and your business.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </CardFooter>
 
       <div className='flex flex-col'>
 <Drawer >
@@ -60,7 +87,7 @@ const TenderItem = ({ category, description, items, badge }) => (
   </DrawerContent>
 </Drawer>
 
-      <button className='btn btn-wide my-5 hover:animate-bounce'>Apply</button>
+      <button className='btn btn-wide my-2 hover:animate-bounce'>Apply</button>
       </div>
 
     </div>
