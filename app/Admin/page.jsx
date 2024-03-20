@@ -8,8 +8,10 @@ import Navbar from '../../components/Navbar'
 
 export default function page() {
   return (
-    <div className='min-h-screen text-black bg-gray-100 p-5'>
+    <div className='min-h-screen text-black bg-gray-100'>
         <Navbar />
+    <div className='p-5'>
+        
         <h1 className='text-center font-light text-3xl pt-40'>Admin !</h1>
         <p className='my-3 text-center '>Welcome to the admin page</p>
         <div className='md:flex grid mx-3'>
@@ -17,7 +19,9 @@ export default function page() {
         <Createdtender />
         </div>
 
-        <Footer />
+        
+    </div>
+    <Footer />
     </div>
   )
 }
