@@ -152,7 +152,7 @@ const TendersPage = () => {
           key={tender.id}
           category={tender.category}
           description={tender.description}
-          items={tender.items}
+          items={tender.Items}
           badge={tender.badge}
         />
       ))}
