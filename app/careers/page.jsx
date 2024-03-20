@@ -7,6 +7,7 @@ import { CardContent, CardFooter, Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import Image from 'next/image'
+//import Create from '../../components/createJob'
 import { db } from "../../firebseConfig";
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
@@ -68,9 +69,12 @@ const Page = () => {
       className="grid pb-10">
         
         <Card >
+          
           <CardContent className="grid gap-4 p-5">
             <div>
+              <Link href={`/careers/${job.id}`} key={job.id}>
               <h3 className="text-2xl font-light">{job.title}</h3>
+              </Link>
               
             </div>
             <div className="grid gap-2 hidden md:block">
@@ -90,6 +94,7 @@ const Page = () => {
               </p>
             </div>
           </CardContent>
+          
           <CardFooter className='hidden md:flex'>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
@@ -124,6 +129,8 @@ const Page = () => {
       </div>
       ))}
     </div>
+
+
     <Footer/>
     </div>
      </>

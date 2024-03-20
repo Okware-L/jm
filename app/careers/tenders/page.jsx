@@ -25,11 +25,11 @@ import {
 
 
 
-const TenderItem = ({ category, description, items, badge }) => (
+const TenderItem = ({ title, description, items, badge }) => (
   <div className="mb-8 ">
     <div className="bg-white p-4 rounded-lg shadow-md">
       <div className='flex justify-between'>
-        <h2 className="text-xl font-bold mb-4">{category}</h2>
+        <h2 className="text-xl font-bold mb-4">{title}</h2>
         <Badge>{badge}</Badge>
       </div>
       
@@ -72,7 +72,7 @@ const TenderItem = ({ category, description, items, badge }) => (
   <DrawerTrigger className='md:hidden text-start'>See list</DrawerTrigger>
   <DrawerContent>
     <DrawerHeader>
-      <DrawerTitle>{category}</DrawerTitle>
+      <DrawerTitle>{title}</DrawerTitle>
       <DrawerDescription>{description}</DrawerDescription>
     </DrawerHeader>
       <div className="grid gap-2 shadow-inner p-5">
@@ -150,7 +150,7 @@ const TendersPage = () => {
       {tenders.map((tender) => (
         <TenderItem
           key={tender.id}
-          category={tender.category}
+          title={tender.title}
           description={tender.description}
           items={tender.Items}
           badge={tender.badge}
