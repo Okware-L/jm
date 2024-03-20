@@ -12,7 +12,7 @@ export default function page() {
         <Navbar />
         <h1 className='text-center font-light text-3xl pt-40'>Admin !</h1>
         <p className='my-3 text-center '>Welcome to the admin page</p>
-        <div className='flex mx-3'>
+        <div className='md:flex grid mx-3'>
         <Create />
         <Createdtender />
         </div>
