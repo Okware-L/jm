@@ -21,23 +21,23 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className='bg-gray-100 hero' style={{backgroundImage: 'url(./placeholder2.jpg)'}}>
+    <div className=''>
+    <section className='bg-gray-100 ' style={{backgroundImage: 'url(./placeholder2.jpg)'}}>
       <div className="hero-overlay bg-opacity-60"></div>
     <div className="h-[95vh] flex items-center justify-center  text-white">
       <div className="text-center">
         <div className={`mb-8 transition-opacity duration-800 ease-in-out ${fade ? 'opacity-0' : 'opacity-100'}`}>
-          <h1 className="text-5xl  mb-2">{contents[currentIndex].heading}</h1>
-          <p className="text-base font-light">{contents[currentIndex].text}</p>
+          <h1 className="text-5xl font-extralight mb-2">{contents[currentIndex].heading}</h1>
+          <p className="text-base font-extralight">{contents[currentIndex].text}</p>
           
         </div>
         <Link href="/About">
-          <button className="btn btn-wide rounded-none text-sm transition duration-500 ease-in-out text-white hover:scale-105">
+          <button className="btn btn-wide bg-gray-200 rounded-none text-sm transition duration-500 ease-in-out text-black hover:bg-gray-200 hover:text-black hover:scale-105">
           Discover More
           </button></Link>
-          
-
       </div>
     </div>
     </section>
+    </div>
   );
 }
