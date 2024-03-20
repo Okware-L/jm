@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import {investmentData} from '../../investments'
 import Footer from '../../components/Footer'
+import Insight from "@/components/investInsight"
 
 
 export default function Component() {
@@ -78,6 +79,9 @@ With a clear grasp of your needs and objectives, we can then assist you in pinpo
       </CardFooter>
     </Card>
     ))}
+    </div>
+    <div className="p-5">
+      <Insight />
     </div>
     <Footer/>
     </div>

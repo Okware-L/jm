@@ -7,18 +7,12 @@ export default function Insight() {
     <div className="px-4 sm:px-6 lg:px-8 bg-gray-100 text-black py-11 pt-11 font-extralight pb-11">
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center">
         <div className="lg:w-1/2 p-5">
-          <h2 className="text-3xl font-normal leading-tight">Demystifying DeFi: A Beginner&#39;s Guide to Decentralized Finance</h2>
+          <h2 className="text-3xl font-normal leading-tight"> 🚀 Join the JM Qafri Airdrop and Unlock Exciting Opportunities! 🚀</h2>
           <p className="mt-4 font-light text-base leading-relaxed">
-          Welcome to the world of DeFi, where traditional finance meets blockchain technology.
-           In this blog post, we&#39;ll explore the basics of Decentralized Finance (DeFi) and how 
-           it&#39;s revolutionizing the way we think about money, banking, and investing.
+            Are you ready to dive into the world of crypto rewards? Here&#39;s your chance with the JM
+             Qafri Airdrop! We&#39;re thrilled to offer you a golden opportunity to participate and earn valuable tokens effortlessly.
           </p>
-          <div className="flex items-center space-x-4 mt-6">
-            <CalendarIcon className="text-gray-500" />
-            <span className="text-sm">04.03.2024</span>
-            <ClockIcon className="text-gray-500" />
-            <span className="text-sm">6 MIN</span>
-          </div>
+
           <Button className="mt-4 bg-gray-200 text-gray-800">Blockchain</Button>
         </div>
         <div className="lg:w-1/2 mt-8 lg:mt-0">
@@ -26,7 +20,7 @@ export default function Insight() {
             alt="defi"
             className="rounded-none hover:scale-105 ease-out duration-500"
             height="400"
-            src="/defi.jpg"
+            src="/airdrop.jpg"
             style={{
               aspectRatio: "600/400",
               objectFit: "cover",

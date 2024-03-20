@@ -1,11 +1,11 @@
-
-import { Button } from "./ui/button"
+import { SanityDocument } from "next-sanity";
 import Image from "next/image"
 
-export default function Blog() {
+export default function Posts({ posts }: { posts: SanityDocument[] }) {
+
   return (
     <div className="mx-auto py-12 px-4 sm:px-6 lg:px-10 bg-gray-100 text-black">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <div className="flex flex-nowrap overflow-x-auto mx-10 py-10 space-x-3 space-y-3">
         <div className="space-y-4">
           <div className="aspect-w-16 aspect-h-9">
             <Image
@@ -30,55 +30,7 @@ export default function Blog() {
             </div>
           </div>
         </div>
-        <div className="space-y-4">
-          <div className="aspect-w-16 aspect-h-9">
-            <Image
-              alt="Generative AI's massive rally"
-              className="object-cover hover:scale-105 ease-in-out duration-500"
-              height="180"
-              src="/archi.jpg"
-              style={{
-                aspectRatio: "320/180",
-                objectFit: "cover",
-              }}
-              width="320"
-            />
-          </div>
-          <div className="space-y-2">
-            <h3 className="text-base font-light">Join the JMAFRI Network Architecture Contest for Sustainability and Innovation</h3>
-            <div className="flex items-center space-x-2 text-sm text-gray-500">
-              <CalendarIcon className="h-3 w-3" />
-              <span>28.02.2024</span>
-              <ClockIcon className="h-3 w-3" />
-              <span>3 MIN</span>
-            </div>
-          </div>
-          
-        </div>
-        <div className="space-y-4">
-          <div className="aspect-w-16 aspect-h-9">
-            <Image
-              alt="Emerging markets: A sweet spot in fixed income"
-              className="object-cover hover:scale-105 ease-in-out duration-500"
-              height="180"
-              src="/coffee.jpg"
-              style={{
-                aspectRatio: "320/180",
-                objectFit: "cover",
-              }}
-              width="320"
-            />
-          </div>
-          <div className="space-y-2">
-            <h3 className="text-base font-light">Coffee Project - Ethically Sourcing Fairly Traded Coffee</h3>
-            <div className="flex items-center space-x-2 text-sm text-gray-500">
-              <CalendarIcon className="h-3 w-3" />
-              <span>27.02.2024</span>
-              <ClockIcon className="h-3 w-3" />
-              <span>4 MIN</span>
-            </div>
-          </div>
-        </div>
+
       </div>
       <div className="flex justify-center my-5">
         <button className="btn btn-wide my-10  text-white hover:animate-bounce duration-500 ease-in-out">See All</button>
@@ -88,7 +40,7 @@ export default function Blog() {
   )
 }
 
-function CalendarIcon(props) {
+function CalendarIcon(props: any) {
   return (
     <svg
       {...props}
@@ -111,7 +63,7 @@ function CalendarIcon(props) {
 }
 
 
-function ClockIcon(props) {
+function ClockIcon(props: any) {
   return (
     <svg
       {...props}

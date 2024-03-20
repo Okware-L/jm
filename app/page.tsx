@@ -3,13 +3,21 @@ import Hero from "../components/Hero"
 import Categories from '../components/categories'
 import About from '../components/About'
 import Insight from '../components/Insight'
-import Blog from '../components/Blog'
+
 import Footer from '../components/Footer'
 import Newsletter from '../components/Newsletter'
+import { SanityDocument } from "next-sanity";
+
+import Posts from "@/components/Blog";
+import { loadQuery } from "@/sanity/lib/store";
+import { POSTS_QUERY } from "@/sanity/lib/queries";
 
 
 
-export default function Home() {
+export default async function Home() {
+
+  const initial = await loadQuery<SanityDocument[]>(POSTS_QUERY);
+
   return (
 
 
@@ -19,7 +27,7 @@ export default function Home() {
    <Categories/>
    <About/>
    <Insight/>
-   <Blog/>
+   <Posts posts={initial.data} />
     <Newsletter/>
    <Footer/>
   </body>

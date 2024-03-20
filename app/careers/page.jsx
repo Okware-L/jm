@@ -1,14 +1,34 @@
+"use client"
+
 import React from 'react'
-import {jobsData} from '../../jobs'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
-import { Button } from "@/components/ui/button"
 import { CardContent, CardFooter, Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import Image from 'next/image'
+import { db } from "../../firebseConfig";
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
-const page = () => {
+const Page = () => {
+
+  const [jobs, setJobs] = useState([]);
+
+    const getJobs = async () => {
+    const col = collection(db, "jobs");
+    const snapshot = await getDocs(col);
+    setJobs(snapshot.docs.map(doc => {
+      return {
+        id: doc.id,
+        ...doc.data()
+      }
+    }));   
+  }
+
+    useEffect(() => {
+    getJobs()
+  }, [])
   return (
     <>
    
@@ -42,9 +62,9 @@ const page = () => {
     </div>
     <div className="w-full space-y-2 sm:space-y-6 px-5">
 
-          {jobsData.map((job, index) => (
+          {jobs.map((job) => (
       <div 
-      key={index}
+      key={job.id}
       className="grid pb-10">
         
         <Card >
@@ -110,4 +130,6 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
+
+
