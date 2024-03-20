@@ -90,7 +90,9 @@ const TenderItem = ({ title, description, items, badge }) => (
   </DrawerContent>
 </Drawer>
 
-      <button className='btn btn-wide my-2 hover:animate-bounce'>Apply</button>
+      <Link href="/careers/tenders/apply">
+      <button className='btn btn-wide my-2 hover:animate-bounce duration-700 text-white'>Apply</button>
+      </Link>
       </div>
 
     </div>
