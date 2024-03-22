@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
@@ -7,7 +8,11 @@ const CharityPage = () => {
     <div className='min-h-screen bg-gray-100'>
       <Navbar />
       <div className='p-5 pt-40 text-black'>
-        <h1 className='text-center text-5xl font-extralight mb-8'>Join Us in Making a Difference</h1>
+        <div className='flex justify-center items-center'>
+        <Image src="/charity.jpg" alt="hm" width="800" height="500"/>
+        </div>
+        
+        <h1 className='text-center text-5xl font-extralight mb-8 my-5'>Join Us in Making a Difference</h1>
         
         {/* Introduction */}
         <div className='mb-8'>
