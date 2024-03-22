@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const page = () => {
   return (
@@ -9,9 +10,12 @@ const page = () => {
       <Navbar />
       <div className='p-5 pt-40 text-black'>
         <h1 className='text-center text-2xl sm:text-5xl font-extralight'>The JM-Qafri Methuselah Architecture Competition</h1>
-        <div className='my-5 space-y-5'>
-          <h2 className='text-center text-normal sm:text-2xl font-light my-10'>Submission Instructions for the Jmqafri Project</h2>
-          {/* Submission Instructions */}
+        <div className='flex justify-center items-center my-10'>
+        <Image src="/archi.jpg" alt="hm" width="800" height="500"/>
+        </div>
+        <div className='my-5 space-y-5 md:px-10'>
+          <h2 className='text-left text-normal sm:text-3xl font-extralight my-10'>Submission Instructions for the Jmqafri Project</h2>
+
 {/* Submission Requirements */}
 <div className="mb-4">
   <h3 className="text-lg font-semibold mb-2">Submission Requirements</h3>
