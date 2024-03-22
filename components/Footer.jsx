@@ -62,7 +62,7 @@ export default function Footer() {
           <hr />
         </article>
         </Link>
-        <div className="text-center mt-8 mb-16">
+        <div className="text-center mt-8 mb-16 hidden">
           <Button variant="ghost">See All</Button>
         </div>
         <footer className="border-t pt-4 pb-8">
