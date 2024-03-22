@@ -7,6 +7,7 @@ export default function Footer() {
     <div className="flex flex-col items-center justify-center bg-gray-100 text-black py-16 p-5">
       <h1 className="text-2xl font-light my-8">More Updates</h1>
       <div className="max-w-4xl w-full">
+        <Link href='/architecture'>
         <article className="mb-8">
           <h2 className="text-base font-normal mb-1">
             JM-QAFRI Network Architecture Contest for Sustainability and Innovation
@@ -22,7 +23,8 @@ export default function Footer() {
             </div>
           </div>
           <hr />
-        </article>
+        </article></Link>
+        <Link href='/invest'>
         <article className="mb-8">
           <h2 className="text-base font-normal mb-1">
             Invest in Farmers&#39; Project - Choose Your Farm, Meet the Farmers
@@ -40,6 +42,8 @@ export default function Footer() {
           </div>
           <hr />
         </article>
+        </Link>
+        <Link href='/About'>
         <article className="mb-8">
           <h2 className="text-base font-normal mb-1">
              Empowering Students through our Education Program
@@ -57,6 +61,7 @@ export default function Footer() {
           </div>
           <hr />
         </article>
+        </Link>
         <div className="text-center mt-8 mb-16">
           <Button variant="ghost">See All</Button>
         </div>
