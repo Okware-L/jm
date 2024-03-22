@@ -42,7 +42,7 @@ const page = () => {
 <p className='pb-10'>JM-Qafri Methuselah reserves the right to modify, amend, or replace this Disclaimer at any time without prior notice. Your continued use of the Site after any such changes constitutes your acceptance of the revised Disclaimer.</p>
 
 <span>10. Governing Law:</span>
-<p className='pb-10'>This Disclaimer shall be governed by and construed in accordance with the laws of [Insert Jurisdiction], without regard to its conflicts of law principles.
+<p className='pb-10'>This Disclaimer shall be governed by and construed in accordance with the laws of Kenya, without regard to its conflicts of law principles.
 </p>
 
 <p>If you have any questions about this Disclaimer, please contact us at <Link href='/contact'>Contact Us.</Link></p>

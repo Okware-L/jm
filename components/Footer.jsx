@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="max-w-4xl w-full">
         <article className="mb-8">
           <h2 className="text-base font-normal mb-1">
-            JMAFRI Network Architecture Contest for Sustainability and Innovation
+            JM-QAFRI Network Architecture Contest for Sustainability and Innovation
           </h2>
           <div className="flex items-center justify-between mb-4">
             <time className="text-sm" dateTime="2024-02-01">
