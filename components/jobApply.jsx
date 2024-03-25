@@ -1,21 +1,19 @@
-"use client"
+// pages/jobApply.js
 
-import { useState } from 'react';
-//import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
 import { db } from '../firebseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 import { toast } from 'sonner';
-import {Input} from '../components/ui/input'
-import {Textarea} from '../components/ui/textarea'
+import { Input } from '../components/ui/input';
+import { Textarea } from '../components/ui/textarea';
 
-
-
-export default function Apply() {
-  //const router = useRouter();
+const JobApply = () => {
   const [application, setApplication] = useState({
-    name: '',
+    fullName: '',
     email: '',
-    message: '',
+    experience: '',
+    resumeLink: '',
+    coverLetter: '',
   });
 
   const handleChange = (e) => {
@@ -28,19 +26,19 @@ export default function Apply() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const col = collection(db, 'tenderApplications');
+    const col = collection(db, 'jobApplications');
     try {
       await addDoc(col, {
-        name: application.name,
+        fullName: application.fullName,
         email: application.email,
-        message: application.message,
+        experience: application.experience,
+        resumeLink: application.resumeLink,
+        coverLetter: application.coverLetter,
       });
       toast('Application submitted successfully', {
         variant: 'success',
         duration: 5000,
       });
-      
-
     } catch (error) {
       console.error('Error submitting application:', error);
       toast('Failed to submit application', {
@@ -51,30 +49,28 @@ export default function Apply() {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-100 ">
-      <div className="w-3/4 p-5 bg-white rounded-lg shadow-md ">
-        <h2 className="text-3xl font-light text-center mb-6 text-black ">
-          Apply for Tender
+    <div className="min-h-screen flex justify-center items-center">
+      <div className="w-3/4 p-5 bg-white rounded-lg shadow-md">
+        <h2 className="text-3xl font-light text-center mb-6 text-black">
+          Job Application Form
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium">
-              Name
+            <label htmlFor="fullName" className="block text-sm font-medium">
+              Full Name
             </label>
             <Input
-              
-              name="name"
-              value={application.name}
+              name="fullName"
+              value={application.fullName}
               onChange={handleChange}
               className="mt-1 p-2 w-full border-gray-300 rounded-md"
             />
           </div>
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-black">
-              Email
+              Email Address
             </label>
             <Input
-              
               name="email"
               value={application.email}
               onChange={handleChange}
@@ -82,49 +78,37 @@ export default function Apply() {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-black">
-              company
+            <label htmlFor="experience" className="block text-sm font-medium text-black">
+              Experience (years)
             </label>
             <Input
-              
-              name="email"
-              value={application.email}
+              name="experience"
+              value={application.experience}
               onChange={handleChange}
+              type="number"
               className="mt-1 p-2 w-full border-gray-300 rounded-md"
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-black">
-              Tender category
+            <label htmlFor="resumeLink" className="block text-sm font-medium text-black">
+              Resume Link
             </label>
             <Input
-              
-              name="email"
-              value={application.email}
+              name="resumeLink"
+              value={application.resumeLink}
               onChange={handleChange}
-              className="mt-1 p-2 w-full border-gray-300 rounded-md"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-black">
-              Location
-            </label>
-            <Input
-              
-              name="email"
-              value={application.email}
-              onChange={handleChange}
+              type="url"
               className="mt-1 p-2 w-full border-gray-300 rounded-md"
             />
           </div>
           <div className="mb-6">
-            <label htmlFor="message" className="block text-sm font-medium text-black">
-              Message
+            <label htmlFor="coverLetter" className="block text-sm font-medium text-black">
+              Cover Letter
             </label>
             <Textarea
-              name="message"
+              name="coverLetter"
               rows="4"
-              value={application.message}
+              value={application.coverLetter}
               onChange={handleChange}
               className="mt-1 p-2 w-full border-gray-300 rounded-md"
             ></Textarea>
@@ -139,4 +123,6 @@ export default function Apply() {
       </div>
     </div>
   );
-}
+};
+
+export default JobApply;

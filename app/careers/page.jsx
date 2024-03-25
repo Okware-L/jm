@@ -118,7 +118,7 @@ const Page = () => {
               </div>
               <Link
                 className="inline-flex h-9 items-center justify-center rounded-md bg-gray-100 px-4 py-2 text-sm font-medium mx-5"
-                href="#"
+                href={`/careers/${job.id}`} key={job.id}
               >
                 Apply
               </Link>

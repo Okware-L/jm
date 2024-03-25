@@ -1,21 +1,17 @@
 "use client"
 
 import { useState } from 'react';
-//import { useRouter } from 'next/navigation';
 import { db } from '../firebseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 import { toast } from 'sonner';
-import {Input} from '../components/ui/input'
-import {Textarea} from '../components/ui/textarea'
+import { Input } from '../components/ui/input';
+import { Textarea } from '../components/ui/textarea';
 
-
-
-export default function Apply() {
-  //const router = useRouter();
+export default function AirdropForm() {
   const [application, setApplication] = useState({
     name: '',
     email: '',
-    message: '',
+    ethWallet: '',
   });
 
   const handleChange = (e) => {
@@ -28,22 +24,20 @@ export default function Apply() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const col = collection(db, 'tenderApplications');
+    const col = collection(db, 'airdropApplications');
     try {
       await addDoc(col, {
         name: application.name,
         email: application.email,
-        message: application.message,
+        ethWallet: application.ethWallet,
       });
-      toast('Application submitted successfully', {
+      toast('Airdrop application submitted successfully', {
         variant: 'success',
         duration: 5000,
       });
-      
-
     } catch (error) {
-      console.error('Error submitting application:', error);
-      toast('Failed to submit application', {
+      console.error('Error submitting airdrop application:', error);
+      toast('Failed to submit airdrop application', {
         variant: 'error',
         duration: 5000,
       });
@@ -51,10 +45,10 @@ export default function Apply() {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-100 ">
-      <div className="w-3/4 p-5 bg-white rounded-lg shadow-md ">
-        <h2 className="text-3xl font-light text-center mb-6 text-black ">
-          Apply for Tender
+    <div className="min-h-screen flex justify-center items-center bg-gray-100">
+      <div className="sm:w-3/4 p-5 bg-white rounded-lg shadow-md">
+        <h2 className="text-3xl font-light text-center mb-6 text-black">
+          Participate in the Airdrop
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -62,7 +56,6 @@ export default function Apply() {
               Name
             </label>
             <Input
-              
               name="name"
               value={application.name}
               onChange={handleChange}
@@ -74,7 +67,6 @@ export default function Apply() {
               Email
             </label>
             <Input
-              
               name="email"
               value={application.email}
               onChange={handleChange}
@@ -82,44 +74,19 @@ export default function Apply() {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-black">
-              company
+            <label htmlFor="ethWallet" className="block text-sm font-medium text-black">
+              ETH Wallet Address
             </label>
             <Input
-              
-              name="email"
-              value={application.email}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border-gray-300 rounded-md"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-black">
-              Tender category
-            </label>
-            <Input
-              
-              name="email"
-              value={application.email}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border-gray-300 rounded-md"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-black">
-              Location
-            </label>
-            <Input
-              
-              name="email"
-              value={application.email}
+              name="ethWallet"
+              value={application.ethWallet}
               onChange={handleChange}
               className="mt-1 p-2 w-full border-gray-300 rounded-md"
             />
           </div>
           <div className="mb-6">
             <label htmlFor="message" className="block text-sm font-medium text-black">
-              Message
+              Additional Information (if any)
             </label>
             <Textarea
               name="message"
@@ -133,7 +100,7 @@ export default function Apply() {
             type="submit"
             className="w-full bg-gray-900 text-white py-2 px-4 rounded-md hover:bg-gray-800"
           >
-            Submit Application
+            Submit Airdrop Application
           </button>
         </form>
       </div>

@@ -31,7 +31,7 @@ export default function Page() {
     if (!validateForm()) {
       return;
     }
-    const col = collection(db, 'archapplications');
+    const col = collection(db, 'architectureApplications');
     try {
       await addDoc(col, {
         fullName: application.fullName,

@@ -1,4 +1,5 @@
 
+import Link from "next/link"
 import { Button } from "./ui/button"
 import Image from "next/image"
 
@@ -7,15 +8,19 @@ export default function Insight() {
     <div className="px-4 sm:px-6 lg:px-8 bg-gray-100 text-black py-11 pt-11 font-extralight pb-11">
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center">
         <div className="lg:w-1/2 p-5">
+          <Link href='/Airdrop'>
           <h2 className="text-3xl font-normal leading-tight"> 🚀 Join the JM Qafri Airdrop and Unlock Exciting Opportunities! 🚀</h2>
+          </Link>
           <p className="mt-4 font-light text-base leading-relaxed">
             Are you ready to dive into the world of crypto rewards? Here&#39;s your chance with the JM
              Qafri Airdrop! We&#39;re thrilled to offer you a golden opportunity to participate and earn valuable tokens effortlessly.
           </p>
-
-          <Button className="mt-4 bg-gray-200 text-gray-800">Blockchain</Button>
+          <Link href='/Airdrop'>
+          <Button className="mt-4 bg-gray-200 text-gray-800 hover:bg-white">Blockchain</Button>
+          </Link>
         </div>
         <div className="lg:w-1/2 mt-8 lg:mt-0">
+          <Link href='/Airdrop'>
           <Image
             alt="defi"
             className="rounded-none hover:scale-105 ease-out duration-500"
@@ -27,6 +32,7 @@ export default function Insight() {
             }}
             width="600"
           />
+          </Link>
         </div>
       </div>
     </div>
