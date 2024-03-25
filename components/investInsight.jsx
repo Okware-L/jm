@@ -9,7 +9,7 @@ export default function Insight() {
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center">
         <div className="lg:w-1/2 p-5">
           <Link href='/Airdrop'>
-          <h2 className="text-3xl font-normal leading-tight"> 🚀 Join the JM Qafri Airdrop and Unlock Exciting Opportunities! 🚀</h2>
+          <h2 className="sm:text-3xl text-xl font-normal leading-tight"> 🚀 Join the JM Qafri Airdrop and Unlock Exciting Opportunities! 🚀</h2>
           </Link>
           <p className="mt-4 font-light text-base leading-relaxed">
             Are you ready to dive into the world of crypto rewards? Here&#39;s your chance with the JM
