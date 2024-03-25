@@ -65,7 +65,7 @@ export default function AcquisitionsForm() {
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
-      <div className="w-3/4 p-5 bg-white rounded-lg shadow-md">
+      <div className="sm:w-3/4 p-5 bg-white rounded-lg shadow-md">
         <h2 className="text-3xl font-light text-center mb-6 text-black">
           Acquisitions Questionnaire
         </h2>
