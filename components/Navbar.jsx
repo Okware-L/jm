@@ -24,6 +24,8 @@ const Navbar = () => {
         <li><a href ='/Invest'>Invest</a></li>
         <li><a href='/careers'>Careers</a></li>
         <li><a href='/charity'>Charity</a></li>
+        <li><a href='/Acquisitions'>Acquisitions</a></li>
+        <li><a href='/careers'>Affiliates</a></li>
         <li><a href='https://jmqafri.org'>JM-Qafri Forum</a></li>
         <li><a href='/FAQ'>F.A.Q</a></li>
         <li className='md:hidden'><a>Contact</a></li>
