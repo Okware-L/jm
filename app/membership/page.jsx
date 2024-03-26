@@ -57,7 +57,7 @@ const MembersPartnershipPage = () => {
           />
           <div className='bg-gray-100 p-3'>
           <h2 className='text-3xl font-light mb-4'>JM-Qafri Methuselah Network Partner Status</h2>
-          <p className='font-extralight my-5 text-base'> The JM-Qafri Methuselah Network offers a prestigious Partner Status to acknowledge and empower organizations working towards a more equitable society.  This partnership unlocks a multitude of benefits to propel your organization's impact and reach within our network.</p>
+          <p className='font-extralight my-5 text-base'> The JM-Qafri Methuselah Network offers a prestigious Partner Status to acknowledge and empower organizations working towards a more equitable society.  This partnership unlocks a multitude of benefits to propel your organization&#39;s impact and reach within our network.</p>
           {/* Partner Benefits */}
           <div className='mb-4'>
             <h3 className='text-xl font-light mb-2'>What Partners Receive</h3>
