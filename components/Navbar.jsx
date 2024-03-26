@@ -34,9 +34,10 @@ const Navbar = () => {
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-200 text-black font-light rounded-sm after:w-52 ">
         <li><a href='/About'>About us</a></li>
         <li><a href ='/Invest'>Invest</a></li>
-        <li><a href='/careers'>Careers</a></li>
+        <li className='md:hidden'><a href='/careers'>Careers</a></li>
         <li><a href='/charity'>Charity</a></li>
         <li><a href='/Acquisitions'>Acquisitions</a></li>
+        <li className='md:hidden'><a>Affiliates</a></li>
         <li><a href='https://jmqafri.org'>JM-Qafri Forum</a></li>
         <li><a href='/FAQ'>F.A.Q</a></li>
         <li className='md:hidden'><a>Contact</a></li>
