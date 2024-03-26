@@ -5,7 +5,6 @@ import { Toaster } from "@/components/ui/sonner"
 import { ThirdwebProvider } from "@/app/thirdweb";
 import { client } from "@/app/client";
 
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -24,13 +23,11 @@ export default function RootLayout({
       <body className={inter.className}>
         <link rel="icon" href="/jmwhite.svg" sizes="any" />
         <ThirdwebProvider
-         client={client}
-         >
-
-        {children}
-        <Toaster />
+        >
+          {children}
+          <Toaster />
         </ThirdwebProvider>
-        </body>
+      </body>
     </html>
   );
 }
