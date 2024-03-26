@@ -63,7 +63,7 @@ const Navbar = () => {
   <SheetTrigger>
         <Avatar className='mx-3'>
           <AvatarImage src="/user.png" />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarFallback>.</AvatarFallback>
         </Avatar>  
   </SheetTrigger>
   <SheetContent>
