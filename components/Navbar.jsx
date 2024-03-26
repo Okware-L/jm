@@ -49,10 +49,11 @@ const Navbar = () => {
     </a>
   </div>
   <div className="navbar-end">
+     <Link href="/membership" className=' hidden md:block text-sm hover:underline mx-3 font-normal'>Afiiliates</Link>
     <Link href="/careers" className=' hidden md:block mx-3 text-sm hover:underline font-normal'>Careers</Link>
     <Link href="/contact" className=' hidden md:block text-sm hover:underline mx-3 font-normal'>Contact</Link>
 
-    <Link href="/membership" className=' hidden md:block text-sm hover:underline mx-3 font-normal'>Afiiliates</Link>
+   
 
     <div>
 
