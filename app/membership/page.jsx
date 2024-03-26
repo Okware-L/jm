@@ -13,7 +13,7 @@ const MembersPartnershipPage = () => {
         <div className='mb-8'>
           <h2 className='text-3xl font-light mb-4'>Introduction</h2>
           <p className='text-normal font-extralight'>
-            This forum is a collaborative effort between JM-Q Methuselah, NWCV (New World Community Vision), Scorpion Group (Healthcare), and CPJ Farms (Agriculture). We're a community of forward-thinkers dedicated to building a more equitable and sustainable future for all.
+            This forum is a collaborative effort between JM-Q Methuselah, NWCV (New World Community Vision), Scorpion Group (Healthcare), and CPJ Farms (Agriculture). We&#39;re a community of forward-thinkers dedicated to building a more equitable and sustainable future for all.
           </p>
         </div>
 
@@ -22,7 +22,7 @@ const MembersPartnershipPage = () => {
           <h2 className='text-3xl font-light mb-4'>What We Do</h2>
           <ul className='list-disc list-inside text-lg'>
             <li className='font-light'>Discuss modern solutions</li>
-            <p className='font-extralight text-base p-3'>We tackle the world's most pressing issues head-on, exploring innovative approaches to create a just and thriving society.</p>
+            <p className='font-extralight text-base p-3'>We tackle the world&#39;s most pressing issues head-on, exploring innovative approaches to create a just and thriving society.</p>
             <li className='font-light'>Focus on four pillars.</li>
             <p className='font-extralight text-base p-3'> Our discussions revolve around business, healthcare (with a focus on longevity), community building (and preservation), and education.</p>
             <li className='font-light'>Think tank powered solutions</li>
@@ -59,7 +59,7 @@ const MembersPartnershipPage = () => {
           <div className='mb-4'>
             <h3 className='text-xl font-light mb-2'>Partner Tiers</h3>
             <p className='text-normal font-extralight'>
-              The JM-Qafri Methuselah Network offers a tiered partnership structure to best suit your organization's needs and goals. We encourage you to explore the options below:
+              The JM-Qafri Methuselah Network offers a tiered partnership structure to best suit your organization&#39;s needs and goals. We encourage you to explore the options below:
             </p>
             <ul className='list-disc list-inside text-lg'>
               <li className='font-extralight'>Founding Partner</li>
