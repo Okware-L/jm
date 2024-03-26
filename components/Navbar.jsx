@@ -37,10 +37,10 @@ const Navbar = () => {
         <li className='md:hidden'><a href='/careers'>Careers</a></li>
         <li><a href='/charity'>Charity</a></li>
         <li><a href='/Acquisitions'>Acquisitions</a></li>
-        <li className='md:hidden'><a>Affiliates</a></li>
+        <li className='md:hidden'><a href='/membership'>Affiliates</a></li>
         <li><a href='https://jmqafri.org'>JM-Qafri Forum</a></li>
         <li><a href='/FAQ'>F.A.Q</a></li>
-        <li className='md:hidden'><a>Contact</a></li>
+        <li className='md:hidden'><a href='/contact'>Contact</a></li>
       </ul>
     </div>
   </div>
