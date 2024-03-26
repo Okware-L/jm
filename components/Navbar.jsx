@@ -4,10 +4,22 @@ import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+import { ConnectButton, embeddedWalletConfig, walletConnectConfig , coinbaseConfig, metamaskConfig } from '../app/thirdweb';
+import { myChain } from '../app/chains'
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 
 
 
-const Navbar = () => {
+
+
+const Navbar = () => { 
 
 
 
@@ -44,12 +56,34 @@ const Navbar = () => {
     <div>
 
     </div>
-    <Link  href='/user'>
-        <Avatar className='mx-3 hidden'>
+
+  <Sheet>
+  <SheetTrigger>
+        <Avatar className='mx-3'>
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>CN</AvatarFallback>
-        </Avatar>     
-    </Link>
+        </Avatar>  
+  </SheetTrigger>
+  <SheetContent>
+    <SheetHeader>
+      <SheetTitle>Welcome to De-fi</SheetTitle>
+      <SheetDescription>
+       
+      </SheetDescription>
+    </SheetHeader>
+      <ConnectButton 
+      chain= {myChain}
+              wallets={[
+          metamaskConfig({ recommended: true }),
+          
+        ]}
+      />    
+  </SheetContent>
+</Sheet>
+
+
+   
+    
 </div>
 </div>
     </div>
