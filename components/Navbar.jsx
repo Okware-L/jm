@@ -37,7 +37,6 @@ const Navbar = () => {
         <li><a href='/careers'>Careers</a></li>
         <li><a href='/charity'>Charity</a></li>
         <li><a href='/Acquisitions'>Acquisitions</a></li>
-        <li><a href='/careers'>Affiliates</a></li>
         <li><a href='https://jmqafri.org'>JM-Qafri Forum</a></li>
         <li><a href='/FAQ'>F.A.Q</a></li>
         <li className='md:hidden'><a>Contact</a></li>
@@ -52,6 +51,8 @@ const Navbar = () => {
   <div className="navbar-end">
     <Link href="/careers" className=' hidden md:block mx-3 text-sm hover:underline font-normal'>Careers</Link>
     <Link href="/contact" className=' hidden md:block text-sm hover:underline mx-3 font-normal'>Contact</Link>
+
+    <Link href="/membership" className=' hidden md:block text-sm hover:underline mx-3 font-normal'>Afiiliates</Link>
 
     <div>
 
