@@ -13,7 +13,7 @@ const page = () => {
             <Image src="/pharma.jpg" alt="hm" width="800" height="500"/>
           </div>
           
-          <h1 className='font-light text-3xl text-center'>Advancing Healthcare Infrastructure in Africa
+          <h1 className='font-light  text-xl sm:text-3xl text-center'>Advancing Healthcare Infrastructure in Africa
 </h1>
          <p className="text-left text-base font-extralight leading-relaxed max-w-3xl mx-auto py-10 px-5">
 We are pleased to provide an update on our ongoing initiative aimed at strengthening healthcare infrastructure across Africa. This foundational project represents a critical first step in our commitment to transforming healthcare delivery on the continent.

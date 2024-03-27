@@ -44,8 +44,10 @@ const Navbar = () => {
       
         <li><a href='/Acquisitions'>Acquisitions</a></li>
       
-        <li className='md:hidden'><a href='/membership'>Affiliates</a></li>
-            
+        <li className='md:hidden'><a href='/pharma'>Pharma</a></li>
+
+        <li className='md:hidden'><a href='/membership'>Forum</a></li>
+
         <li><a href='/FAQ'>F.A.Q</a></li>
       
         <li className='md:hidden'><a href='/contact'>Contact</a></li>
@@ -62,7 +64,7 @@ const Navbar = () => {
   <div className="navbar-end">
     <div className='dropdown'>
       <div tabIndex={0} role="button" className="">
-        <p className='font-normal mx-3 text-sm'>Affiliates</p>
+        <p className='font-normal mx-3 text-sm hidden md:block'>Affiliates</p>
       </div>
        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-200 text-black font-light rounded-sm after:w-52 ">
         <li><a href='/pharma'>Pharma</a></li>
