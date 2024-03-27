@@ -4,7 +4,9 @@ import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
-import { ConnectButton, embeddedWalletConfig, walletConnectConfig , coinbaseConfig, metamaskConfig } from '../app/thirdweb';
+import { ConnectButton, metamaskConfig,   walletConnectConfig,
+  coinbaseConfig,
+  embeddedWalletConfig, } from '../app/thirdweb';
 import { myChain } from '../app/chains'
 import {
   Sheet,
@@ -15,15 +17,13 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { Separator } from "@/components/ui/separator"
+import {client} from '../app/client'
 
 
 
 
 
-
-const Navbar = () => { 
-
-
+const Navbar = () => {
 
   return (
     <div>
@@ -101,16 +101,17 @@ const Navbar = () => {
     </SheetHeader>
       <ConnectButton 
       chain= {myChain}
-              wallets={[
+        client={client}
+        wallets={[
           metamaskConfig({ recommended: true }),
-
+          coinbaseConfig(),
+          walletConnectConfig(),
+          embeddedWalletConfig(),
         ]}
       />    
   </SheetContent>
 </Sheet>
 
-
-   
     
 </div>
 </div>
