@@ -15,7 +15,7 @@ const page = () => {
           
           <h1 className='font-light text-3xl text-center'>Advancing Healthcare Infrastructure in Africa
 </h1>
-         <p className="text-left text-base font-extralight leading-relaxed max-w-3xl mx-auto py-10">
+         <p className="text-left text-base font-extralight leading-relaxed max-w-3xl mx-auto py-10 px-5">
 We are pleased to provide an update on our ongoing initiative aimed at strengthening healthcare infrastructure across Africa. This foundational project represents a critical first step in our commitment to transforming healthcare delivery on the continent.
 While the specifics of this project remain confidential for the time being, we can assure stakeholders of its alignment with addressing some of the most significant challenges currently faced by African healthcare systems. Our efforts are primarily focused on the following key areas:
 
