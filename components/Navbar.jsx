@@ -62,11 +62,11 @@ const Navbar = () => {
     </a>
   </div>
   <div className="navbar-end">
-    <div className='dropdown btn btn-ghost btn-circle'>
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-        <p className='font-light mx-3'>Affiliates</p>
+    <div className='dropdown'>
+      <div tabIndex={0} role="button" className="">
+        <p className='font-normal mx-3 text-sm'>Affiliates</p>
       </div>
-       <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-200 text-black font-light rounded-sm after:w-52 ">
+       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-200 text-black font-light rounded-sm after:w-52 ">
         <li><a href='/pharma'>Pharma</a></li>
       
         <li><a href ='/membership'>Membership</a></li>
@@ -77,7 +77,7 @@ const Navbar = () => {
 
     </div>
      <Separator orientation="vertical"/>
-    <Link href="/careers" className=' hidden md:block mx-3 text-sm hover:underline font-normal'>Careers</Link>
+    <Link href="/careers" className=' hidden md:block text-sm hover:underline font-normal'>Careers</Link>
     <Separator orientation="vertical"/>
     <Link href="/contact" className=' hidden md:block text-sm hover:underline mx-3 font-normal'>Contact</Link>
     <Separator orientation="vertical"/>
