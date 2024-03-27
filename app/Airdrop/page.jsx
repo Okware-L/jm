@@ -48,11 +48,11 @@ const Page = () => {
             <li className='font-light'>JM Tokens:
              <p className='font-extralight text-base p-5'>Gain exclusive access to our native utility token, JM, which will power various transactions and services within the network.</p>
              </li>
-            <li className='font-extralight'>Unique Benefits: 
+            <li className='font-light'>Unique Benefits: 
             <p className='font-extralight text-base p-5'>
             Unlock special perks such as reduced transaction fees, priority customer support, and early access to upcoming features.
             </p></li>
-            <li className='font-extralight'>Network Reputation:
+            <li className='font-light'>Network Reputation:
              <p className='font-extralight text-base p-5'>
             Build your reputation within the JM QAFRI Network and gain recognition as a valuable community member.
             </p></li>
