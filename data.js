@@ -6,7 +6,7 @@ export const contents = [
     text: "Support system for you and your business",
   },
     {
-    heading: "JM-QAFRI COMMUNITY",
+    heading: "JM-QAFRI",
     text: "Your Investment Partner",
   },
 
