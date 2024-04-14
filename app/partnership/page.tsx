@@ -43,7 +43,7 @@ export default function Partnership() {
                 <p className="font-extralight text-base p-5">
                   We team up with industry experts and thought leaders to
                   provide valuable insights and resources to our users. Whether
-                  it's through educational content, webinars, or consulting
+                  it&#39;s through educational content, webinars, or consulting
                   services, our partnerships empower individuals to make
                   informed financial decisions.
                 </p>
@@ -94,8 +94,8 @@ export default function Partnership() {
           working together with trusted allies, we are dedicated to empowering
           individuals and businesses to achieve their financial goals and
           aspirations. If you are interested in exploring partnership
-          opportunities with us, please don't hesitate to reach out. Together,
-          we can create meaningful and lasting impact.
+          opportunities with us, please don&#39;t hesitate to reach out.
+          Together, we can create meaningful and lasting impact.
         </p>
       </div>
       <Footer />
