@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { ConnectButton } from "../app/thirdweb";
 import {
   Sheet,
   SheetContent,
@@ -14,6 +13,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
+import { client } from "@/app/client";
+import { ConnectButton } from "../app/thirdweb";
+import { myChain } from "../app/chains";
 
 //buy imports
 
@@ -116,6 +118,9 @@ const Navbar = () => {
               <li>
                 <a href="/membership">Forum</a>
               </li>
+              <li>
+                <a href="/partnership">Partnership</a>
+              </li>
             </ul>
           </div>
           <Separator orientation="vertical" />
@@ -148,7 +153,7 @@ const Navbar = () => {
                 <SheetTitle>Welcome to De-fi</SheetTitle>
                 <SheetDescription></SheetDescription>
               </SheetHeader>
-              <ConnectButton />
+              <ConnectButton chain={myChain} client={client} />
             </SheetContent>
           </Sheet>
         </div>

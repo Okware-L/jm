@@ -3,15 +3,15 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { ThirdwebProvider } from "@/app/thirdweb";
-import { client } from "@/app/client";
-import {
-  ConnectButton,
-  metamaskConfig,
-  walletConnectConfig,
-  coinbaseConfig,
-  embeddedWalletConfig,
-} from "../app/thirdweb";
-import { myChain } from "./chains";
+// import { client } from "@/app/client";
+// import {
+//   ConnectButton,
+//   metamaskConfig,
+//   walletConnectConfig,
+//   coinbaseConfig,
+//   embeddedWalletConfig,
+// } from "../app/thirdweb";
+// import { myChain } from "./chains";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,16 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <link rel="icon" href="/jmwhite.svg" sizes="any" />
-        <ThirdwebProvider
-          chain={myChain}
-          client={client}
-          wallets={[
-            metamaskConfig({ recommended: true }),
-            coinbaseConfig(),
-            walletConnectConfig(),
-            embeddedWalletConfig(),
-          ]}
-        >
+        <ThirdwebProvider>
           {children}
           <Toaster />
         </ThirdwebProvider>

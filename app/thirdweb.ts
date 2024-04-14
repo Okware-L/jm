@@ -1,7 +1,3 @@
-"use client"
+"use client";
 
-
-export { ThirdwebProvider, ConnectButton, ConnectEmbed, embeddedWalletConfig, walletConnectConfig, coinbaseConfig, metamaskConfig
-
-
-} from 'thirdweb/react'
+export { ThirdwebProvider, ConnectButton, ConnectEmbed } from "thirdweb/react";
