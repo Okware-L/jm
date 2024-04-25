@@ -40,7 +40,7 @@ export default function Hero() {
           <div className="flex py-16">
             <h2 className="text-sky-850 underline hover:underline-offset-4 flex">
               Request Demo
-              <ArrowRight className="h-4 w-4 ml-2 text-slate-900 mt-1" />
+              <ArrowRight className="h-3 w-3 ml-2 text-slate-900 mt-2" />
             </h2>
           </div>
           <div>
