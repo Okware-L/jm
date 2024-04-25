@@ -37,7 +37,12 @@ export default function Hero() {
       {/**bottom */}
       <div className="px-10 py-10 grid grid-cols-1 md:grid-cols-3 gap-3">
         <div>
-          <div className="flex py-16">Request Demo</div>
+          <div className="flex py-16">
+            <h2 className="text-sky-850 underline hover:underline-offset-4 flex">
+              Request Demo
+              <ArrowRight className="h-4 w-4 ml-2 text-slate-900 mt-1" />
+            </h2>
+          </div>
           <div>
             <h2 className="text-sm text-slate-900 font-bold mb-5">
               TRUSTED PARTNERS:
