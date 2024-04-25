@@ -4,7 +4,7 @@ import Navbar from "../../components/Navbar";
 import Contact from "../../components/contact";
 import Footer from "@/components/Footer";
 
-const Contact = () => {
+const ContactPage = () => {
   return (
     <>
       <Navbar />
@@ -22,4 +22,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactPage;
