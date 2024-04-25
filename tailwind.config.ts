@@ -8,10 +8,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        oks: ["Noto Serif Display","serif"]
+      backgroundImage: {
+        "hero-first": "url('/mag.jpg')",
+        "hero-second": "url('/building.jpg')",
+
+        "hero-third": "url('/parent.jpg')",
       },
-            keyframes: {
+      fontFamily: {
+        oks: ["Noto Serif Display", "serif"],
+      },
+      keyframes: {
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -25,7 +31,7 @@ const config: Config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
-    }
+    },
   },
   plugins: [require("daisyui"), require("tailwindcss-animate")],
 };
