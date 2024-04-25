@@ -134,7 +134,7 @@ const Navbar = () => {
           <Separator orientation="vertical" />
           <Link
             href="/contact"
-            className=" hidden md:block text-sm hover:underline mx-3 font-normal"
+            className=" hidden md:block text-sm hover:underline ml-3 font-normal"
           >
             Contact
           </Link>
