@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <div className="h-[95vh] md:px-20 bg-gradient-to-l from-gray-100 to-gray-200  text-slate-900 overflow-y-scroll">
+    <div className="h-[95vh] md:px-10 bg-gradient-to-l from-gray-100 to-gray-200  text-slate-900 overflow-y-scroll">
       {/**top */}
       <div className=" pt-32 px-2 grid md:grid-cols-3 gap-3">
         <div className="col-span-2">
