@@ -6,9 +6,9 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <div className="h-[95vh] bg-gradient-to-l from-gray-100 to-gray-200  text-slate-900 overflow-y-scroll">
+    <div className="h-[95vh] md:px-20 bg-gradient-to-l from-gray-100 to-gray-200  text-slate-900 overflow-y-scroll">
       {/**top */}
-      <div className=" pt-32 px-10 grid md:grid-cols-3 gap-3 w-full">
+      <div className=" pt-32 px-2 grid md:grid-cols-3 gap-3">
         <div className="col-span-2">
           <h1 className="text-align-left text-5xl my-3 tracking-wide">
             The <br />
@@ -28,7 +28,7 @@ export default function Hero() {
         <div className="bg-hero-first bg-center bg-cover rounded-2xl hidden md:block">
           <div className="hero-overlay bg-opacity-30  rounded-2xl ">
             <h2 className="text-slate-100 text-center font-extralight text-xl pt-3 tracking-widest">
-              Smart Investing.
+              Smart Investingg.
             </h2>
           </div>
         </div>
@@ -59,7 +59,7 @@ export default function Hero() {
       </div>
 
       {/**bottom */}
-      <div className="px-10 py-5 grid grid-cols-1 md:grid-cols-3 gap-3">
+      <div className="py-5 mx-2 grid grid-cols-1 md:grid-cols-3 gap-3">
         <div>
           <div className="flex py-16">
             <Link href="/contact">
