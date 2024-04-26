@@ -28,7 +28,7 @@ export default function Hero() {
         <div className="bg-hero-first bg-center bg-cover rounded-2xl hidden md:block">
           <div className="hero-overlay bg-opacity-30  rounded-2xl ">
             <h2 className="text-slate-100 text-center font-extralight text-xl pt-3 tracking-widest">
-              Smart Investingg.
+              Smart Investing.
             </h2>
           </div>
         </div>
