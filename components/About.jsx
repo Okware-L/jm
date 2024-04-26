@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function About() {
   return (
-    <section className="py-16 px-10 bg-gray-50 text-black font-extralight">
+    <section className="py-16 px-2 md:px-10 bg-gray-50 text-black font-extralight">
       <div className="text-center text-4xl font-light mb-12">ABOUT</div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-12">
         <div className="group relative">
@@ -84,7 +84,7 @@ export default function About() {
           </div>
         </div>
       </div>
-      <p className="text-left text-l font-extralight leading-relaxed max-w-3xl mx-auto py-10">
+      <p className="text-left text-l font-extralight leading-relaxed max-w-3xl mx-auto py-10 px-3">
         As a leading global wealth manager, we recognize the significance of
         your financial objectives and adopt a forward-thinking approach to
         safeguarding your assets. Whether you&#39;re embarking on a new venture,
