@@ -140,8 +140,6 @@ const Navbar = () => {
           </Link>
           <Separator orientation="vertical" />
 
-          <div></div>
-
           <Sheet>
             <SheetTrigger>
               <Avatar className="mx-3">
@@ -154,7 +152,7 @@ const Navbar = () => {
                 <SheetTitle>Welcome to De-fi</SheetTitle>
                 <SheetDescription></SheetDescription>
               </SheetHeader>
-              <ConnectButton chain={myChain} client={client} />
+              {/**<ConnectButton chain={myChain} client={client} /> */}
             </SheetContent>
           </Sheet>
         </div>
