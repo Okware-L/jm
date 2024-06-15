@@ -14,9 +14,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
-import { client } from "@/app/client";
-import { ConnectButton } from "../app/thirdweb";
-import { myChain } from "../app/chains";
+// import { client } from "@/app/client";
+// import { ConnectButton } from "../app/thirdweb";
+// import { myChain } from "../app/chains";
 
 //buy imports
 

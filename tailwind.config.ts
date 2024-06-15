@@ -9,10 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        "hero-first": "url('/mag.jpg')",
-        "hero-second": "url('/building.jpg')",
+        "hero-first": "url('/25099.jpg')",
+        "hero-second": "url('/claire1.jpeg')",
 
-        "hero-third": "url('/parent.jpg')",
+        "hero-third": "url('/claire2.jpeg')",
       },
       fontFamily: {
         oks: ["Noto Serif Display", "serif"],
