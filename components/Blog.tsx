@@ -4,22 +4,12 @@ export default function Posts() {
   return (
     <section className="bg-slate-50 py-12 text-slate-900 md:py-16 lg:py-20">
       <div className="px-4 md:px-6">
-        <div className="space-y-4 text-center">
-          <h2 className="mb-16 text-3xl font-light tracking-tight sm:text-4xl md:text-5xl">
-            Latest from our Blog.
-          </h2>
-        </div>
-        <div className="no-scrollbar mt-10 flex gap-6 overflow-x-auto">
+        <div className="no-scrollbar my-10 flex gap-6 overflow-x-auto">
           <div className="min-w-[300px] space-y-2">
-            <h3 className="text-2xl font-bold">
+            <h3 className="text-3xl font-extralight">
               Demystifying DeFi: A Beginner's Guide to Decentralized Finance.
             </h3>
-            <p className="text-gray-700">
-              Welcome to the world of DeFi, where traditional finance meets
-              blockchain technology. In this blog post, we'll explore the basics
-              of Decentralized Finance (DeFi) and how it's revolutionizing the
-              way we think about money, banking, and investing.
-            </p>
+
             <Link
               href="#"
               className="inline-flex items-center gap-1 text-primary hover:underline"
@@ -37,16 +27,10 @@ export default function Posts() {
           </div>
 
           <div className="min-w-[300px] space-y-2">
-            <h3 className="text-2xl font-bold">
+            <h3 className="text-3xl font-extralight">
               JM-Qfri Pharmaceuticals: What we do
             </h3>
-            <p className="text-gray-700">
-              At JM-Qafri Pharma, we specialize in developing innovative and
-              high-quality pharmaceutical products to enhance patient care and
-              improve health outcomes. Our commitment to research, excellence,
-              and customer satisfaction drives us to deliver effective and
-              reliable medical solutions.
-            </p>
+
             <Link
               href="#"
               className="inline-flex items-center gap-1 text-primary hover:underline"
@@ -64,16 +48,10 @@ export default function Posts() {
           </div>
 
           <div className="min-w-[300px] space-y-2">
-            <h3 className="text-2xl font-bold">
+            <h3 className="text-3xl font-extralight">
               Real estate: Investment and a home away from home.
             </h3>
-            <p className="text-gray-700">
-              We excel in real estate, focusing on both rural and urban
-              development to create sustainable and thriving communities. Our
-              expertise encompasses innovative planning, design, and
-              construction to meet diverse residential, commercial, and
-              industrial needs.
-            </p>
+
             <Link
               href="#"
               className="inline-flex items-center gap-1 text-primary hover:underline"
@@ -91,14 +69,10 @@ export default function Posts() {
           </div>
 
           <div className="min-w-[300px] space-y-2">
-            <h3 className="text-2xl font-bold">Our story.</h3>
-            <p className="text-gray-700">
-              Our story began with a shared vision to make a meaningful impact
-              through innovation and excellence. Fueled by dedication and a
-              passion for progress, we have grown into a trusted name, committed
-              to delivering high-quality solutions and driving positive change
-              in our industry.
-            </p>
+            <h3 className="text-3xl font-extralight">
+              JM-Qafri competitions, Art & Architecture.
+            </h3>
+
             <Link
               href="#"
               className="inline-flex items-center gap-1 text-primary hover:underline"
@@ -116,14 +90,8 @@ export default function Posts() {
           </div>
 
           <div className="min-w-[300px] space-y-2">
-            <h3 className="text-2xl font-bold">Our story.</h3>
-            <p className="text-gray-700">
-              Our story began with a shared vision to make a meaningful impact
-              through innovation and excellence. Fueled by dedication and a
-              passion for progress, we have grown into a trusted name, committed
-              to delivering high-quality solutions and driving positive change
-              in our industry.
-            </p>
+            <h3 className="text-3xl font-extralight">Our story.</h3>
+
             <Link
               href="#"
               className="inline-flex items-center gap-1 text-primary hover:underline"
