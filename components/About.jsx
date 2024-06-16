@@ -12,8 +12,8 @@ const About = () => {
             </h1>
           </div>
           <Image
-            src="./claire2.jpeg"
-            alt="Cyberpunk Odyssey Cover"
+            src="/claire2.jpeg"
+            alt="pic"
             width={600}
             height={500}
             className="mx-auto rounded-lg shadow-lg"
