@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const About = () => {
   return (
@@ -10,7 +11,7 @@ const About = () => {
               About JM-Qafri Methuselah.
             </h1>
           </div>
-          <img
+          <Image
             src="./claire2.jpeg"
             alt="Cyberpunk Odyssey Cover"
             width={600}
@@ -21,12 +22,12 @@ const About = () => {
             <p className="p-5 text-base font-extralight text-slate-900">
               As a global wealth manager, we recognize the significance of your
               financial objectives and adopt a forward-thinking approach to
-              safeguarding your assets. Whether you're embarking on a new
+              safeguarding your assets. Whether you&#39;re embarking on a new
               venture, strategizing for retirement, or securing the future
               well-being of your family, our team of experts is dedicated to
-              identifying tailored solutions that resonate with you. In today's
-              rapidly evolving financial landscape, our commitment to
-              understanding your needs and leveraging innovative solutions,
+              identifying tailored solutions that resonate with you. In
+              today&#39;s rapidly evolving financial landscape, our commitment
+              to understanding your needs and leveraging innovative solutions,
               including DeFi, ensures that we remain relevant and equipped to
               guide you toward your financial goals.
             </p>

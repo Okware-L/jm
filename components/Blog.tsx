@@ -7,7 +7,8 @@ export default function Posts() {
         <div className="no-scrollbar my-10 flex gap-6 overflow-x-auto">
           <div className="min-w-[300px] space-y-2">
             <h3 className="text-3xl font-extralight">
-              Demystifying DeFi: A Beginner's Guide to Decentralized Finance.
+              Demystifying DeFi: A Beginner&#39;s Guide to Decentralized
+              Finance.
             </h3>
 
             <Link

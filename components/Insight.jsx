@@ -7,7 +7,7 @@ export default function Insight() {
       <div className="grid sm:grid-cols-2 md:grid-cols-3">
         <div className="p-5 md:col-span-2">
           <h2 className="text-3xl font-normal leading-tight">
-            AI's Rapid Growth Spurs New Investment Cycle.
+            AI&#39;s Rapid Growth Spurs New Investment Cycle.
           </h2>
           <p className="mt-4 text-base font-light leading-relaxed">
             The rapid development of Artificial Intelligence has initiated a new
