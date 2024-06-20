@@ -13,6 +13,7 @@ const config: Config = {
         "hero-second": "url('/claire1.jpeg')",
 
         "hero-third": "url('/claire2.jpeg')",
+        estate1: "url('/estate1.jpeg')",
       },
       fontFamily: {
         oks: ["Noto Serif Display", "serif"],
