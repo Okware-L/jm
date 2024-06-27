@@ -10,7 +10,7 @@ export default function Partnership() {
         <h1 className="mb-4 text-4xl font-normal">Jm-Qafri Partner Program</h1>
         <p className="mb-8 text-xl">
           At JM-Qafri, our partner ecosystem is at the center of what we do.
-          Together, we're building a world where anyone can safely use any
+          Together, we&apos;re building a world where anyone can safely use any
           technology - powered by their Identity.
         </p>
 
