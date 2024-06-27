@@ -29,7 +29,8 @@ export default function Posts() {
 
           <div className="min-w-[300px] space-y-2">
             <h3 className="text-3xl font-extralight">
-              JM-Qfri Pharmaceuticals: What we do
+              Mobile clinics: For kenya, helping with diagnostics and early
+              disease detection.
             </h3>
 
             <Link
@@ -150,6 +151,7 @@ function CalendarIcon(props: any) {
     >
       <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
       <line x1="16" x2="16" y1="2" y2="6" />
+      j\
       <line x1="8" x2="8" y1="2" y2="6" />
       <line x1="3" x2="21" y1="10" y2="10" />
     </svg>

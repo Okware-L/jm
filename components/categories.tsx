@@ -11,13 +11,13 @@ import Image from "next/image";
 export default function Categories() {
   return (
     <div className="flex flex-col items-center justify-center bg-gray-100 pb-16 pt-1">
-      <h2 className="text-1xl font-light uppercase text-black tracking-widest mb-16">
+      <h2 className="text-1xl mb-16 font-light uppercase tracking-widest text-black">
         What we offer
       </h2>
-      <div className="grid md:grid-cols-2 gap-10">
-        <Card className="w-[350px] ">
+      <div className="grid gap-10 md:grid-cols-2">
+        <Card className="w-[350px]">
           <CardHeader>
-            <div className="flex justify-center align-items-center py-5">
+            <div className="align-items-center flex justify-center py-5">
               <Image src="./2.svg" alt="svg1" height={30} width={90} />
             </div>
             <CardTitle>Wealth planning</CardTitle>
@@ -26,13 +26,11 @@ export default function Categories() {
               every stage of your life.
             </CardDescription>
           </CardHeader>
-          <CardFooter>
-            <Button variant="ghost">Discover more →</Button>
-          </CardFooter>
+          <CardFooter></CardFooter>
         </Card>
         <Card className="w-[350px]">
           <CardHeader>
-            <div className="flex justify-center align-items-center py-5">
+            <div className="align-items-center flex justify-center py-5">
               <Image src="./3.svg" alt="svg1" height={30} width={90} />
             </div>
             <CardTitle>Investing</CardTitle>
@@ -41,13 +39,10 @@ export default function Categories() {
               of your investment needs.
             </CardDescription>
           </CardHeader>
-          <CardFooter>
-            <Button variant="ghost">Discover more →</Button>
-          </CardFooter>
         </Card>
         <Card className="w-[350px]">
           <CardHeader>
-            <div className="flex justify-center align-items-center py-5">
+            <div className="align-items-center flex justify-center py-5">
               <Image src="./4.svg" alt="svg1" height={30} width={90} />
             </div>
             <CardTitle>Financing</CardTitle>
@@ -56,13 +51,10 @@ export default function Categories() {
               financing and trading needs.
             </CardDescription>
           </CardHeader>
-          <CardFooter>
-            <Button variant="ghost">Discover more →</Button>
-          </CardFooter>
         </Card>
         <Card className="w-[350px]">
           <CardHeader>
-            <div className="flex justify-center align-items-center py-5">
+            <div className="align-items-center flex justify-center py-5">
               <Image src="./1.svg" alt="svg1" height={30} width={90} />
             </div>
             <CardTitle>Additional services</CardTitle>
@@ -71,9 +63,6 @@ export default function Categories() {
               management offering.
             </CardDescription>
           </CardHeader>
-          <CardFooter>
-            <Button variant="ghost">Discover more →</Button>
-          </CardFooter>
         </Card>
       </div>
     </div>

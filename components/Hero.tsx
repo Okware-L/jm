@@ -18,7 +18,7 @@ export default function Hero() {
           <p className="my-5 text-xl font-extralight">
             We are a support system for you and your business, always.
           </p>
-          <Link href="/About">
+          <Link href="/contact">
             <Button variant="outline" className="flex p-2">
               <p className="text-sm text-slate-100">Discover More</p>
               <ArrowRight className="ml-2 h-4 w-4 text-slate-100" />
