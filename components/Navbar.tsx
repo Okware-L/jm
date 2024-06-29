@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
                     <li className="row-span-3">
                       <NavigationMenuLink asChild>
                         <Link
-                          className="from-muted/50 to-muted flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none focus:shadow-md"
+                          className="from-muted/50 to-muted flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none hover:bg-indigo-100 focus:shadow-md"
                           href="/About"
                         >
                           <Image
@@ -108,7 +108,7 @@ const Navbar: React.FC = () => {
             <NavigationMenuList>
               <NavigationMenuItem>
                 <Link href="https://invest.jmqafri.org" passHref legacyBehavior>
-                  <NavigationMenuLink className="hidden rounded-md bg-indigo-200 p-3 md:block">
+                  <NavigationMenuLink className="hidden rounded-md bg-indigo-200 p-3 hover:bg-indigo-300 md:block">
                     Open App
                   </NavigationMenuLink>
                 </Link>
@@ -145,53 +145,80 @@ const Navbar: React.FC = () => {
                 <ul className="flex flex-col space-y-4">
                   <li>
                     <Link href="https://invest.jmqafri.org">
-                      <button className="rounded-md bg-indigo-200 p-3">
+                      <button className="rounded-md bg-indigo-200 p-3 hover:bg-indigo-300">
                         <p className="font-semibold">Open App</p>
                       </button>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/About" className="text-lg font-medium">
+                    <Link
+                      href="/About"
+                      className="p-3 text-lg font-medium hover:bg-indigo-100"
+                    >
                       About Us
                     </Link>
                   </li>
                   <li>
-                    <Link href="/careers" className="text-lg font-medium">
+                    <Link
+                      href="/careers"
+                      className="p-3 text-lg font-medium hover:bg-indigo-100"
+                    >
                       Careers
                     </Link>
                   </li>
                   <li>
-                    <Link href="/charity" className="text-lg font-medium">
+                    <Link
+                      href="/charity"
+                      className="font-mediumhover:bg-indigo-100 p-3 text-lg"
+                    >
                       Charity
                     </Link>
                   </li>
                   <li>
-                    <Link href="/faq" className="text-lg font-medium">
+                    <Link
+                      href="/faq"
+                      className="p-3 text-lg font-medium hover:bg-indigo-100"
+                    >
                       FAQ
                     </Link>
                   </li>
                   <li>
-                    <Link href="/invest" className="text-lg font-medium">
+                    <Link
+                      href="/invest"
+                      className="p-3 text-lg font-medium hover:bg-indigo-100"
+                    >
                       Invest
                     </Link>
                   </li>
                   <li>
-                    <Link href="/acquisitions" className="text-lg font-medium">
+                    <Link
+                      href="/acquisitions"
+                      className="p-3 text-lg font-medium hover:bg-indigo-100"
+                    >
                       Acquisitions
                     </Link>
                   </li>
                   <li>
-                    <Link href="/pharma" className="text-lg font-medium">
+                    <Link
+                      href="/pharma"
+                      className="p-3 text-lg font-medium hover:bg-indigo-100"
+                    >
                       Pharma
                     </Link>
                   </li>
                   <li>
-                    <Link href="/partnership" className="text-lg font-medium">
+                    <Link
+                      href="/partnership"
+                      className="p-3 text-lg font-medium hover:bg-indigo-100"
+                    >
                       Partnership
                     </Link>
                   </li>
                   <li>
-                    <Link href="/contact" className="text-lg font-medium">
+                    <Link
+                      href="/contact"
+                      className="p-3 text-lg font-medium hover:bg-indigo-100"
+                    >
                       Contact
                     </Link>
                   </li>
@@ -218,7 +245,7 @@ const ListItem = React.forwardRef<HTMLAnchorElement, ListItemProps>(
           <Link
             ref={ref}
             className={cn(
-              "hover:text-accent-foreground focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent focus:bg-accent",
+              "hover:text-accent-foreground focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:bg-indigo-100 focus:bg-accent",
               className,
             )}
             href={href}
