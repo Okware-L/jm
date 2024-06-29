@@ -1,10 +1,18 @@
 "use client";
-"use client";
 
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { motion } from "framer-motion";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 import {
   Sheet,
   SheetContent,
@@ -13,152 +21,219 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Separator } from "@/components/ui/separator";
-// import { client } from "@/app/client";
-// import { ConnectButton } from "../app/thirdweb";
-// import { myChain } from "../app/chains";
+import { cn } from "@/lib/utils";
 
-//buy imports
-
-import {
-  useBuyWithCryptoQuote,
-  useActiveAccount,
-  useSendTransaction,
-} from "thirdweb/react";
-
-const Navbar = () => {
-  const account = useActiveAccount();
-
+const Navbar: React.FC = () => {
   return (
-    <div>
-      <div className="navbar bg-gray-100 text-black border-b border-gray-500 fixed z-10 backdrop-filter backdrop-blur-lg bg-opacity-70">
-        <div className="navbar-start">
-          <div className="dropdown rounded">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h7"
-                />
-              </svg>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-200 text-black font-light rounded-sm after:w-52 "
-            >
-              <li>
-                <a href="/About">About us</a>
-              </li>
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="fixed z-10 w-full border-b border-gray-500 bg-gray-100 bg-opacity-70 text-black backdrop-blur-lg backdrop-filter"
+    >
+      <div className="container mx-auto flex items-center justify-between px-4 py-4 md:px-0">
+        <Link href="/" className="mx-auto md:hidden">
+          <Image src="/jmlogoblack.svg" alt="Logo" width={84} height={54} />
+        </Link>
 
-              <li>
-                <a href="/Invest">Invest</a>
-              </li>
+        <Link href="/" className="hidden md:block">
+          <Image src="/jmlogoblack.svg" alt="Logo" width={84} height={54} />
+        </Link>
 
-              <li className="md:hidden">
-                <a href="/careers">Careers</a>
-              </li>
-
-              <li>
-                <a href="/charity">Charity</a>
-              </li>
-
-              <li>
-                <a href="/Acquisitions">Acquisitions</a>
-              </li>
-
-              <li className="md:hidden">
-                <a href="/pharma">Pharma</a>
-              </li>
-
-              <li className="md:hidden">
-                <a href="/membership">Forum</a>
-              </li>
-
-              <li>
-                <a href="/FAQ">F.A.Q</a>
-              </li>
-
-              <li className="md:hidden">
-                <a href="/contact">Contact</a>
-              </li>
-            </ul>
-          </div>
+        <div className="hidden items-center space-x-4 md:flex">
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>About</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                    <li className="row-span-3">
+                      <NavigationMenuLink asChild>
+                        <Link
+                          className="from-muted/50 to-muted flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none focus:shadow-md"
+                          href="/About"
+                        >
+                          <Image
+                            src="/jmlogoblack.svg"
+                            alt="hm"
+                            width={84}
+                            height={84}
+                          />
+                          <div className="mb-2 mt-4 text-lg font-medium">
+                            About Us
+                          </div>
+                          <p className="text-muted-foreground text-sm leading-tight">
+                            Learn more about our company and mission.
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <ListItem href="/careers" title="Careers">
+                      Join our team and make a difference.
+                    </ListItem>
+                    <ListItem href="/charity" title="Charity">
+                      Our initiatives to give back to the community.
+                    </ListItem>
+                    <ListItem href="/FAQ" title="FAQ">
+                      Frequently asked questions about our services.
+                    </ListItem>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Services</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                    <ListItem href="/Invest" title="Invest">
+                      Explore investment opportunities with us.
+                    </ListItem>
+                    <ListItem href="/Acquisitions" title="Acquisitions">
+                      Learn about our acquisition strategies.
+                    </ListItem>
+                    <ListItem href="/pharma" title="Pharma">
+                      Discover our pharmaceutical ventures.
+                    </ListItem>
+                    <ListItem href="/partnership" title="Partnership">
+                      Partner with us for mutual growth.
+                    </ListItem>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
         </div>
-        <div className="navbar-center">
-          <a href="/">
-            <Image src="/jmlogoblack.svg" alt="img" width="84" height="54" />
-          </a>
+        <div>
+          {/**Call To Action */}
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <Link href="https://invest.jmqafri.org" passHref legacyBehavior>
+                  <NavigationMenuLink className="hidden rounded-md bg-indigo-200 p-3 md:block">
+                    Open App
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
         </div>
-        <div className="navbar-end">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="">
-              <p className="font-normal mx-3 text-sm hidden md:block">
-                Affiliates
-              </p>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-200 text-black font-light rounded-sm after:w-52 "
-            >
-              <li>
-                <a href="/pharma">Pharma</a>
-              </li>
 
-              <li>
-                <a href="/membership">Forum</a>
-              </li>
-              <li>
-                <a href="/partnership">Partnership</a>
-              </li>
-            </ul>
-          </div>
-          <Separator orientation="vertical" />
-          <Link
-            href="/careers"
-            className=" hidden md:block text-sm hover:underline font-normal"
-          >
-            Careers
-          </Link>
-          <Separator orientation="vertical" />
-          <Link
-            href="/contact"
-            className=" hidden md:block text-sm hover:underline ml-3 font-normal"
-          >
-            Contact
-          </Link>
-          <Separator orientation="vertical" />
-
+        <div className="md:hidden">
           <Sheet>
-            <SheetTrigger>
-              <Avatar className="mx-3">
-                <AvatarImage src="/user.png" />
-                <AvatarFallback>.</AvatarFallback>
-              </Avatar>
+            <SheetTrigger asChild>
+              <button aria-label="Open Menu">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"
+                  />
+                </svg>
+              </button>
             </SheetTrigger>
             <SheetContent>
               <SheetHeader>
-                <SheetTitle>Welcome to De-fi</SheetTitle>
-                <SheetDescription></SheetDescription>
+                <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
-              {/**<ConnectButton chain={myChain} client={client} /> */}
+              <nav>
+                <ul className="flex flex-col space-y-4">
+                  <li>
+                    <Link href="https://invest.jmqafri.org">
+                      <button className="rounded-md bg-indigo-200 p-3">
+                        <p className="font-semibold">Open App</p>
+                      </button>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/About" className="text-lg font-medium">
+                      About Us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/careers" className="text-lg font-medium">
+                      Careers
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/charity" className="text-lg font-medium">
+                      Charity
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/faq" className="text-lg font-medium">
+                      FAQ
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/invest" className="text-lg font-medium">
+                      Invest
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/acquisitions" className="text-lg font-medium">
+                      Acquisitions
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/pharma" className="text-lg font-medium">
+                      Pharma
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/partnership" className="text-lg font-medium">
+                      Partnership
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/contact" className="text-lg font-medium">
+                      Contact
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
             </SheetContent>
           </Sheet>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
+
+type ListItemProps = React.ComponentPropsWithoutRef<"a"> & {
+  title: string;
+  href: string;
+};
+
+const ListItem = React.forwardRef<HTMLAnchorElement, ListItemProps>(
+  ({ className, title, children, href, ...props }, ref) => {
+    return (
+      <li>
+        <NavigationMenuLink asChild>
+          <Link
+            ref={ref}
+            className={cn(
+              "hover:text-accent-foreground focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent focus:bg-accent",
+              className,
+            )}
+            href={href}
+            {...props}
+          >
+            <div className="text-sm font-medium leading-none">{title}</div>
+            <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+              {children}
+            </p>
+          </Link>
+        </NavigationMenuLink>
+      </li>
+    );
+  },
+);
+ListItem.displayName = "ListItem";
 
 export default Navbar;
