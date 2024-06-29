@@ -176,7 +176,7 @@ const Navbar: React.FC = () => {
                   </li>
                   <li>
                     <Link
-                      href="/faq"
+                      href="/FAQ"
                       className="p-3 text-lg font-medium hover:bg-indigo-100"
                     >
                       FAQ
@@ -184,7 +184,7 @@ const Navbar: React.FC = () => {
                   </li>
                   <li>
                     <Link
-                      href="/invest"
+                      href="/Invest"
                       className="p-3 text-lg font-medium hover:bg-indigo-100"
                     >
                       Invest
@@ -192,7 +192,7 @@ const Navbar: React.FC = () => {
                   </li>
                   <li>
                     <Link
-                      href="/acquisitions"
+                      href="/Acquisitions"
                       className="p-3 text-lg font-medium hover:bg-indigo-100"
                     >
                       Acquisitions
