@@ -43,7 +43,7 @@ const ContactPage = () => {
             <ContactCard
               icon={<FiPhone className="text-indigo-600" />}
               title="Call Us"
-              content="+1 (123) 456-7890"
+              content="+79684791919"
             />
             <ContactCard
               icon={<FiClock className="text-indigo-600" />}
