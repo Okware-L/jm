@@ -6,7 +6,7 @@ export default function Footer() {
     <div className="flex flex-col items-center justify-center bg-gray-100 p-5 py-16 text-black">
       <h1 className="my-8 text-2xl font-light">More Updates</h1>
       <div className="w-full max-w-4xl">
-        <Link href="/About">
+        <Link href="/architecture">
           <article className="mb-8">
             <h2 className="mb-1 text-base font-normal">
               JM-QAFRI Network Architecture Contest for Sustainability and
