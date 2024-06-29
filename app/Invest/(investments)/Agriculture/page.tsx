@@ -25,7 +25,7 @@ const Home: NextPage = () => {
         </div>
       </header>
       <main className="container mx-auto px-4 py-8">
-        <div className="flex space-x-8">
+        <div className="md:flex md:space-x-8">
           <motion.section
             className="mb-8"
             initial={{ opacity: 0, y: 20 }}
