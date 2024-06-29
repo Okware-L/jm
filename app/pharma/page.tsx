@@ -5,6 +5,7 @@ import Footer from "../../components/Footer";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Posts from "@/components/Blog";
+import Link from "next/link";
 
 const PharmaPage: React.FC = () => {
   return (
@@ -97,13 +98,15 @@ const PharmaPage: React.FC = () => {
                 </p>
               </motion.li>
             </ul>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="mt-6 rounded-lg bg-indigo-900 px-6 py-3 text-white shadow-md transition duration-300 hover:bg-indigo-800"
-            >
-              Explore Pharma Initiatives
-            </motion.button>
+            <Link href="/pharma/mobileclinic">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="mt-6 rounded-lg bg-indigo-900 px-6 py-3 text-white shadow-md transition duration-300 hover:bg-indigo-800"
+              >
+                Explore Pharma Initiatives
+              </motion.button>
+            </Link>
           </div>
           <div className="lg:w-1/2">
             <video

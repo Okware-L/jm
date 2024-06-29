@@ -7,12 +7,11 @@ export default function Posts() {
         <div className="no-scrollbar my-10 flex gap-6 overflow-x-auto">
           <div className="min-w-[300px] space-y-2">
             <h3 className="text-3xl font-extralight">
-              Demystifying DeFi: A Beginner&#39;s Guide to Decentralized
-              Finance.
+              Revolutionising Agriculture with Organic Solutions.
             </h3>
 
             <Link
-              href="#"
+              href="/Invest/Agriculture"
               className="inline-flex items-center gap-1 text-primary hover:underline"
               prefetch={false}
             >
@@ -34,7 +33,7 @@ export default function Posts() {
             </h3>
 
             <Link
-              href="#"
+              href="/pharma/mobileclinic"
               className="inline-flex items-center gap-1 text-primary hover:underline"
               prefetch={false}
             >
