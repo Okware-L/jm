@@ -50,11 +50,11 @@ export default function Posts() {
 
           <div className="min-w-[300px] space-y-2">
             <h3 className="text-3xl font-extralight">
-              Real estate: Investment and a home away from home.
+              Achieving Balance in Space Exploration.
             </h3>
 
             <Link
-              href="#"
+              href="/Invest/Space"
               className="inline-flex items-center gap-1 text-primary hover:underline"
               prefetch={false}
             >
@@ -71,11 +71,11 @@ export default function Posts() {
 
           <div className="min-w-[300px] space-y-2">
             <h3 className="text-3xl font-extralight">
-              JM-Qafri competitions, Art & Architecture.
+              Introduction to AI in Medicine.
             </h3>
 
             <Link
-              href="#"
+              href="/Invest/Medai"
               className="inline-flex items-center gap-1 text-primary hover:underline"
               prefetch={false}
             >
@@ -91,7 +91,9 @@ export default function Posts() {
           </div>
 
           <div className="min-w-[300px] space-y-2">
-            <h3 className="text-3xl font-extralight">Our story.</h3>
+            <h3 className="text-3xl font-extralight">
+              Real estate: Investment and a home away from home.
+            </h3>
 
             <Link
               href="#"

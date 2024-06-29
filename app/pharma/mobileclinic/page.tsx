@@ -38,7 +38,7 @@ const MobileClinicPage = () => {
             need.
             <br />
             Mobile clinics offer a vital solution to reach underserved
-            communities, providing essential medical care where it's needed
+            communities, providing essential medical care where it&apos;s needed
             most.
           </p>
           <p className="mt-2 text-sm text-slate-600">by Claire atieno</p>
