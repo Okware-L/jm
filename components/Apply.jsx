@@ -13,6 +13,9 @@ export default function Apply() {
   const [application, setApplication] = useState({
     name: "",
     email: "",
+    company: "",
+    category: "",
+    location: "",
     message: "",
   });
 
@@ -31,6 +34,9 @@ export default function Apply() {
       await addDoc(col, {
         name: application.name,
         email: application.email,
+        company: application.company,
+        category: application.category,
+        location: application.location,
         message: application.message,
       });
       toast("Application submitted successfully", {
@@ -80,7 +86,7 @@ export default function Apply() {
           </div>
           <div className="mb-4">
             <label
-              htmlFor="email"
+              htmlFor="company"
               className="block text-sm font-medium text-black"
             >
               company
@@ -94,7 +100,7 @@ export default function Apply() {
           </div>
           <div className="mb-4">
             <label
-              htmlFor="email"
+              htmlFor="category"
               className="block text-sm font-medium text-black"
             >
               Tender category
@@ -108,14 +114,14 @@ export default function Apply() {
           </div>
           <div className="mb-4">
             <label
-              htmlFor="email"
+              htmlFor="location"
               className="block text-sm font-medium text-black"
             >
               Location
             </label>
             <Input
-              name="email"
-              value={application.email}
+              name="location"
+              value={application.location}
               onChange={handleChange}
               className="mt-1 w-full rounded-md border-gray-300 p-2"
             />
