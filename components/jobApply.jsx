@@ -63,7 +63,7 @@ const JobApply = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center">
-      <div className="w-3/4 rounded-lg bg-white p-5 shadow-md">
+      <div className="rounded-lg bg-white p-5 shadow-md md:w-3/4">
         <h2 className="mb-6 text-center text-3xl font-light text-black">
           Job Application Form
         </h2>
@@ -98,7 +98,7 @@ const JobApply = () => {
               htmlFor="jobTitle"
               className="block text-sm font-medium text-black"
             >
-              Email Address
+              Job Title
             </label>
             <Input
               name="jobTitle"
@@ -124,13 +124,13 @@ const JobApply = () => {
           </div>
           <div className="mb-4">
             <label
-              htmlFor="resumeLink"
+              htmlFor="resume"
               className="block text-sm font-medium text-black"
             >
               Resume Link
             </label>
             <Input
-              name="resumeLink"
+              name="resume"
               value={application.resume}
               onChange={handleChange}
               type="url"

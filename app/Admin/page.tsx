@@ -88,12 +88,11 @@ export default function AdminPage() {
 
 const Dashboard = () => (
   <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-    <DashboardCard title="Total Users" value="1,234" />
-    <DashboardCard title="Active Jobs" value="56" />
+    <DashboardCard title="Total Users" value="--.--" />
+    <DashboardCard title="Active Jobs" value="36" />
     <DashboardCard title="Open Tenders" value="12" />
-    <DashboardCard title="New Submissions" value="78" />
-    <DashboardCard title="Revenue" value="$45,678" />
-    <DashboardCard title="User Growth" value="+15%" />
+    <DashboardCard title="New Submissions" value="--.--" />
+    <DashboardCard title="Revenue" value="--.--" />
   </div>
 );
 
