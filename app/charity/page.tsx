@@ -8,7 +8,6 @@ import Footer from "../../components/Footer";
 interface CharitySection {
   title: string;
   content: string;
-  icon: string;
 }
 
 const CharityPage: React.FC = () => {
@@ -17,19 +16,16 @@ const CharityPage: React.FC = () => {
       title: "Collaborating with Charities",
       content:
         "We actively partner with reputable charities to drive positive change. Our collaborations span various causes, leveraging our network's resources and expertise.",
-      icon: "🤝",
     },
     {
       title: "Encouraging Donations",
       content:
         "Every contribution, regardless of size, can significantly impact lives. We encourage both members and non-members to support our causes.",
-      icon: "💖",
     },
     {
       title: "The Impact of Your Donations",
       content:
         "Your generosity funds education, medical research, environmental initiatives, and more. Together, we're building a more equitable and compassionate world.",
-      icon: "🌍",
     },
   ];
 
@@ -64,7 +60,6 @@ const CharityPage: React.FC = () => {
                 transition={{ delay: 0.2 * index, duration: 0.6 }}
                 className="rounded-lg border-t-4 border-indigo-500 bg-white p-8 shadow-lg transition-shadow hover:shadow-xl"
               >
-                <div className="mb-4 text-4xl">{section.icon}</div>
                 <h2 className="mb-4 text-2xl font-light text-indigo-900">
                   {section.title}
                 </h2>
@@ -99,11 +94,6 @@ const CharityPage: React.FC = () => {
                     <h3 className="mb-2 font-semibold text-indigo-900">
                       {step}
                     </h3>
-                    <p className="font-light text-gray-700">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </p>
                   </div>
                 </div>
               ))}
