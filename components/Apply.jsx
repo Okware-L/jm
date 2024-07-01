@@ -38,7 +38,9 @@ export default function Apply() {
         category: application.category,
         location: application.location,
         message: application.message,
+        timestamp: new Date(),
       });
+
       toast("Application submitted successfully", {
         variant: "success",
         duration: 5000,
