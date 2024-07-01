@@ -77,8 +77,8 @@ const TenderSubmissions: React.FC = () => {
           <thead className="bg-gray-50">
             <tr>
               {[
-                "Company",
                 "Contact Person",
+                "Company",
                 "Email",
                 "Tender Title",
                 "Proposal",
