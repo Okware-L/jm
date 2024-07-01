@@ -15,8 +15,9 @@ import {
 
 interface JobSubmission {
   id: string;
-  name: string;
+  fullName: string;
   email: string;
+  experience: string;
   jobTitle: string;
   resume: string;
   timestamp: any;
@@ -96,7 +97,7 @@ const JobSubmissions: React.FC = () => {
             {submissions.map((submission) => (
               <tr key={submission.id}>
                 <td className="whitespace-nowrap px-6 py-4">
-                  {submission.name}
+                  {submission.fullName}
                 </td>
                 <td className="whitespace-nowrap px-6 py-4">
                   {submission.email}

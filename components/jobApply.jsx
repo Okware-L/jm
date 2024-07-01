@@ -32,8 +32,10 @@ const JobApply = () => {
         fullName: application.fullName,
         email: application.email,
         experience: application.experience,
-        resumeLink: application.resumeLink,
-        coverLetter: application.coverLetter,
+        jobTitle: application.jobTitle,
+        resume: application.resume,
+        // coverLetter: application.coverLetter,
+        timestamp: new Date(),
       });
       toast("Application submitted successfully", {
         variant: "success",
@@ -49,10 +51,11 @@ const JobApply = () => {
       // Reset the state after successfully adding a tender
       setApplication({
         fullName: "",
+        jobTitle: "",
         email: "",
         experience: "",
-        resumeLink: "",
-        coverLetter: "",
+        resume: "",
+        //  coverLetter: "",
       });
     }
   };
@@ -91,6 +94,20 @@ const JobApply = () => {
           </div>
           <div className="mb-4">
             <label
+              htmlFor="jobTitle"
+              className="block text-sm font-medium text-black"
+            >
+              Email Address
+            </label>
+            <Input
+              name="jobTitle"
+              value={application.jobTitle}
+              onChange={handleChange}
+              className="mt-1 w-full rounded-md border-gray-300 p-2"
+            />
+          </div>
+          <div className="mb-4">
+            <label
               htmlFor="experience"
               className="block text-sm font-medium text-black"
             >
@@ -113,27 +130,13 @@ const JobApply = () => {
             </label>
             <Input
               name="resumeLink"
-              value={application.resumeLink}
+              value={application.resume}
               onChange={handleChange}
               type="url"
               className="mt-1 w-full rounded-md border-gray-300 p-2"
             />
           </div>
-          <div className="mb-6">
-            <label
-              htmlFor="coverLetter"
-              className="block text-sm font-medium text-black"
-            >
-              Cover Letter
-            </label>
-            <Textarea
-              name="coverLetter"
-              rows="4"
-              value={application.coverLetter}
-              onChange={handleChange}
-              className="mt-1 w-full rounded-md border-gray-300 p-2"
-            ></Textarea>
-          </div>
+
           <button
             type="submit"
             className="w-full rounded-md bg-gray-900 px-4 py-2 text-white hover:bg-gray-800"
