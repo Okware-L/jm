@@ -11,6 +11,7 @@ const JobApply = () => {
   const [application, setApplication] = useState({
     fullName: "",
     email: "",
+    jobTitle: "",
     experience: "",
     resumeLink: "",
     coverLetter: "",
