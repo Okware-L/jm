@@ -44,7 +44,7 @@ export default function Footer() {
             <hr />
           </article>
         </Link>
-        <Link href="/About">
+        <Link href="https://learn.jmqafri.org">
           <article className="mb-8">
             <h2 className="mb-1 text-base font-normal">
               Empowering Students through our Education Program

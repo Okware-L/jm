@@ -98,15 +98,26 @@ const PharmaPage: React.FC = () => {
                 </p>
               </motion.li>
             </ul>
-            <Link href="/pharma/mobileclinic">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-6 rounded-lg bg-indigo-900 px-6 py-3 text-white shadow-md transition duration-300 hover:bg-indigo-800"
-              >
-                Explore Pharma Initiatives
-              </motion.button>
-            </Link>
+            <div className="sm:space-x-3">
+              <Link href="/pharma/mobileclinic">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="mt-6 rounded-lg bg-indigo-900 px-6 py-3 text-white shadow-md transition duration-300 hover:bg-indigo-800"
+                >
+                  Explore Pharma Initiatives
+                </motion.button>
+              </Link>
+              <Link href="https://pharma.jmqafri.org">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="mt-6 rounded-lg bg-indigo-900 px-6 py-3 text-white shadow-md transition duration-300 hover:bg-indigo-800"
+                >
+                  Visit Pharmaceutical Applcation
+                </motion.button>
+              </Link>
+            </div>
           </div>
           <div className="lg:w-1/2">
             <video
