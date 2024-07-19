@@ -50,11 +50,11 @@ const TradeCenterPage: React.FC = () => {
           </CardHeader>
           <CardContent>
             <p>
-              At JM-Qafri Methuselah, we're not just trading goods; we're
-              trading in possibilities. Our unique blend of historical expertise
-              and technological innovation positions us at the forefront of the
-              global market, ready to capitalize on opportunities others can't
-              even see.
+              At JM-Qafri Methuselah, we&apos;re not just trading goods;
+              we&apos;re trading in possibilities. Our unique blend of
+              historical expertise and technological innovation positions us at
+              the forefront of the global market, ready to capitalize on
+              opportunities others can&apos;t even see.
             </p>
           </CardContent>
         </Card>
