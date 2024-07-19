@@ -20,6 +20,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import TraderDueDiligenceForm from "./components/TraderDueDiligenceForm";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const growthData = [
   { year: "2019", value: 100 },
@@ -31,7 +33,8 @@ const growthData = [
 
 const TradeCenterPage: React.FC = () => {
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto mt-32 p-6">
+      <Navbar />
       <h1 className="mb-2 text-4xl font-bold">JM-Qafri Methuselah</h1>
       <p className="mb-8 text-xl text-gray-600">
         Bridging Centuries of Trade with Cutting-Edge Innovation
@@ -146,6 +149,7 @@ const TradeCenterPage: React.FC = () => {
           <TraderDueDiligenceForm />
         </div>
       </section>
+      <Footer />
     </div>
   );
 };
