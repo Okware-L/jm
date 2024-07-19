@@ -55,7 +55,7 @@ export default function Posts() {
             </h3>
 
             <Link
-              href="/Invest/agric"
+              href="/Invest/etec"
               className="text-primary inline-flex items-center gap-1 hover:underline"
               prefetch={false}
             >
