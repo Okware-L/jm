@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Partnership() {
   return (
@@ -30,14 +31,16 @@ export default function Partnership() {
             ecosystem is the cornerstone of our mission to revolutionize
             identity-powered technology solutions.
           </motion.p>
-          <motion.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-            className="rounded bg-indigo-600 px-6 py-2 text-white transition duration-300 hover:bg-indigo-700"
-          >
-            Become a Partner
-          </motion.button>
+          <Link href="/partnership/apply">
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+              className="rounded bg-indigo-600 px-6 py-2 text-white transition duration-300 hover:bg-indigo-700"
+            >
+              Become a Partner
+            </motion.button>
+          </Link>
         </section>
 
         {/* Introduction Section */}
@@ -358,14 +361,16 @@ export default function Partnership() {
             Methuselah Network and become partners in progress. Together, we can
             create a more just and sustainable world for all.
           </motion.p>
-          <motion.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-            className="rounded bg-indigo-600 px-8 py-3 text-white transition duration-300 hover:bg-indigo-700"
-          >
-            Apply for Partnership
-          </motion.button>
+          <Link href="/partnership/apply">
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+              className="rounded bg-indigo-600 px-8 py-3 text-white transition duration-300 hover:bg-indigo-700"
+            >
+              Apply for Partnership
+            </motion.button>
+          </Link>
         </section>
       </main>
       <Footer />

@@ -47,7 +47,7 @@ export default function Footer() {
         <Link href="https://learn.jmqafri.org">
           <article className="mb-8">
             <h2 className="mb-1 text-base font-normal">
-              Empowering Students through our Education Program
+              Empowering you through our Education Program
             </h2>
             <div className="mb-4 flex items-center justify-between">
               <time className="text-sm" dateTime="2023-11-27">
