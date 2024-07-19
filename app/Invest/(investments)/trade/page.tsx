@@ -35,7 +35,7 @@ const TradeCenterPage: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto mt-32 p-6">
+      <div className="container mx-auto p-6 pt-32">
         <h1 className="mb-2 text-4xl font-bold">JM-Qafri Methuselah</h1>
         <p className="mb-8 text-xl text-gray-600">
           Bridging Centuries of Trade with Cutting-Edge Innovation
