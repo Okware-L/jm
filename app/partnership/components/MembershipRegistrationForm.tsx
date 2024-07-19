@@ -50,7 +50,7 @@ export default function TraderDueDiligenceForm() {
   return (
     <>
       <Navbar />
-      <div className="mx-auto max-w-2xl rounded-lg bg-white p-6 shadow-sm">
+      <div className="mx-auto max-w-2xl rounded-lg bg-white p-6 pt-32 shadow-sm">
         <h2 className="mb-6 text-2xl font-semibold text-gray-800">
           Trader Due Diligence
         </h2>
