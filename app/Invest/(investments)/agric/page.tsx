@@ -74,20 +74,20 @@ const AgreementUpdate = () => {
                 </div>
 
                 <blockquote className="border-l-4 border-indigo-300 pl-4 italic text-gray-600">
-                  "This cooperation will give our members and non-members access
-                  to the equipment they need for agriculture. We trust that our
-                  cooperation will result in an improvement in the agricultural
-                  sector and result in an increase in our members' capacity and
-                  overall economic growth fueled by investment in the
-                  agriculture sector."
+                  &#34;This cooperation will give our members and non-members
+                  access to the equipment they need for agriculture. We trust
+                  that our cooperation will result in an improvement in the
+                  agricultural sector and result in an increase in our
+                  members&apos; capacity and overall economic growth fueled by
+                  investment in the agriculture sector.&#34;
                 </blockquote>
 
                 <p className="text-gray-700">
                   This cooperation will also improve the terms of trade for
                   goods and agricultural products produced in Africa and other
-                  members' regions. We look forward to cooperating with both
-                  companies and encourage our members to take advantage of this
-                  new opportunity.
+                  members&apos; regions. We look forward to cooperating with
+                  both companies and encourage our members to take advantage of
+                  this new opportunity.
                 </p>
               </div>
             </CardContent>
