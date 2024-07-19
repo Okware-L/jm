@@ -12,7 +12,7 @@ export default function Posts() {
 
             <Link
               href="/Invest/Agriculture"
-              className="inline-flex items-center gap-1 text-primary hover:underline"
+              className="text-primary inline-flex items-center gap-1 hover:underline"
               prefetch={false}
             >
               Read More
@@ -34,7 +34,7 @@ export default function Posts() {
 
             <Link
               href="/pharma/mobileclinic"
-              className="inline-flex items-center gap-1 text-primary hover:underline"
+              className="text-primary inline-flex items-center gap-1 hover:underline"
               prefetch={false}
             >
               Read More
@@ -50,12 +50,13 @@ export default function Posts() {
 
           <div className="min-w-[300px] space-y-2">
             <h3 className="text-3xl font-extralight">
-              Achieving Balance in Space Exploration.
+              Agreement with International Agency for the Euroasian Trade and
+              Economic Cooperation
             </h3>
 
             <Link
-              href="/Invest/Space"
-              className="inline-flex items-center gap-1 text-primary hover:underline"
+              href="/Invest/agric"
+              className="text-primary inline-flex items-center gap-1 hover:underline"
               prefetch={false}
             >
               Read More
@@ -76,7 +77,7 @@ export default function Posts() {
 
             <Link
               href="/Invest/Medai"
-              className="inline-flex items-center gap-1 text-primary hover:underline"
+              className="text-primary inline-flex items-center gap-1 hover:underline"
               prefetch={false}
             >
               Read More
@@ -97,7 +98,7 @@ export default function Posts() {
 
             <Link
               href="#"
-              className="inline-flex items-center gap-1 text-primary hover:underline"
+              className="text-primary inline-flex items-center gap-1 hover:underline"
               prefetch={false}
             >
               Read More

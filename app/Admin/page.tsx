@@ -11,6 +11,7 @@ import TenderSubmissions from "./components/TenderSubmissions";
 import AcquisitionsSubmissions from "./components/AcquisitionsSubmissions";
 import Analytics from "./components/Analytics";
 import UserManagement from "./components/UserManagement";
+import BlogPublishing from "./components/BlogPublishing"; // New import
 
 export default function AdminPage() {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -33,6 +34,8 @@ export default function AdminPage() {
         return <Analytics />;
       case "userManagement":
         return <UserManagement />;
+      case "blogPublishing":
+        return <BlogPublishing />; // New case
       default:
         return <Dashboard />;
     }
@@ -60,6 +63,7 @@ export default function AdminPage() {
             "acquisitionsSubmissions",
             "analytics",
             "userManagement",
+            "blogPublishing", // New tab
           ].map((tab) => (
             <button
               key={tab}
@@ -85,6 +89,8 @@ export default function AdminPage() {
     </div>
   );
 }
+
+// ... (rest of the code remains the same)
 
 const Dashboard = () => (
   <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

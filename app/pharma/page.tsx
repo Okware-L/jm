@@ -114,7 +114,7 @@ const PharmaPage: React.FC = () => {
                   whileTap={{ scale: 0.95 }}
                   className="mt-6 rounded-lg bg-indigo-900 px-6 py-3 text-white shadow-md transition duration-300 hover:bg-indigo-800"
                 >
-                  Visit Pharmaceutical Applcation
+                  Visit Pharmaceutical Application
                 </motion.button>
               </Link>
             </div>
