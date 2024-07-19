@@ -36,7 +36,9 @@ const TradeCenterPage: React.FC = () => {
     <>
       <Navbar />
       <div className="container mx-auto p-6 pt-32">
-        <h1 className="mb-2 text-4xl font-bold">JM-Qafri Methuselah</h1>
+        <h1 className="mb-2 text-5xl font-semibold text-indigo-900">
+          JM-Qafri Methuselah
+        </h1>
         <p className="mb-8 text-xl text-gray-600">
           Bridging Centuries of Trade with Cutting-Edge Innovation
         </p>
