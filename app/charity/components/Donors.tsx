@@ -180,7 +180,7 @@ const DonorWall: React.FC<DonorWallProps> = ({
                   transition={{ delay: 0.3 + index * 0.1 }}
                   className="border-l-4 border-slate-300 pl-4 italic text-slate-600"
                 >
-                  <p>"{testimonial.text}"</p>
+                  <p>&quot;{testimonial.text}&quot;</p>
                   <footer className="mt-2 text-sm text-slate-500">
                     — {new Date(testimonial.createdAt).toLocaleDateString()}
                   </footer>

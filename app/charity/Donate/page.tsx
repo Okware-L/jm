@@ -5,14 +5,13 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import PesapalCheckout from "@/components/PesapalCheckout";
+import InstaSendCheckout from "@/components/InstaSendCheckout";
 
 const DonatePage: React.FC = () => {
   const [amount, setAmount] = useState("");
@@ -28,15 +27,14 @@ const DonatePage: React.FC = () => {
     }
   };
 
-  const handleSuccess = (orderTrackingId: string) => {
+  const handleSuccess = (results: any) => {
+    console.log("Checkout successful:", results);
     // Handle successful checkout (e.g., show a success message, update database)
-    console.log("Checkout successful, Order Tracking ID:", orderTrackingId);
   };
 
-  const handleError = (error: string) => {
-    // Handle checkout error (e.g., show error message)
-    console.error("Checkout error:", error);
-    alert(`Checkout failed: ${error}`);
+  const handleFailure = (error: any) => {
+    console.error("Checkout failed:", error);
+    alert(`Checkout failed: ${error.message || "An error occurred"}`);
   };
 
   return (
@@ -88,13 +86,12 @@ const DonatePage: React.FC = () => {
               </Button>
             </form>
           ) : (
-            <PesapalCheckout
+            <InstaSendCheckout
               amount={parseFloat(amount)}
-              description="Charity Donation"
-              customerEmail={email}
-              customerPhone={phone}
+              email={email}
+              phone={phone}
               onSuccess={handleSuccess}
-              onError={handleError}
+              onFailure={handleFailure}
             />
           )}
         </CardContent>
