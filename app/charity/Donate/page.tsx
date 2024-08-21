@@ -27,8 +27,9 @@ const DonatePage: React.FC = () => {
   const [showCheckout, setShowCheckout] = useState(false);
 
   // Replace with your actual Paystack public key
-  const PAYSTACK_PUBLIC_KEY =
-    "pk_test_3002a3e73511984bf02142d82035025df6cda668";
+  // const PAYSTACK_PUBLIC_KEY =
+  //   "pk_test_3002a3e73511984bf02142d82035025df6cda668";
+  const PAYSTACK_PUBLIC_KEY = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY!;
 
   // Set the currency based on your Paystack account settings
   const CURRENCY = "KES"; // Change this to match your account currency (e.g., "USD", "GHS", etc.)
