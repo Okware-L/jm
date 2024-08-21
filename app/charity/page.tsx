@@ -1,21 +1,38 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import Link from "next/link";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import DonorWall from "./components/Donors";
 
-interface CharitySection {
-  title: string;
-  content: string;
+interface CharityProject {
+  name: string;
+  description: string;
+}
+
+interface Donor {
+  name: string;
+  amount: number;
+  message?: string;
+  project?: string;
+  date: string;
 }
 
 const CharityPage: React.FC = () => {
-  const charitySections: CharitySection[] = [
+  const [isDonorWallOpen, setIsDonorWallOpen] = useState(false);
+
+  const charitySections = [
     {
       title: "Collaborating with Charities",
       content:
-        "We actively partner with reputable charities to drive positive change. Our collaborations span various causes, leveraging our network's resources and expertise.",
+        "We actively partner with reputable charities to drive positive change, leveraging our network's resources and expertise.",
     },
     {
       title: "Encouraging Donations",
@@ -25,18 +42,79 @@ const CharityPage: React.FC = () => {
     {
       title: "The Impact of Your Donations",
       content:
-        "Your generosity funds education, medical research, environmental initiatives, and more. Together, we're building a more equitable and compassionate world.",
+        "Your generosity funds education, medical research, environmental initiatives, and more. Together, we're building a more equitable world.",
+    },
+  ];
+
+  const charityProjects: CharityProject[] = [
+    {
+      name: "Mobile Clinic",
+      description: "Providing healthcare services to remote areas.",
+    },
+    {
+      name: "Development",
+      description: "Supporting sustainable community development projects.",
+    },
+    {
+      name: "NWCV (Women Empowerment)",
+      description: "Empowering women through education and skill development.",
+    },
+    {
+      name: "Anonymous Hope Initiative",
+      description: "Boy child education and support programs.",
+    },
+  ];
+
+  const donors: Donor[] = [
+    {
+      name: "John Doe",
+      amount: 1000,
+      message: "Happy to support this cause!",
+      project: "Mobile Clinic",
+      date: "2023-08-15",
+    },
+    {
+      name: "Jane Smith",
+      amount: 500,
+      project: "Development",
+      date: "2023-08-14",
+    },
+    {
+      name: "Anonymous",
+      amount: 250,
+      message: "Keep up the great work!",
+      date: "2023-08-13",
+    },
+    { name: "Alice Johnson", amount: 100, project: "NWCV", date: "2023-08-12" },
+    {
+      name: "Bob Williams",
+      amount: 750,
+      message: "Proud to contribute",
+      project: "Anonymous Hope Initiative",
+      date: "2023-08-11",
+    },
+    { name: "Emma Davis", amount: 300, date: "2023-08-10" },
+    {
+      name: "Michael Brown",
+      amount: 1500,
+      project: "Mobile Clinic",
+      date: "2023-08-09",
+    },
+    {
+      name: "Sophia Lee",
+      amount: 200,
+      message: "Every bit helps!",
+      date: "2023-08-08",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white">
-      <Navbar />
+    <div className="min-h-screen bg-slate-100">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="pt-20 text-black"
+        className="pt-20 text-slate-800"
       >
         <div className="container mx-auto px-4 py-16">
           <motion.div
@@ -45,10 +123,10 @@ const CharityPage: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="mb-16 text-center"
           >
-            <h1 className="mb-4 text-5xl font-extralight text-indigo-900 md:text-7xl">
+            <h1 className="mb-4 text-4xl font-light text-slate-900 md:text-5xl">
               Join Us in Making a Difference
             </h1>
-            <div className="mx-auto h-1 w-24 bg-indigo-500"></div>
+            <div className="mx-auto h-0.5 w-16 bg-slate-300"></div>
           </motion.div>
 
           <div className="grid gap-8 md:grid-cols-3">
@@ -58,14 +136,12 @@ const CharityPage: React.FC = () => {
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 * index, duration: 0.6 }}
-                className="rounded-lg border-t-4 border-indigo-500 bg-white p-8 shadow-lg transition-shadow hover:shadow-xl"
+                className="rounded-lg bg-white p-6 shadow-sm"
               >
-                <h2 className="mb-4 text-2xl font-light text-indigo-900">
+                <h2 className="mb-3 text-xl font-medium text-slate-800">
                   {section.title}
                 </h2>
-                <p className="text-normal font-light text-gray-700">
-                  {section.content}
-                </p>
+                <p className="text-sm text-slate-600">{section.content}</p>
               </motion.div>
             ))}
           </div>
@@ -74,29 +150,35 @@ const CharityPage: React.FC = () => {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.6 }}
-            className="mt-16 rounded-lg bg-indigo-100 p-8 shadow-lg"
+            className="mt-16 rounded-lg bg-white p-8 shadow-sm"
           >
-            <h2 className="mb-8 text-center text-4xl font-light text-indigo-900">
-              How to Donate
+            <h2 className="mb-6 text-center text-2xl font-light text-slate-900">
+              Our Charity Projects
             </h2>
-            <div className="grid gap-8 md:grid-cols-2">
-              {[
-                "Visit our website",
-                "Choose a cause",
-                "Select a donation method",
-                "Spread the word",
-              ].map((step, index) => (
+            <div className="grid gap-6 md:grid-cols-2">
+              {charityProjects.map((project, index) => (
                 <div key={index} className="flex items-start">
-                  <div className="mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-indigo-500 text-white">
+                  <div className="mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-slate-200 text-slate-600">
                     {index + 1}
                   </div>
                   <div>
-                    <h3 className="mb-2 font-semibold text-indigo-900">
-                      {step}
+                    <h3 className="mb-1 font-medium text-slate-800">
+                      {project.name}
                     </h3>
+                    <p className="text-sm text-slate-600">
+                      {project.description}
+                    </p>
                   </div>
                 </div>
               ))}
+            </div>
+            <div className="mt-8 text-center">
+              <Link
+                href="/charity/donate"
+                className="inline-block rounded-md bg-slate-800 px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-700"
+              >
+                Donate Now
+              </Link>
             </div>
           </motion.div>
 
@@ -104,21 +186,38 @@ const CharityPage: React.FC = () => {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 1, duration: 0.6 }}
-            className="mt-16 rounded-lg bg-indigo-900 p-8 text-white shadow-lg"
+            className="mt-16 rounded-lg bg-slate-200 p-6 text-slate-800"
           >
-            <h2 className="mb-4 text-center text-3xl font-light">
+            <h2 className="mb-3 text-center text-xl font-light text-slate-900">
               Transparency Note
             </h2>
-            <p className="mx-auto max-w-2xl text-center text-lg font-light">
+            <p className="mx-auto max-w-2xl text-center text-sm">
               The Jmqafri Network ensures that all donations are handled with
-              the utmost transparency and that funds are allocated responsibly
-              to the intended causes. We regularly review our partnerships with
-              charities to ensure their credibility and impact.
+              utmost transparency and allocated responsibly to the intended
+              causes. We regularly review our partnerships to ensure their
+              credibility and impact.
             </p>
           </motion.div>
+
+          <div className="mt-8 text-center">
+            <Button
+              variant="outline"
+              onClick={() => setIsDonorWallOpen(true)}
+              className="bg-slate-800 text-white hover:bg-slate-700"
+            >
+              View Donor Wall
+            </Button>
+          </div>
+        </div>
+
+        <div className="mt-8 text-center">
+          <DonorWall
+            isOpen={isDonorWallOpen}
+            onOpenChange={setIsDonorWallOpen}
+            donors={donors}
+          />
         </div>
       </motion.div>
-      <Footer />
     </div>
   );
 };

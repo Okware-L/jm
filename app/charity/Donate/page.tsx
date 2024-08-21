@@ -9,20 +9,34 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { CreditCard, Bitcoin } from "lucide-react";
+import PesapalCheckout from "@/components/PesapalCheckout";
 
 const DonatePage: React.FC = () => {
-  const [paymentMethod, setPaymentMethod] = useState("stripe");
   const [amount, setAmount] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [showCheckout, setShowCheckout] = useState(false);
 
-  const handleDonate = () => {
-    // Implement donation logic based on the selected payment method
-    console.log(`Donating ${amount} via ${paymentMethod}`);
-    // Here you would integrate with the respective payment APIs
+  const handleProceed = () => {
+    if (amount && email && phone) {
+      setShowCheckout(true);
+    } else {
+      alert("Please fill in all fields");
+    }
+  };
+
+  const handleSuccess = (orderTrackingId: string) => {
+    // Handle successful checkout (e.g., show a success message, update database)
+    console.log("Checkout successful, Order Tracking ID:", orderTrackingId);
+  };
+
+  const handleError = (error: string) => {
+    // Handle checkout error (e.g., show error message)
+    console.error("Checkout error:", error);
+    alert(`Checkout failed: ${error}`);
   };
 
   return (
@@ -33,47 +47,13 @@ const DonatePage: React.FC = () => {
             Support Our Cause
           </CardTitle>
           <CardDescription className="text-center">
-            Choose your preferred payment method and amount
+            Enter your donation details
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
-            <div className="space-y-4">
-              <RadioGroup
-                defaultValue="stripe"
-                onValueChange={(value) => setPaymentMethod(value)}
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="stripe" id="stripe" />
-                  <Label
-                    htmlFor="stripe"
-                    className="flex cursor-pointer items-center space-x-2"
-                  >
-                    <CreditCard className="h-5 w-5" />
-                    <span>Credit Card (Stripe)</span>
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="paypal" id="paypal" />
-                  <Label
-                    htmlFor="paypal"
-                    className="flex cursor-pointer items-center space-x-2"
-                  >
-                    <span>PayPal</span>
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="crypto" id="crypto" />
-                  <Label
-                    htmlFor="crypto"
-                    className="flex cursor-pointer items-center space-x-2"
-                  >
-                    <Bitcoin className="h-5 w-5" />
-                    <span>Cryptocurrency</span>
-                  </Label>
-                </div>
-              </RadioGroup>
-              <div className="space-y-2">
+          {!showCheckout ? (
+            <form className="space-y-4">
+              <div>
                 <Label htmlFor="amount">Donation Amount</Label>
                 <Input
                   type="number"
@@ -83,14 +63,41 @@ const DonatePage: React.FC = () => {
                   onChange={(e) => setAmount(e.target.value)}
                 />
               </div>
-            </div>
-          </form>
+              <div>
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  type="email"
+                  id="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div>
+                <Label htmlFor="phone">Phone</Label>
+                <Input
+                  type="tel"
+                  id="phone"
+                  placeholder="Enter your phone number"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </div>
+              <Button className="w-full" onClick={handleProceed}>
+                Proceed to Donate
+              </Button>
+            </form>
+          ) : (
+            <PesapalCheckout
+              amount={parseFloat(amount)}
+              description="Charity Donation"
+              customerEmail={email}
+              customerPhone={phone}
+              onSuccess={handleSuccess}
+              onError={handleError}
+            />
+          )}
         </CardContent>
-        <CardFooter>
-          <Button className="w-full" onClick={handleDonate}>
-            Donate Now
-          </Button>
-        </CardFooter>
       </Card>
     </div>
   );
