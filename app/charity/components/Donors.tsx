@@ -116,7 +116,7 @@ const DonorWall: React.FC<DonorWallProps> = ({
 
   return (
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
-      <SheetContent side="bottom" className="h-[80vh] overflow-y-auto bg-white">
+      <SheetContent side="bottom" className="h-[80vh] overflow-y-auto">
         <SheetHeader className="relative mb-6">
           <SheetTitle className="text-3xl font-light text-slate-900">
             Donor Wall of Honor
