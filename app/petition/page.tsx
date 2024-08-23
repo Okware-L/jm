@@ -121,7 +121,7 @@ export default function EnhancedPetitionPage() {
                   The Importance of Mobile Clinics in Kenya
                 </h2>
                 <p className="mb-4">
-                  Kenya's vast and diverse geography presents significant
+                  Kenya&apos;s vast and diverse geography presents significant
                   challenges in delivering healthcare services. Mobile clinics
                   offer a practical and effective solution by bringing medical
                   care closer to the people.
