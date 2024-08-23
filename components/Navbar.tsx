@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
                   <ListItem href="/careers" title="Careers">
                     Join our team and make a difference.
                   </ListItem>
-                  <ListItem href="/faq" title="FAQ">
+                  <ListItem href="/FAQ" title="FAQ">
                     Frequently asked questions about our services.
                   </ListItem>
                 </ul>
@@ -63,10 +63,10 @@ const Navbar: React.FC = () => {
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                  <ListItem href="/invest" title="Invest">
+                  <ListItem href="/Invest" title="Invest">
                     Explore investment opportunities with us.
                   </ListItem>
-                  <ListItem href="/acquisitions" title="Acquisitions">
+                  <ListItem href="/Acquisitions" title="Acquisitions">
                     Learn about our acquisition strategies.
                   </ListItem>
                   <ListItem href="/pharma" title="Pharma">
