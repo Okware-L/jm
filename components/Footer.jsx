@@ -1,106 +1,105 @@
+"use client";
+
+import React from "react";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <div className="flex flex-col items-center justify-center bg-gray-100 p-5 py-16 text-black">
-      <h1 className="my-8 text-2xl font-light">More Updates</h1>
-      <div className="w-full max-w-4xl">
-        <Link href="/architecture">
-          <article className="mb-8">
-            <h2 className="mb-1 text-base font-normal">
-              JM-QAFRI Network Architecture Contest for Sustainability and
-              Innovation
-            </h2>
-            <div className="mb-4 flex items-center justify-between">
-              <time className="text-sm" dateTime="2024-02-01">
-                01.02.2024
-              </time>
-              <div className="flex gap-2">
-                <Link className="text-sm" href="#">
-                  EN
-                </Link>
-              </div>
-            </div>
-            <hr />
-          </article>
-        </Link>
-        <Link href="/Invest/Agriculture">
-          <article className="mb-8">
-            <h2 className="mb-1 text-base font-normal">
-              Invest in Farmers&#39; Project - Choose Your Farm, Meet the
-              Farmers
-            </h2>
-            <div className="mb-4 flex items-center justify-between">
-              <time className="text-sm" dateTime="2023-12-07">
-                07.12.2023
-              </time>
-              <div className="flex gap-2">
-                <Link className="text-sm" href="#">
-                  EN
-                </Link>
-              </div>
-            </div>
-            <hr />
-          </article>
-        </Link>
-        <Link href="https://learn.jmqafri.org">
-          <article className="mb-8">
-            <h2 className="mb-1 text-base font-normal">
-              Empowering you through our Education Program
-            </h2>
-            <div className="mb-4 flex items-center justify-between">
-              <time className="text-sm" dateTime="2023-11-27">
-                27.11.2023
-              </time>
-              <div className="flex gap-2">
-                <Link className="text-sm" href="#">
-                  EN
-                </Link>
-              </div>
-            </div>
-            <hr />
-          </article>
-        </Link>
-        <div className="mb-16 mt-8 hidden text-center">
-          <Button variant="ghost">See All</Button>
-        </div>
-        <footer className="border-t pb-8 pt-4">
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <div className="flex gap-4">
-              <Link className="text-sm" href="/About">
-                About Us
-              </Link>
-              <Link className="text-sm" href="/contact">
-                Contact
-              </Link>
-              <Link className="text-sm" href="/legal">
-                Legal
-              </Link>
-            </div>
-            <div className="hidden gap-4 md:flex">
-              <Link className="text-sm" href="/FAQ">
-                F.A.Q
-              </Link>
+    <footer className="bg-gradient-to-r from-gray-100 to-gray-200 py-16 text-gray-800">
+      <div className="container mx-auto px-4">
+        <div className="mb-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <h2 className="mb-4 text-2xl font-bold">Latest Updates</h2>
+            <UpdateLink
+              href="/architecture"
+              title="JM-QAFRI Network Architecture Contest"
+              date="01.02.2024"
+            />
+            <UpdateLink
+              href="/Invest/Agriculture"
+              title="Invest in Farmers' Project"
+              date="07.12.2023"
+            />
+            <UpdateLink
+              href="https://learn.jmqafri.org"
+              title="Education Program"
+              date="27.11.2023"
+            />
+          </div>
+          <div>
+            <h2 className="mb-4 text-2xl font-bold">Quick Links</h2>
+            <QuickLink href="/About" text="About Us" />
+            <QuickLink href="/contact" text="Contact" />
+            <QuickLink href="/legal" text="Legal" />
+            <QuickLink href="/FAQ" text="F.A.Q" />
+            <QuickLink
+              href="/petition"
+              text="Sign Our Petition"
+              isHighlighted
+            />
+          </div>
+          <div>
+            <h2 className="mb-4 text-2xl font-bold">Connect With Us</h2>
+            <div className="flex space-x-4">
+              <SocialIcon Icon={FacebookIcon} href="#" label="Facebook" />
+              <SocialIcon Icon={InstagramIcon} href="#" label="Instagram" />
+              <SocialIcon Icon={LinkedinIcon} href="#" label="LinkedIn" />
+              <SocialIcon Icon={YoutubeIcon} href="#" label="YouTube" />
+              <SocialIcon Icon={MessageCircleIcon} href="#" label="Message" />
             </div>
           </div>
-          <p className="mt-4 text-center text-sm font-normal">
+        </div>
+        <div className="border-t border-gray-300 pt-8 text-center">
+          <p className="mb-4 text-sm">
             Users may consult their legal/tax advisors should they require any
             clarifications on the interpretation of the Terms of use.
           </p>
-          <div className="mt-4 flex justify-center gap-4">
-            <FacebookIcon className="h-6 w-6" />
-            <MessageCircleIcon className="h-6 w-6" />
-            <YoutubeIcon className="h-6 w-6" />
-            <LinkedinIcon className="h-6 w-6" />
-            <InstagramIcon className="h-6 w-6" />
-          </div>
-          <p className="mt-4 text-center text-sm">©2024 JM-Qafri</p>
-        </footer>
+          <p className="text-sm">©2024 JM-Qafri. All rights reserved.</p>
+        </div>
       </div>
-    </div>
+    </footer>
   );
 }
+
+const UpdateLink = ({ href, title, date }) => (
+  <motion.div
+    whileHover={{ x: 5 }}
+    className="mb-4 border-b border-gray-300 pb-2"
+  >
+    <Link href={href} className="block hover:text-indigo-600">
+      <h3 className="text-base font-medium">{title}</h3>
+      <time className="text-sm text-gray-600" dateTime={date}>
+        {date}
+      </time>
+    </Link>
+  </motion.div>
+);
+
+const QuickLink = ({ href, text, isHighlighted = false }) => (
+  <motion.div whileHover={{ x: 5 }} className="mb-2">
+    <Link
+      href={href}
+      className={`text-sm hover:text-indigo-600 ${
+        isHighlighted ? "font-bold text-indigo-600" : ""
+      }`}
+    >
+      {text}
+    </Link>
+  </motion.div>
+);
+
+const SocialIcon = ({ Icon, href, label }) => (
+  <motion.a
+    href={href}
+    whileHover={{ y: -3 }}
+    className="text-gray-600 hover:text-indigo-600"
+    aria-label={label}
+  >
+    <Icon className="h-6 w-6" />
+  </motion.a>
+);
 
 function FacebookIcon(props) {
   return (

@@ -11,12 +11,10 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -25,109 +23,96 @@ import { cn } from "@/lib/utils";
 
 const Navbar: React.FC = () => {
   return (
-    <motion.div
+    <motion.nav
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       className="fixed z-10 w-full border-b border-gray-500 bg-gray-100 bg-opacity-70 text-black backdrop-blur-lg backdrop-filter"
     >
       <div className="container mx-auto flex items-center justify-between px-4 py-4 md:px-0">
-        <Link href="/" className="mx-auto md:hidden">
+        <Link href="/" className="flex items-center space-x-2">
           <Image src="/jmlogoblack.svg" alt="Logo" width={84} height={54} />
+          <span className="hidden text-xl font-semibold text-gray-800 md:inline-block">
+            {""}JM-Qafri
+          </span>
         </Link>
 
-        <Link href="/" className="hidden md:block">
-          <Image src="/jmlogoblack.svg" alt="Logo" width={84} height={54} />
-        </Link>
+        <NavigationMenu className="hidden md:flex">
+          <NavigationMenuList className="flex items-center space-x-4">
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className="text-gray-800 hover:text-gray-600">
+                About
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                  <ListItem href="/about" title="About Us">
+                    Learn more about our company and mission.
+                  </ListItem>
+                  <ListItem href="/careers" title="Careers">
+                    Join our team and make a difference.
+                  </ListItem>
+                  <ListItem href="/faq" title="FAQ">
+                    Frequently asked questions about our services.
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className="text-gray-800 hover:text-gray-600">
+                Services
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  <ListItem href="/invest" title="Invest">
+                    Explore investment opportunities with us.
+                  </ListItem>
+                  <ListItem href="/acquisitions" title="Acquisitions">
+                    Learn about our acquisition strategies.
+                  </ListItem>
+                  <ListItem href="/pharma" title="Pharma">
+                    Discover our pharmaceutical ventures.
+                  </ListItem>
+                  <ListItem href="/partnership" title="Partnership">
+                    Partner with us for mutual growth.
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
 
-        <div className="hidden items-center space-x-4 md:flex">
-          <NavigationMenu>
             <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>About</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                    <li className="row-span-3">
-                      <NavigationMenuLink asChild>
-                        <Link
-                          className="from-muted/50 to-muted flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none hover:bg-indigo-100 focus:shadow-md"
-                          href="/About"
-                        >
-                          <Image
-                            src="/jmlogoblack.svg"
-                            alt="hm"
-                            width={84}
-                            height={84}
-                          />
-                          <div className="mb-2 mt-4 text-lg font-medium">
-                            About Us
-                          </div>
-                          <p className="text-muted-foreground text-sm leading-tight">
-                            Learn more about our company and mission.
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <ListItem href="/careers" title="Careers">
-                      Join our team and make a difference.
-                    </ListItem>
-                    <ListItem href="/charity" title="Charity">
-                      Our initiatives to give back to the community.
-                    </ListItem>
-                    <ListItem href="/FAQ" title="FAQ">
-                      Frequently asked questions about our services.
-                    </ListItem>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Services</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                    <ListItem href="/Invest" title="Invest">
-                      Explore investment opportunities with us.
-                    </ListItem>
-                    <ListItem href="/Acquisitions" title="Acquisitions">
-                      Learn about our acquisition strategies.
-                    </ListItem>
-                    <ListItem href="/pharma" title="Pharma">
-                      Discover our pharmaceutical ventures.
-                    </ListItem>
-                    <ListItem href="/partnership" title="Partnership">
-                      Partner with us for mutual growth.
-                    </ListItem>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
+              <NavigationMenuLink
+                href="/charity"
+                className="text-gray-800 hover:text-gray-600"
+              >
+                Charity
+              </NavigationMenuLink>
             </NavigationMenuList>
-          </NavigationMenu>
-        </div>
-        <div>
-          {/**Call To Action */}
+          </NavigationMenuList>
+        </NavigationMenu>
+
+        <div className="flex items-center space-x-4">
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <Link href="https://invest.jmqafri.org" passHref legacyBehavior>
-                  <NavigationMenuLink className="hidden rounded-md bg-indigo-200 p-3 hover:bg-indigo-300 md:block">
+                <Link href="https://invest.jmqafri.org" legacyBehavior passHref>
+                  <NavigationMenuLink className="hidden rounded-md bg-indigo-200 px-4 py-2 text-sm font-medium text-gray-800 transition-colors hover:bg-indigo-300 md:inline-block">
                     Open App
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-        </div>
 
-        <div className="md:hidden">
           <Sheet>
             <SheetTrigger asChild>
-              <button aria-label="Open Menu">
+              <button aria-label="Open Menu" className="md:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="size-6"
+                  className="h-6 w-6 text-gray-800"
                 >
                   <path
                     strokeLinecap="round"
@@ -141,94 +126,31 @@ const Navbar: React.FC = () => {
               <SheetHeader>
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
-              <nav>
-                <ul className="flex flex-col space-y-4">
+              <nav className="mt-6">
+                <ul className="space-y-4">
                   <li>
                     <Link href="https://invest.jmqafri.org">
-                      <button className="rounded-md bg-indigo-200 p-3 hover:bg-indigo-300">
-                        <p className="font-semibold">Open App</p>
+                      <button className="w-full rounded-md bg-indigo-200 px-4 py-2 text-sm font-medium text-gray-800 transition-colors hover:bg-indigo-300">
+                        Open App
                       </button>
                     </Link>
                   </li>
-                  <li>
-                    <Link
-                      href="/About"
-                      className="p-3 text-lg font-medium hover:bg-indigo-100"
-                    >
-                      About Us
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/careers"
-                      className="p-3 text-lg font-medium hover:bg-indigo-100"
-                    >
-                      Careers
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/charity"
-                      className="font-mediumhover:bg-indigo-100 p-3 text-lg"
-                    >
-                      Charity
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/FAQ"
-                      className="p-3 text-lg font-medium hover:bg-indigo-100"
-                    >
-                      FAQ
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/Invest"
-                      className="p-3 text-lg font-medium hover:bg-indigo-100"
-                    >
-                      Invest
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/Acquisitions"
-                      className="p-3 text-lg font-medium hover:bg-indigo-100"
-                    >
-                      Acquisitions
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/pharma"
-                      className="p-3 text-lg font-medium hover:bg-indigo-100"
-                    >
-                      Pharma
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/partnership"
-                      className="p-3 text-lg font-medium hover:bg-indigo-100"
-                    >
-                      Partnership
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/contact"
-                      className="p-3 text-lg font-medium hover:bg-indigo-100"
-                    >
-                      Contact
-                    </Link>
-                  </li>
+                  <MobileNavItem href="/about" label="About Us" />
+                  <MobileNavItem href="/careers" label="Careers" />
+                  <MobileNavItem href="/charity" label="Charity" />
+                  <MobileNavItem href="/faq" label="FAQ" />
+                  <MobileNavItem href="/invest" label="Invest" />
+                  <MobileNavItem href="/acquisitions" label="Acquisitions" />
+                  <MobileNavItem href="/pharma" label="Pharma" />
+                  <MobileNavItem href="/partnership" label="Partnership" />
+                  <MobileNavItem href="/contact" label="Contact" />
                 </ul>
               </nav>
             </SheetContent>
           </Sheet>
         </div>
       </div>
-    </motion.div>
+    </motion.nav>
   );
 };
 
@@ -245,14 +167,14 @@ const ListItem = React.forwardRef<HTMLAnchorElement, ListItemProps>(
           <Link
             ref={ref}
             className={cn(
-              "hover:text-accent-foreground focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:bg-indigo-100 focus:bg-accent",
+              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-indigo-100 focus:bg-indigo-100",
               className,
             )}
             href={href}
             {...props}
           >
-            <div className="text-sm font-medium leading-none">{title}</div>
-            <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+            <div className="text-sm font-medium text-gray-900">{title}</div>
+            <p className="line-clamp-2 text-sm leading-snug text-gray-600">
               {children}
             </p>
           </Link>
@@ -262,5 +184,19 @@ const ListItem = React.forwardRef<HTMLAnchorElement, ListItemProps>(
   },
 );
 ListItem.displayName = "ListItem";
+
+const MobileNavItem: React.FC<{ href: string; label: string }> = ({
+  href,
+  label,
+}) => (
+  <li>
+    <Link
+      href={href}
+      className="block rounded-md p-2 text-base font-medium text-gray-600 transition-colors hover:bg-indigo-100 hover:text-gray-900"
+    >
+      {label}
+    </Link>
+  </li>
+);
 
 export default Navbar;
