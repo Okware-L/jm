@@ -11,13 +11,7 @@ const About = () => {
               About JM-Qafri Methuselah.
             </h1>
           </div>
-          <Image
-            src="/claire2.jpeg"
-            alt="pic"
-            width={600}
-            height={500}
-            className="mx-auto rounded-lg shadow-lg"
-          />
+
           <div className="mx-auto max-w-3xl">
             <p className="p-5 text-base font-extralight text-slate-900">
               As a global wealth manager, we recognize the significance of your
