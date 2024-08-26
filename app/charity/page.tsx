@@ -208,13 +208,13 @@ const CharityPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-8 text-center">
+          {/**          <div className="mt-8 text-center">
             <DonorWall
               isOpen={isDonorWallOpen}
               onOpenChange={setIsDonorWallOpen}
               donors={donors}
             />
-          </div>
+          </div> */}
         </motion.div>
       </div>
       <Footer />
