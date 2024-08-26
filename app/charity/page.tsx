@@ -172,7 +172,7 @@ const CharityPage: React.FC = () => {
               </div>
               <div className="mt-8 text-center">
                 <Link
-                  href="/charity/Donate"
+                  href="/charity/donate"
                   className="inline-block rounded-md bg-slate-800 px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-700"
                 >
                   Donate Now
@@ -196,8 +196,7 @@ const CharityPage: React.FC = () => {
                 credibility and impact.
               </p>
             </motion.div>
-
-            <div className="mt-8 text-center">
+            {/**            <div className="mt-8 text-center">
               <Button
                 variant="outline"
                 onClick={() => setIsDonorWallOpen(true)}
@@ -205,7 +204,7 @@ const CharityPage: React.FC = () => {
               >
                 View Donor Wall
               </Button>
-            </div>
+            </div> */}
           </div>
 
           {/**          <div className="mt-8 text-center">
