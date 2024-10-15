@@ -172,7 +172,7 @@ const CharityPage: React.FC = () => {
               </div>
               <div className="mt-8 text-center">
                 <Link
-                  href="/charity/donate"
+                  href="/charity/Donate"
                   className="inline-block rounded-md bg-slate-800 px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-700"
                 >
                   Donate Now
