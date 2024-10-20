@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 export default function Posts() {
   return (
@@ -111,6 +112,11 @@ export default function Posts() {
               <span>5 MIN</span>
             </div>
           </div>
+        </div>
+        <div>
+          <Link href="/blog">
+            <Button>See All</Button>
+          </Link>
         </div>
       </div>
     </section>

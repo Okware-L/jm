@@ -1,7 +1,5 @@
-// ./src/app/(blog)/layout.tsx
-
-import { VisualEditing } from "next-sanity";
-import { draftMode } from "next/headers";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function RootLayout({
   children,
@@ -11,16 +9,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {draftMode().isEnabled && (
-          <a
-            className="fixed bottom-0 right-0 m-4 bg-blue-500 p-4 text-white"
-            href="/api/draft-mode-disable"
-          >
-            Disable preview mode
-          </a>
-        )}
+        <Navbar />
         {children}
-        {draftMode().isEnabled && <VisualEditing />}
+
+        <Footer />
       </body>
     </html>
   );

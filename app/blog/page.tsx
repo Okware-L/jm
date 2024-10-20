@@ -1,14 +1,48 @@
-// ./src/app/(blog)/page.tsx
+import React from "react";
+import {
+  collection,
+  getDocs,
+  DocumentData,
+  QueryDocumentSnapshot,
+} from "firebase/firestore";
+import { db } from "../../firebseConfig";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Clock, User, Calendar } from "lucide-react";
+import SearchAndPagination from "./components/SearchAndPagination"; // We'll create this client component
 
-import { Posts } from "./components/Posts";
-import { sanityFetch } from "@/sanity/lib/client";
-import { POSTS_QUERY } from "@/sanity/lib/queries";
-import { POSTS_QUERYResult } from "../../sanity.types";
+interface BlogPost {
+  id: string;
+  title: string;
+  content: string;
+  slug: string;
+  author: string;
+  date: string;
+  readingTime: number;
+}
 
-export default async function Page() {
-  const posts = await sanityFetch<POSTS_QUERYResult>({
-    query: POSTS_QUERY,
-  });
+async function getBlogs(): Promise<BlogPost[]> {
+  const blogsCollection = collection(db, "blogs");
+  const blogSnapshot = await getDocs(blogsCollection);
+  return blogSnapshot.docs.map((doc: QueryDocumentSnapshot<DocumentData>) => ({
+    id: doc.id,
+    title: doc.data().title,
+    content: doc.data().content,
+    slug: doc.data().slug,
+    author: doc.data().author || "JM",
+    date: doc.data().date || new Date().toISOString().split("T")[0],
+    readingTime: Math.ceil(doc.data().content.split(" ").length / 200) || 1,
+  }));
+}
 
-  return <Posts posts={posts} />;
+export default async function BlogPage() {
+  const blogs = await getBlogs();
+
+  return (
+    <div className="container mx-auto px-4 py-8 pt-32">
+      <h1 className="mb-6 text-4xl font-light">Blogs</h1>
+      <SearchAndPagination blogs={blogs} />
+    </div>
+  );
 }
