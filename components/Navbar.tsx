@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <ListItem href="/About" title="About Us">
+                  <ListItem href="/about" title="About Us">
                     Learn more about our company and mission.
                   </ListItem>
                   <ListItem href="/careers" title="Careers">
