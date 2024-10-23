@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import slugify from "slugify";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import {
   Form,
   FormControl,
@@ -28,6 +29,7 @@ import {
   QueryDocumentSnapshot,
 } from "firebase/firestore";
 import RichTextEditor from "./RichTextEditor";
+import { ChevronRight } from "lucide-react";
 
 const blogSchema = z.object({
   title: z
@@ -197,6 +199,13 @@ const BlogPublishing: React.FC = () => {
 
       <div className="rounded-lg border p-4">
         <h2 className="mb-4 text-lg font-semibold">Published Blogs</h2>
+        <div className="my-5">
+          <Button variant="link">
+            <Link href="/blog" className="font-light text-sky-600">
+              See All Blogs
+            </Link>
+          </Button>
+        </div>
         <div className="space-y-4">
           {blogs.map((blog) => (
             <div key={blog.id} className="rounded border p-4">
@@ -208,12 +217,14 @@ const BlogPublishing: React.FC = () => {
                 }}
               />
               <div className="mt-4 space-x-2">
-                <Button onClick={() => handleEdit(blog)} variant="outline">
+                <Button onClick={() => handleEdit(blog)} variant="ghost">
                   Edit
                 </Button>
+
                 <Button
                   onClick={() => handleDelete(blog.id)}
                   variant="destructive"
+                  size="sm"
                 >
                   Delete
                 </Button>
