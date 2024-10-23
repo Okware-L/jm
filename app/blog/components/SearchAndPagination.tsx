@@ -57,6 +57,7 @@ const SearchAndPagination: React.FC<SearchAndPaginationProps> = ({ blogs }) => {
               <CardTitle className="text-xl font-semibold">
                 {blog.title}
               </CardTitle>
+
               <div className="flex items-center space-x-4 text-sm text-gray-500">
                 <span className="flex items-center">
                   <User size={16} className="mr-1" /> {blog.author}
@@ -71,11 +72,17 @@ const SearchAndPagination: React.FC<SearchAndPaginationProps> = ({ blogs }) => {
               </div>
             </CardHeader>
             <CardContent>
-              <p className="mb-4 text-gray-600">
-                {blog.content.substring(0, 150)}...
-              </p>
               <Link href={`/blog/${blog.slug}`}>
-                <Button variant="ghost">Read More</Button>
+                <div
+                  className="line-clamp-3"
+                  dangerouslySetInnerHTML={{
+                    __html: blog.content.substring(0, 150) + "...",
+                  }}
+                />
+
+                <Button variant="ghost" className="m-3">
+                  Read More
+                </Button>
               </Link>
             </CardContent>
           </Card>

@@ -78,8 +78,12 @@ export default async function BlogPostPage({ params }: PageProps) {
             </span>
           </div>
         </CardHeader>
+
         <CardContent className="prose max-w-none p-6">
-          <p>{post.content}</p>
+          <div
+            className="blog-content prose prose-lg max-w-none"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
         </CardContent>
       </Card>
       <ShareButtons title={post.title} />
