@@ -176,7 +176,10 @@ const BlogPublishing: React.FC = () => {
                 <FormItem>
                   <FormLabel>Content</FormLabel>
                   <FormControl>
-                    <RichTextEditor onChange={setEditorContent} />
+                    <RichTextEditor
+                      onChange={setEditorContent}
+                      initialContent={editingBlog ? editingBlog.content : ""}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
