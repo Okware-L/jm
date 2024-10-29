@@ -41,7 +41,7 @@ export default async function BlogPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 pt-32">
-      <h1 className="mb-6 text-4xl font-light">Blogs</h1>
+      <h1 className="mb-6 text-4xl font-light">JM-Qafri Blogs & News.</h1>
       <SearchAndPagination blogs={blogs} />
     </div>
   );
