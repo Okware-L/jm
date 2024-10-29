@@ -1,6 +1,9 @@
+// app/admin/page.tsx
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import Create from "../../components/createJob";
 import Createdtender from "../../components/createTender";
 import Footer from "../../components/Footer";
@@ -11,10 +14,43 @@ import TenderSubmissions from "./components/TenderSubmissions";
 import AcquisitionsSubmissions from "./components/AcquisitionsSubmissions";
 import Analytics from "./components/Analytics";
 import UserManagement from "./components/UserManagement";
-import BlogPublishing from "./components/BlogPublishing"; // New import
+import BlogPublishing from "./components/BlogPublishing";
+import PartnerApplications from "./components/PartnerApplications"; // Import PartnerApplications component
+
+const allowedEmails = [
+  "lewisokware@gmail.com",
+  "claireatienowork@gmail.com",
+  "atienoclaire17@gmail.com",
+]; // Predefined emails
 
 export default function AdminPage() {
   const [activeTab, setActiveTab] = useState("dashboard");
+  const [loading, setLoading] = useState(true); // Track loading state
+  const [userEmail, setUserEmail] = useState(""); // State to hold the user's email
+  const router = useRouter();
+  const auth = getAuth();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user || !allowedEmails.includes(user.email!)) {
+        router.push("/signIn"); // Redirect to sign-in page if not authenticated
+      } else {
+        setUserEmail(user.email!); // Store user's email
+        setLoading(false); // User is authenticated, set loading to false
+      }
+    });
+
+    return () => unsubscribe(); // Clean up subscription on unmount
+  }, [auth, router]);
+
+  const handleSignOut = async () => {
+    await signOut(auth);
+    router.push("/"); // Redirect to sign-in page after signing out
+  };
+
+  if (loading) {
+    return <div className="flex min-h-screen text-center">Loading...</div>; // Loading state
+  }
 
   const renderActiveComponent = () => {
     switch (activeTab) {
@@ -35,7 +71,9 @@ export default function AdminPage() {
       case "userManagement":
         return <UserManagement />;
       case "blogPublishing":
-        return <BlogPublishing />; // New case
+        return <BlogPublishing />;
+      case "partnerApplications":
+        return <PartnerApplications />; // Render PartnerApplications component
       default:
         return <Dashboard />;
     }
@@ -52,6 +90,16 @@ export default function AdminPage() {
           Manage your application efficiently
         </p>
 
+        <div className="mt-8 text-center">
+          <h2 className="text-xl font-semibold">Welcome, {userEmail}</h2>
+          <button
+            onClick={handleSignOut}
+            className="mt-2 rounded-md bg-red-600 px-4 py-1 text-white hover:bg-red-700"
+          >
+            Sign Out
+          </button>
+        </div>
+
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           {[
             "dashboard",
@@ -63,7 +111,8 @@ export default function AdminPage() {
             "acquisitionsSubmissions",
             "analytics",
             "userManagement",
-            "blogPublishing", // New tab
+            "blogPublishing",
+            "partnerApplications", // New tab for PartnerApplications
           ].map((tab) => (
             <button
               key={tab}
@@ -89,8 +138,6 @@ export default function AdminPage() {
     </div>
   );
 }
-
-// ... (rest of the code remains the same)
 
 const Dashboard = () => (
   <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

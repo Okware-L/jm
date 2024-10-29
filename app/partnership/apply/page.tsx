@@ -2,45 +2,77 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { motion } from "framer-motion";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { db } from "../../../firebseConfig";
+import { collection, addDoc } from "firebase/firestore";
+import { toast } from "sonner";
+
+const applicationSchema = z.object({
+  name: z.string().nonempty("Name is required"),
+  email: z.string().email("Invalid email"),
+  organization: z.string().nonempty("Organization name is required"),
+  partnershipType: z.enum([
+    "Solution Provider",
+    "Distributor",
+    "System Integrator",
+    "Managed Service Provider",
+    "Technology Partner",
+    "Consultant",
+  ]),
+  message: z.string().nonempty("Message is required"),
+});
+
+type ApplicationData = z.infer<typeof applicationSchema>;
 
 export default function PartnershipApply() {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ApplicationData>({
+    resolver: zodResolver(applicationSchema),
+  });
+
+  const onSubmit = async (data: ApplicationData) => {
+    try {
+      await addDoc(collection(db, "partnerApplications"), data);
+      toast.success("Application submitted", {
+        description: "Thank you for applying. We'll get back to you soon!",
+      });
+      reset();
+    } catch (error) {
+      toast.error("Submission failed", {
+        description: "An error occurred. Please try again later.",
+      });
+      console.error("Submission error: ", error);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-100 font-sans text-gray-800">
       <Navbar />
       <main className="container mx-auto px-4 py-8 pt-32">
-        {/* Hero Section */}
         <section className="mb-12 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-4 text-4xl font-light text-indigo-900"
-          >
+          <h1 className="mb-4 text-4xl font-light text-indigo-900">
             Apply to Become a Partner
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            className="mx-auto mb-6 max-w-2xl text-lg text-gray-600"
-          >
+          </h1>
+          <p className="mx-auto mb-6 max-w-2xl text-lg text-gray-600">
             Join the JM-Qafri partner program and collaborate with us to drive
             impact, innovation, and sustainable solutions across industries.
-          </motion.p>
+          </p>
         </section>
 
-        {/* Application Form */}
         <section className="mb-12 rounded-lg bg-white p-6 shadow-sm">
-          <motion.h2
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-4 text-xl font-light text-indigo-900"
-          >
+          <h2 className="mb-4 text-xl font-light text-indigo-900">
             Partnership Application Form
-          </motion.h2>
-          <form className="space-y-6">
+          </h2>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div>
               <label
                 htmlFor="name"
@@ -48,13 +80,15 @@ export default function PartnershipApply() {
               >
                 Your Name
               </label>
-              <input
-                type="text"
+              <Input
                 id="name"
-                name="name"
-                required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                {...register("name")}
+                aria-invalid={!!errors.name}
+                className="mt-1 block w-full"
               />
+              {errors.name && (
+                <p className="text-red-500">{errors.name.message}</p>
+              )}
             </div>
 
             <div>
@@ -64,13 +98,15 @@ export default function PartnershipApply() {
               >
                 Email Address
               </label>
-              <input
-                type="email"
+              <Input
                 id="email"
-                name="email"
-                required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                {...register("email")}
+                aria-invalid={!!errors.email}
+                className="mt-1 block w-full"
               />
+              {errors.email && (
+                <p className="text-red-500">{errors.email.message}</p>
+              )}
             </div>
 
             <div>
@@ -80,13 +116,15 @@ export default function PartnershipApply() {
               >
                 Organization Name
               </label>
-              <input
-                type="text"
+              <Input
                 id="organization"
-                name="organization"
-                required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                {...register("organization")}
+                aria-invalid={!!errors.organization}
+                className="mt-1 block w-full"
               />
+              {errors.organization && (
+                <p className="text-red-500">{errors.organization.message}</p>
+              )}
             </div>
 
             <div>
@@ -98,17 +136,22 @@ export default function PartnershipApply() {
               </label>
               <select
                 id="partnershipType"
-                name="partnershipType"
-                required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                {...register("partnershipType")}
+                aria-invalid={!!errors.partnershipType}
+                className="mt-1 block w-full rounded-md border-gray-300"
               >
-                <option>Solution Provider</option>
-                <option>Distributor</option>
-                <option>System Integrator</option>
-                <option>Managed Service Provider</option>
-                <option>Technology Partner</option>
-                <option>Consultant</option>
+                <option value="Solution Provider">Solution Provider</option>
+                <option value="Distributor">Distributor</option>
+                <option value="System Integrator">System Integrator</option>
+                <option value="Managed Service Provider">
+                  Managed Service Provider
+                </option>
+                <option value="Technology Partner">Technology Partner</option>
+                <option value="Consultant">Consultant</option>
               </select>
+              {errors.partnershipType && (
+                <p className="text-red-500">{errors.partnershipType.message}</p>
+              )}
             </div>
 
             <div>
@@ -118,24 +161,26 @@ export default function PartnershipApply() {
               >
                 Why do you want to partner with JM-Qafri?
               </label>
-              <textarea
+              <Textarea
                 id="message"
-                name="message"
+                {...register("message")}
+                aria-invalid={!!errors.message}
                 rows={4}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              ></textarea>
+                className="mt-1 block w-full"
+              />
+              {errors.message && (
+                <p className="text-red-500">{errors.message.message}</p>
+              )}
             </div>
 
             <div className="text-center">
-              <motion.button
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
+              <Button
                 type="submit"
                 className="rounded bg-indigo-600 px-6 py-2 text-white transition duration-300 hover:bg-indigo-700"
+                disabled={isSubmitting}
               >
-                Submit Application
-              </motion.button>
+                {isSubmitting ? "Submitting..." : "Submit Application"}
+              </Button>
             </div>
           </form>
         </section>
