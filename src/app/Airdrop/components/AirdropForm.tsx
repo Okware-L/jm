@@ -81,9 +81,9 @@ export default function AirdropForm() {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="ethWallet" className="block text-sm font-medium text-black">
+            <Input name="ethWallet" className="block text-sm font-medium text-black">
               ETH Wallet Address
-            </label>
+            </Input>
             <Input
               name="ethWallet"
               value={formData.ethWallet}
