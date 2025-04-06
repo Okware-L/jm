@@ -15,6 +15,7 @@ export default function AirdropForm() {
     email: "",
     ethWallet: "",
     message: "",
+    amount: ""
   });
 
 
@@ -34,6 +35,7 @@ export default function AirdropForm() {
         email: formData.email,
         ethWallet: formData.ethWallet,
         message: formData.message,
+        amount: formData.amount,
         timestamp: Timestamp.now(),
       });
       toast.success("Airdrop application submitted successfully");
@@ -42,6 +44,7 @@ export default function AirdropForm() {
         email: "",
         ethWallet: "",
         message: "",
+        amount: ""
       });
     } catch (error) {
       console.error("Error submitting airdrop application:", error);
@@ -93,6 +96,21 @@ export default function AirdropForm() {
               
             />
           </div>
+
+          <div className="mb-4">
+  <label htmlFor="amount" className="block text-sm font-medium text-black">
+    JM Amount to Receive
+  </label>
+  <Input
+    name="amount"
+    type="number"
+    value={formData.amount}
+    onChange={handleChange}
+    placeholder="e.g. 20"
+    required
+  />
+</div>
+
           <div className="mb-6">
             <label htmlFor="message" className="block text-sm font-medium text-black">
               Additional Information (optional)

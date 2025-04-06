@@ -10,6 +10,7 @@ interface AirdropSubmission {
   name: string;
   email: string;
   ethWallet: string;
+  amount: string;
   message?: string;
 }
 
@@ -19,7 +20,7 @@ const JM_TOKEN_ABI = [
   "function transfer(address to, uint amount) public returns (bool)",
 ];
 
-const AIRDROP_AMOUNT = ethers.utils.parseUnits("20", 18); // 20 JM (18 decimals)
+
 
 const AirdropSubmissions = () => {
   const [submissions, setSubmissions] = useState<AirdropSubmission[]>([]);
@@ -48,14 +49,18 @@ const AirdropSubmissions = () => {
     setSubmissions(submissions.filter((sub) => sub.id !== id));
   };
 
-  const sendAirdrop = async (recipient: string) => {
+  const sendAirdrop = async (recipient: string, amount: string) => {
     try {
       setSendingTo(recipient);
       const signer = await getSigner();
       const contract = new ethers.Contract(JM_TOKEN_ADDRESS, JM_TOKEN_ABI, signer);
-      const tx = await contract.transfer(recipient, AIRDROP_AMOUNT);
+  
+      // Convert amount to BigNumber (assumes amount is in human-readable JM format)
+      const parsedAmount = ethers.utils.parseUnits(amount, 18);
+  
+      const tx = await contract.transfer(recipient, parsedAmount);
       await tx.wait();
-      alert(`Airdrop sent to ${recipient}`);
+      alert(`Airdrop of ${amount} JM sent to ${recipient}`);
     } catch (err) {
       console.error("Airdrop error:", err);
       alert(`Airdrop failed: ${err instanceof Error ? err.message : String(err)}`);
@@ -63,6 +68,7 @@ const AirdropSubmissions = () => {
       setSendingTo(null);
     }
   };
+  
 
   useEffect(() => {
     fetchSubmissions();
@@ -91,6 +97,7 @@ const AirdropSubmissions = () => {
                 <td className="px-6 py-4">{s.email}</td>
                 <td className="px-6 py-4">{s.ethWallet}</td>
                 <td className="px-6 py-4">{s.message || "—"}</td>
+                <td className="px-6 py-4">{s.amount}</td>
                 <td className="px-6 py-4 space-x-2">
                   <button
                     onClick={() => handleDelete(s.id)}
@@ -100,7 +107,7 @@ const AirdropSubmissions = () => {
                   </button>
                   <button
                     disabled={sendingTo === s.ethWallet}
-                    onClick={() => sendAirdrop(s.ethWallet)}
+                    onClick={() => sendAirdrop(s.ethWallet, s.amount)}
                     className={`text-blue-600 hover:text-blue-900 ${sendingTo === s.ethWallet ? 'opacity-50 cursor-not-allowed' : ''}`}
                   >
                     {sendingTo === s.ethWallet ? "Sending..." : "Airdrop 20 JM"}
