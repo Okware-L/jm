@@ -83,7 +83,7 @@ const AirdropSubmissions = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              {["Name", "Email", "Wallet", "Message", "Actions"].map((h) => (
+              {["Name", "Email", "Wallet", "Message","Amount", "Actions"].map((h) => (
                 <th key={h} className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   {h}
                 </th>
@@ -110,7 +110,7 @@ const AirdropSubmissions = () => {
                     onClick={() => sendAirdrop(s.ethWallet, s.amount)}
                     className={`text-blue-600 hover:text-blue-900 ${sendingTo === s.ethWallet ? 'opacity-50 cursor-not-allowed' : ''}`}
                   >
-                    {sendingTo === s.ethWallet ? "Sending..." : "Airdrop 20 JM"}
+                    {sendingTo === s.ethWallet ? "Sending..." : "Airdrop JM"}
                   </button>
                 </td>
               </tr>
