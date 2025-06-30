@@ -126,6 +126,7 @@ const Navbar: React.FC = () => {
             chain: sepolia,
             sponsorGas: false,
           }}
+           theme={"light"}
             client={client}
             wallets={wallets}
             connectModal={{
