@@ -22,7 +22,7 @@ import {
 import { ConnectButton } from "thirdweb/react";
 import { client } from "../app/client";
 import { createWallet, inAppWallet, } from "thirdweb/wallets";
-import { mainnet } from "thirdweb/chains";
+import { sepolia } from "thirdweb/chains";
 
 //supported wallets
 const wallets = [
@@ -123,7 +123,7 @@ const Navbar: React.FC = () => {
         <div className="flex items-center space-x-4">
           <ConnectButton
           accountAbstraction={{
-            chain: mainnet,
+            chain: sepolia,
             sponsorGas: false,
           }}
             client={client}
