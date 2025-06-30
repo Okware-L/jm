@@ -121,23 +121,39 @@ const Navbar: React.FC = () => {
 
         {/* Connect Button */}
         <div className="flex items-center space-x-4">
-          <ConnectButton
-          accountAbstraction={{
-            chain: sepolia,
-            sponsorGas: false,
-          }}
-           theme={"light"}
-            client={client}
-            wallets={wallets}
-            connectModal={{
-              size: "compact",
-              showThirdwebBranding: false,
-            }}
+<ConnectButton
+  client={client}
+  theme="light"
+  chain={sepolia}
+  wallets={wallets}
+  accountAbstraction={{
+    chain: sepolia,
+    sponsorGas: false,
+  }}
+  connectModal={{
+    size: "compact",
+    showThirdwebBranding: false,
+  }}
+  connectButton={{
+    label: "Sign in to JM-Qafri",
+  }}
+  detailsButton={{
+    displayBalanceToken: {
+      [sepolia.id]: "0x973C22B3b109E94Fdf90F65E98cdABc5D7E1aCAd", // show this token's balance
+    },
+  }}
+  supportedTokens={{
+    [sepolia.id]: [
+      {
+        address: "0x973C22B3b109E94Fdf90F65E98cdABc5D7E1aCAd",
+        name: "JM-Qafri Token",
+        symbol: "JMQ",
+        icon: "https://yourdomain.com/icon.png", // Optional token icon
+      },
+    ],
+  }}
+/>
 
-            connectButton={{
-              label: "Sign in to JM-Qafri",
-            }}
-          />
 
           {/* Mobile Menu */}
           <Sheet>
