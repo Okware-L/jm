@@ -32,6 +32,24 @@ const AirdropSubmissions = () => {
     setSubmissions(submissions.filter((sub) => sub.id !== id));
   };
 
+  const handleDownloadCSV = () => {
+    const header = "address,quantity\n";
+    const rows = submissions
+      .map((s) => `${s.ethWallet},${s.amount}`)
+      .join("\n");
+    const csvContent = header + rows;
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", "airdrop_data.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   useEffect(() => {
     fetchSubmissions();
   }, []);
@@ -74,7 +92,7 @@ const AirdropSubmissions = () => {
                     href="https://thirdweb.com/team/okware/dd2c97d0c572e2b8a570ec077c6b75c7/contract/sepolia/0x973C22B3b109E94Fdf90F65E98cdABc5D7E1aCAd/tokens"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-indigo-600 hover:text-indigo-900 underline"
+                    className="inline-block px-3 py-1 text-sm font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700 transition"
                   >
                     Airdrop JM
                   </a>
@@ -83,6 +101,15 @@ const AirdropSubmissions = () => {
             ))}
           </tbody>
         </table>
+      </div>
+
+      <div className="mt-4 flex justify-end">
+        <button
+          onClick={handleDownloadCSV}
+          className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+        >
+          Download CSV
+        </button>
       </div>
     </div>
   );
