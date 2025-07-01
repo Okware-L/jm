@@ -135,7 +135,7 @@ const Navbar: React.FC = () => {
     showThirdwebBranding: false,
   }}
   connectButton={{
-    label: "Sign in to JM-Qafri",
+    label: "Sign in",
   }}
   detailsButton={{
     displayBalanceToken: {
