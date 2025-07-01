@@ -126,11 +126,11 @@ const Navbar: React.FC = () => {
   theme="light"
   chain={sepolia}
   wallets={wallets}
-  accountAbstraction={{
-    chain: sepolia,
-    sponsorGas: false, // User pays gas in native token
-    gasless: false, // Explicitly disable gasless transactions
-  }}
+  // accountAbstraction={{
+  //   chain: sepolia,
+  //   sponsorGas: false, // User pays gas in native token
+  //   gasless: false, // Explicitly disable gasless transactions
+  // }}
   connectModal={{
     size: "compact",
     showThirdwebBranding: false,
