@@ -128,7 +128,8 @@ const Navbar: React.FC = () => {
   wallets={wallets}
   accountAbstraction={{
     chain: sepolia,
-    sponsorGas: false,
+    sponsorGas: false, // User pays gas in native token
+    gasless: false, // Explicitly disable gasless transactions
   }}
   connectModal={{
     size: "compact",
