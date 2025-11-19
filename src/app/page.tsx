@@ -10,12 +10,12 @@ import Newsletter from "../components/Newsletter";
 export default async function Home() {
   return (
     <div className="font-times">
-      <Navbar />
+      
       <Hero />
       <Categories />
       <About />
       <Posts />
-      <Insight />
+      <Insight /> 
       <Newsletter />
       <Footer />
     </div>

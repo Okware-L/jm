@@ -3,12 +3,13 @@ import Image from 'next/image';
 
 import Footer from '../../components/Footer';
 import AirdropForm from './components/AirdropForm'
+import Navbar from '../components/Navbar'
 const Page = () => {
 
 
   return (
     <div className='min-h-screen bg-gray-100'>
-      
+      <Navbar scrollThreshold={50}/>
       <div className='p-5 pt-40 text-black'>
         <div className='flex justify-center items-center'>
           <Image src="/airdrop.jpg" alt="Airdrop" width="800" height="500"/>
