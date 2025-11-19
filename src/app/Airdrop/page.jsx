@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import Footer from '../../components/Footer';
 import AirdropForm from './components/AirdropForm'
-import Navbar from '../components/Navbar'
+import Navbar from '../../components/Navbar'
 const Page = () => {
 
 
