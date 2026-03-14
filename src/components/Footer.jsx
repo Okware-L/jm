@@ -7,11 +7,11 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-r from-gray-100 to-gray-200 py-16 text-gray-800">
+    <footer className="bg-gradient-to-r from-slate-900 to-slate-800 py-16 text-slate-100">
       <div className="container mx-auto px-4">
         <div className="mb-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <div>
-            <h2 className="mb-4 text-2xl font-bold">Latest Updates</h2>
+            <h2 className="mb-4 text-2xl font-bold text-slate-50">Latest Updates</h2>
             <UpdateLink
               href="/architecture"
               title="JM-QAFRI Network Architecture Contest"
@@ -29,7 +29,7 @@ export default function Footer() {
             />
           </div>
           <div>
-            <h2 className="mb-4 text-2xl font-bold">Quick Links</h2>
+            <h2 className="mb-4 text-2xl font-bold text-slate-50">Quick Links</h2>
             <QuickLink href="/About" text="About Us" />
             <QuickLink href="/contact" text="Contact" />
             <QuickLink href="/legal" text="Legal" />
@@ -41,7 +41,7 @@ export default function Footer() {
             />
           </div>
           <div>
-            <h2 className="mb-4 text-2xl font-bold">Connect With Us</h2>
+            <h2 className="mb-4 text-2xl font-bold text-slate-50">Connect With Us</h2>
             <div className="flex space-x-4">
               <SocialIcon Icon={FacebookIcon} href="#" label="Facebook" />
               <SocialIcon Icon={InstagramIcon} href="#" label="Instagram" />
@@ -51,12 +51,12 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="border-t border-gray-300 pt-8 text-center">
-          <p className="mb-4 text-sm">
+        <div className="border-t border-slate-700 pt-8 text-center">
+          <p className="mb-4 text-sm text-slate-400">
             Users may consult their legal/tax advisors should they require any
             clarifications on the interpretation of the Terms of use.
           </p>
-          <p className="text-sm">©2024 JM-Qafri. All rights reserved.</p>
+          <p className="text-sm text-slate-400">©2024 JM-Qafri. All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -66,11 +66,11 @@ export default function Footer() {
 const UpdateLink = ({ href, title, date }) => (
   <motion.div
     whileHover={{ x: 5 }}
-    className="mb-4 border-b border-gray-300 pb-2"
+    className="mb-4 border-b border-slate-700 pb-2"
   >
-    <Link href={href} className="block hover:text-indigo-600">
-      <h3 className="text-base font-medium">{title}</h3>
-      <time className="text-sm text-gray-600" dateTime={date}>
+    <Link href={href} className="block hover:text-slate-300">
+      <h3 className="text-base font-medium text-slate-200">{title}</h3>
+      <time className="text-sm text-slate-400" dateTime={date}>
         {date}
       </time>
     </Link>
@@ -81,8 +81,8 @@ const QuickLink = ({ href, text, isHighlighted = false }) => (
   <motion.div whileHover={{ x: 5 }} className="mb-2">
     <Link
       href={href}
-      className={`text-sm hover:text-indigo-600 ${
-        isHighlighted ? "font-bold text-indigo-600" : ""
+      className={`text-sm hover:text-slate-300 ${
+        isHighlighted ? "font-bold text-slate-300" : "text-slate-400"
       }`}
     >
       {text}
@@ -94,7 +94,7 @@ const SocialIcon = ({ Icon, href, label }) => (
   <motion.a
     href={href}
     whileHover={{ y: -3 }}
-    className="text-gray-600 hover:text-indigo-600"
+    className="text-slate-400 hover:text-slate-300"
     aria-label={label}
   >
     <Icon className="h-6 w-6" />

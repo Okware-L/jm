@@ -17,7 +17,7 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: "G-5E9XBNR537",
 };
-
+ 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();

@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <link rel="icon" href="/jmwhite.svg" sizes="any" />
         <ThirdwebProvider>
-          <Navbar />
+          <Navbar/>
           {children}
           <Toaster />
         </ThirdwebProvider>

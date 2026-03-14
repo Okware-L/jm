@@ -2,11 +2,12 @@ import React from 'react';
 import Image from 'next/image';
 import Footer from '../../components/Footer';
 import AcquisitionsForm from '../../components/AcquisitionsForm';
+import Navbar from "../../components/Navbar"
 
 const AcquisitionsPage = () => {
   return (
     <div className='min-h-screen bg-gray-100'>
-      
+      <Navbar scrollThreshold={50}/>
       <div className='p-5 pt-40 text-black'>
         <div className='flex justify-center items-center'>
           <Image src="/acquisitions.jpg" alt="Acquisitions & Valuation" width="700" height="400" />
