@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
-//import {Toaster} from "@components"
 import { ThirdwebProvider } from "thirdweb/react";
 import Navbar from "@/components/Navbar";
 import { cormorant, dmSans } from "@/lib/Fonts";
