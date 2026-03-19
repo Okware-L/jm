@@ -41,7 +41,7 @@ export default function NewsletterSection() {
     <section
       ref={sectionRef}
       id="newsletter"
-      className="border-t border-[var(--line)] bg-[var(--black)] text-[var(--white)]
+      className="border-t border-[var(--line)] bg-slate-900 text-[var(--white)]
                  px-6 md:px-[clamp(24px,5vw,72px)] py-[clamp(72px,11vw,144px)]"
     >
       {/* Section label */}

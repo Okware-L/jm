@@ -62,7 +62,7 @@ export default function Footer() {
     <footer
       ref={ref}
       id="footer"
-      className="border-t border-[var(--line)] px-6 md:px-[clamp(24px,5vw,72px)] pt-[clamp(56px,9vw,112px)] pb-[clamp(28px,4vw,40px)]"
+      className="bg-teal-50 border-t border-[var(--line)] px-6 md:px-[clamp(24px,5vw,72px)] pt-[clamp(56px,9vw,112px)] pb-[clamp(28px,4vw,40px)]"
     >
       {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-x-10 gap-y-12 mb-[clamp(40px,6vw,72px)]">
@@ -73,7 +73,7 @@ export default function Footer() {
             JM-Qafri<br />
             <em>Methuselah.</em>
           </p>
-          <p className="text-[13px] font-light leading-[1.75] text-[var(--grey)] mb-6 max-w-xs">
+          <p className="text-[13px] font-light leading-[1.75] text-[var(--black)] mb-6 max-w-xs">
             Global wealth management reimagined — bridging traditional finance,
             DeFi innovation, and sustainable impact investing.
           </p>

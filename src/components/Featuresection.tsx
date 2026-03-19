@@ -55,7 +55,7 @@ export default function FeatureSection() {
     <section
       ref={sectionRef}
       id="feature"
-      className="border-t border-[var(--line)] px-6 md:px-[clamp(24px,5vw,72px)] py-[clamp(72px,11vw,144px)]
+      className="bg-teal-50 border-t border-[var(--line)] px-6 md:px-[clamp(24px,5vw,72px)] py-[clamp(72px,11vw,144px)]
                  grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-10 items-center"
     >
       {/* Left */}

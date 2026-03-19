@@ -52,7 +52,7 @@ export default function AboutSection() {
     <section
       ref={sectionRef}
       id="about"
-      className="border-t bg-slate-100 border-[var(--line)] px-6 md:px-[clamp(24px,5vw,72px)] py-[clamp(72px,11vw,144px)]"
+      className="border-t bg-teal-50 border-[var(--line)] px-6 md:px-[clamp(24px,5vw,72px)] py-[clamp(72px,11vw,144px)]"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-10 items-start">
 
@@ -70,13 +70,13 @@ export default function AboutSection() {
           {/* Stats grid */}
           <div className="ab-stats grid grid-cols-2 gap-px bg-[var(--line)] border border-[var(--line)] mt-[clamp(32px,5vw,56px)] opacity-0">
             {STATS.map(({ value, label }) => (
-              <div key={label} className="bg-[var(--white)] p-[clamp(20px,2.5vw,32px)]">
+              <div key={label} className="bg-slate-900 p-[clamp(20px,2.5vw,32px)]">
                 <p className="font-serif text-[clamp(2.2rem,5.5vw,4.8rem)] font-light tracking-[-0.04em] leading-none mb-1"
-                  style={{ color: "var(--accent)" }}
+                  style={{ color: "var(--line)" }}
                 >
                   {value}
                 </p>
-                <p className="font-sans text-[11px] font-light tracking-[0.16em] uppercase text-[var(--grey)]">
+                <p className="font-sans text-[11px] font-light tracking-[0.16em] uppercase text-[var(--line)]">
                   {label}
                 </p>
               </div>
@@ -94,7 +94,7 @@ export default function AboutSection() {
         </div>
 
         {/* Right column — body text */}
-        <div className="ab-body font-sans text-[clamp(14px,1.4vw,17px)] font-light leading-[1.9] text-[var(--grey)] space-y-6 opacity-0">
+        <div className="ab-body font-sans text-[clamp(14px,1.4vw,17px)] font-light leading-[1.9] text-[var(--black)] space-y-6 opacity-0">
           <p>
             As a global wealth manager, we recognise the significance of your financial
             objectives and adopt a forward-thinking approach to safeguarding your assets.

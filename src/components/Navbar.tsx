@@ -36,14 +36,13 @@ const OPAQUE_PAGES = [
 /* ── Nav link data ────────────────────────── */
 const NAV_LINKS = [
   { href: "/About",    label: "About" },
-  { href: "/Invest",   label: "Services" },
-  { href: "/charity",  label: "Charity" },
+  { href: "/Invest",   label: "Solutions" },
   { href: "/contact",  label: "Contact" },
 ];
 
 const MOBILE_LINKS = [
   { href: "/About",        label: "About" },
-  { href: "/Invest",       label: "Invest" },
+  { href: "/Invest",       label: "Solutions" },
   { href: "/Acquisitions", label: "Acquisitions" },
   { href: "/pharma",       label: "Pharma" },
   { href: "/charity",      label: "Charity" },
@@ -89,8 +88,8 @@ export default function Navbar() {
         "px-6 md:px-[clamp(24px,5vw,72px)] py-5 md:py-6",
         "transition-all duration-500",
         scrolled
-          ? "border-b border-[var(--line)] bg-[var(--white)]/95 backdrop-blur-md"
-          : "border-b border-accent bg-transparent",
+          ? "border-b border-[var(--line)] bg-[var(--accent)]/5 backdrop-blur-md"
+          : "border-b border-accent bg-transparent ",
       ].join(" ")}
       style={{ opacity: 0 }} // GSAP will reveal
     >
@@ -127,36 +126,6 @@ export default function Navbar() {
 
       {/* Right actions */}
       <div className="flex items-center gap-4">
-        {/* ConnectButton — thirdweb */}
-        <div className="hidden sm:block">
-          <ConnectButton
-            client={client}
-            theme="light"
-            chain={sepolia}
-            wallets={wallets}
-            connectModal={{ size: "compact", showThirdwebBranding: false }}
-            connectButton={{
-              label: "Sign In",
-              className:
-                "!text-[11px] !font-light !tracking-[0.18em] !uppercase !px-5 !py-2.5 !border !border-[var(--black)] !bg-transparent !text-[var(--black)] !rounded-none hover:!bg-[var(--black)] hover:!text-[var(--white)] !transition-all !duration-300",
-            }}
-            detailsButton={{
-              displayBalanceToken: {
-                [sepolia.id]: "0x973C22B3b109E94Fdf90F65E98cdABc5D7E1aCAd",
-              },
-            }}
-            supportedTokens={{
-              [sepolia.id]: [
-                {
-                  address: "0x973C22B3b109E94Fdf90F65E98cdABc5D7E1aCAd",
-                  name: "JM-Qafri Token",
-                  symbol: "JMQ",
-                  icon: "",
-                },
-              ],
-            }}
-          />
-        </div>
 
         {/* Mobile menu — shadcn Sheet */}
         <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
@@ -201,17 +170,7 @@ export default function Navbar() {
                   {label}
                 </Link>
               ))}
-              {/* ConnectButton mobile */}
-              <div className="mt-8">
-                <ConnectButton
-                  client={client}
-                  theme="light"
-                  chain={sepolia}
-                  wallets={wallets}
-                  connectModal={{ size: "compact", showThirdwebBranding: false }}
-                  connectButton={{ label: "Sign In" }}
-                />
-              </div>
+
             </nav>
           </SheetContent>
         </Sheet>

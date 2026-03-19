@@ -65,7 +65,7 @@ export default function ServicesSection() {
     <section
       ref={sectionRef}
       id="services"
-      className="px-6 md:px-[clamp(24px,5vw,72px)] py-[clamp(72px,11vw,144px)]"
+      className="px-6 bg-teal-50 md:px-[clamp(24px,5vw,72px)] py-[clamp(72px,11vw,144px)]"
     >
       {/* Section label */}
       <p className="sv-label flex items-center gap-5 font-sans text-[11px] font-light tracking-[0.22em] uppercase text-[var(--grey)] mb-[clamp(36px,5vw,72px)] opacity-0">
@@ -93,7 +93,7 @@ export default function ServicesSection() {
                   <h3 className="sv-text font-serif text-[clamp(1.7rem,4vw,3.4rem)] font-light tracking-[-0.03em] leading-[1.02] transition-colors duration-300">
                     {title}
                   </h3>
-                  <p className="sv-muted font-sans text-[13px] font-light leading-[1.7] text-[var(--grey)] max-w-[260px] mt-2 transition-colors duration-300">
+                  <p className="sv-muted font-sans text-[13px] font-light leading-[1.7] text-[var(--black)] max-w-[260px] mt-2 transition-colors duration-300">
                     {desc}
                   </p>
                 </div>

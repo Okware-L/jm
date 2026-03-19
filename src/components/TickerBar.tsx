@@ -10,14 +10,14 @@ export default function TickerBar() {
   const all = [...ITEMS, ...ITEMS];
 
   return (
-    <div className="overflow-hidden border-t border-b border-[var(--line)] py-3">
+    <div className="bg-[var(--accent)] overflow-hidden border-t border-b border-[var(--line)] py-3">
       <div className="ticker-track flex whitespace-nowrap">
         {all.map((item, i) => (
           <span
             key={i}
             className="inline-flex items-center gap-7 pr-14
                        font-sans text-[11px] font-light tracking-[0.18em]
-                       uppercase text-[var(--grey)]"
+                       uppercase text-[var(--white)]"
           >
             {item}
             <span className="text-[var(--line)]" aria-hidden="true">·</span>

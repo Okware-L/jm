@@ -49,7 +49,7 @@ export default function HeroSection({ triggerAnimation }: HeroSectionProps) {
     <section
       ref={sectionRef}
       id="hero"
-      className="bg-slate-100 relative min-h-svh grid grid-rows-[1fr_auto] overflow-hidden
+      className="bg-teal-50 relative min-h-svh grid grid-rows-[1fr_auto] overflow-hidden
                  px-6 md:px-[clamp(24px,5vw,72px)]"
       style={{ paddingTop: "calc(clamp(18px, 2.5vw, 32px) * 2 + 40px)" }}
     >
@@ -102,8 +102,7 @@ export default function HeroSection({ triggerAnimation }: HeroSectionProps) {
         <p className="max-w-[340px] font-sans text-[clamp(13px,1.2vw,15px)]
                       font-light leading-[1.8] text-[var(--black)]">
           JM-Qafri Methuselah is a global wealth manager committed to safeguarding
-          your assets through innovative solutions — from DeFi to pharma,
-          agriculture to real estate.
+          your futures through innovative solutions.
         </p>
 
         <Link
