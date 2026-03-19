@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useRouter, useParams } from "next/navigation";
+import {  useParams } from "next/navigation";
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { doc, getDoc, updateDoc, Timestamp } from "firebase/firestore";
 import { auth, db } from "../../../../../firebseConfig";
@@ -73,7 +73,7 @@ export default function WorkerInvitePage() {
       if (u) setUser({ uid: u.uid, email: u.email });
     });
     return () => unsub();
-  }, [auth]);
+  }, []);
 
   const handleGoogleSignIn = async () => {
     setSigningIn(true);

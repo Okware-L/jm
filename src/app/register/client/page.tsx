@@ -141,7 +141,7 @@ export default function ClientRegisterPage() {
             <em style={{ fontStyle: "italic", color: "#2c5aa0" }}>yourself</em>
           </h1>
           <p className="text-sm text-slate-500 leading-relaxed">
-            Fill in your details below, then create your account at the end. You'll be assigned a dedicated account manager once approved.
+            Fill in your details below, then create your account at the end. You&apos;ll be assigned a dedicated account manager once approved.
           </p>
         </div>
 

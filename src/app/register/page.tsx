@@ -71,7 +71,7 @@ export default function RegisterPage() {
       setChecking(false);
     });
     return () => unsub();
-  }, [auth, db, router]);
+  }, [ router]);
 
   if (checking) {
     return (

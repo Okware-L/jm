@@ -90,7 +90,7 @@ export default function AuthPanel({
           <span className="inline-block ml-3 h-px w-8 bg-slate-200 align-middle" />
         </p>
         <p className="text-sm text-slate-500">
-          Choose how you'&apos;d like to sign in. Your registration details above will be saved immediately after.
+          Choose how you&apos;d like to sign in. Your registration details above will be saved immediately after.
         </p>
       </div>
 

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 //import { ConnectButton } from "thirdweb/react";
 //import { client } from "@/app/client";
-import { createWallet, inAppWallet } from "thirdweb/wallets";
+//import { createWallet, inAppWallet } from "thirdweb/wallets";
 //import { sepolia } from "thirdweb/chains";
 import {
   Sheet,

@@ -1,7 +1,7 @@
 // app/signin/page.tsx
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
@@ -18,6 +18,20 @@ const INPUT =
   "w-full border-b border-slate-200 focus:border-[#2c5aa0] bg-transparent text-sm text-slate-700 pb-2 outline-none transition-colors duration-300";
 
 export default function SignInPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-white flex items-center justify-center">
+          <div className="w-6 h-px bg-[#2c5aa0] animate-pulse" />
+        </div>
+      }
+    >
+      <SignInPageClient />
+    </Suspense>
+  );
+}
+
+function SignInPageClient() {
   const [view, setView] = useState<View>("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -132,9 +146,8 @@ export default function SignInPage() {
             className="text-white leading-[1.05] tracking-[-0.03em]"
             style={{ fontFamily: "'Cormorant', serif", fontSize: "clamp(2.4rem, 4vw, 3.6rem)", fontWeight: 300 }}
           >
-            Africa&apos;s First<br />
-            <em style={{ fontStyle: "italic", color: "#2c5aa0" }}>Blockchain</em><br />
-            Community Hub
+            JM-Qafri<br/>
+            <em style={{ fontStyle: "italic", color: "#2c5aa0" }}>Community Hub</em><br />
           </h1>
         </div>
         <div className="grid grid-cols-2 gap-px bg-slate-700 border border-slate-700">
