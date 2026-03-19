@@ -49,18 +49,18 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen" ref={sectionRef}>
       {/* Compact Hero */}
-      <section className="px-6 md:px-[var(--pad-x)] pt-[calc(clamp(64px,8vh,72px)+clamp(48px,7vw,88px))] pb-[clamp(48px,7vw,88px)] border-b border-slate-200">
+      <section className="bg-teal-50 px-6 md:px-[var(--pad-x)] pt-[calc(clamp(64px,8vh,72px)+clamp(48px,7vw,88px))] pb-[clamp(48px,7vw,88px)] border-b border-slate-200">
         <h1 className="about-hero-title font-serif text-[clamp(2.8rem,7vw,6rem)] font-light tracking-[-0.04em] leading-[1.05] mb-6">
-          About <em className="italic" style={{ color: "var(--accent)" }}>Us</em>
+          Who <em className="italic" style={{ color: "var(--accent)" }}>We </em>Are
         </h1>
-        <p className="about-hero-desc font-sans text-[clamp(15px,1.6vw,19px)] font-light leading-[1.8] text-slate-600 max-w-2xl">
+        <p className="about-hero-desc font-sans text-[clamp(15px,1.6vw,10px)] font-light leading-[1.8] text-slate-900 max-w-2xl">
           A dynamic community of business leaders fostering collaboration, growth, and innovation.
         </p>
       </section>
 
       {/* Intro Paragraph */}
       <section className="border-t border-slate-200 px-6 md:px-[var(--pad-x)] py-[var(--section-y)] bg-slate-50">
-        <p className="intro-paragraph font-sans text-[clamp(14px,1.4vw,17px)] font-light leading-[1.9] text-slate-600 max-w-5xl mx-auto">
+        <p className="intro-paragraph font-sans text-[clamp(14px,1.4vw,17px)] font-bold leading-[1.9] text-slate-600 text-[20px] italic max-w-5xl mx-auto">
           The JM-Qafri Network is a dynamic and influential community of business leaders, dedicated to fostering collaboration, growth,
           and innovation. Our network brings together forward-thinking entrepreneurs, executives, and industry experts from various
           sectors and backgrounds, creating a powerful ecosystem that drives meaningful change in the business world.
