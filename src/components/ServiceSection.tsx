@@ -105,7 +105,7 @@ export default function ServicesSection() {
                   </span>
                   <span
                     className="sv-circle flex items-center justify-center w-[30px] h-[30px] rounded-full
-                                border border-[var(--black)] flex-shrink-0 transition-[border-color] duration-300"
+                                border border-[var(--black)] flex-shrink-0 transition-[border-color, background] duration-300"
                   >
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <path d="M7 17l10-10M7 7h10v10" />

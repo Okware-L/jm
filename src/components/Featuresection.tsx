@@ -68,7 +68,7 @@ export default function FeatureSection() {
           Spurs a <em>New</em><br />
           Investment Cycle.
         </h2>
-        <p className="ft-body font-sans text-[clamp(14px,1.4vw,17px)] font-light leading-[1.9] text-[var(--grey)] mb-[clamp(28px,4vw,44px)] opacity-0">
+        <p className="ft-body font-sans text-[clamp(14px,1.4vw,17px)] font-light leading-[1.9] text-[var(--black] mb-[clamp(28px,4vw,44px)] opacity-0">
           The rapid development of Artificial Intelligence has initiated a new investment cycle.
           JM-Qafri's global forum is at the forefront of this conversation, exploring what the
           future holds for investors across healthcare, agriculture, and finance.
@@ -90,7 +90,7 @@ export default function FeatureSection() {
           className="font-serif italic font-light leading-[0.8] tracking-[-0.08em]
                      text-[clamp(8rem,20vw,20rem)] text-[var(--line)] pointer-events-none select-none opacity-0"
         >
-          AI
+          JM-QAFRI
         </div>
       </div>
     </section>

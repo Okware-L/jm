@@ -8,8 +8,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const STATS = [
-  { value: "15+", label: "Countries" },
-  { value: "$2.4B", label: "Assets" },
+  { value: "5+", label: "Countries" },
+  { value: "$-.-", label: "Assets" },
   { value: "6",   label: "Sectors" },
   { value: "24%", label: "AUM Growth" },
 ];
@@ -52,7 +52,7 @@ export default function AboutSection() {
     <section
       ref={sectionRef}
       id="about"
-      className="border-t border-[var(--line)] px-6 md:px-[clamp(24px,5vw,72px)] py-[clamp(72px,11vw,144px)]"
+      className="border-t bg-slate-100 border-[var(--line)] px-6 md:px-[clamp(24px,5vw,72px)] py-[clamp(72px,11vw,144px)]"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-10 items-start">
 
@@ -71,7 +71,9 @@ export default function AboutSection() {
           <div className="ab-stats grid grid-cols-2 gap-px bg-[var(--line)] border border-[var(--line)] mt-[clamp(32px,5vw,56px)] opacity-0">
             {STATS.map(({ value, label }) => (
               <div key={label} className="bg-[var(--white)] p-[clamp(20px,2.5vw,32px)]">
-                <p className="font-serif text-[clamp(2.2rem,5.5vw,4.8rem)] font-light tracking-[-0.04em] leading-none mb-1">
+                <p className="font-serif text-[clamp(2.2rem,5.5vw,4.8rem)] font-light tracking-[-0.04em] leading-none mb-1"
+                  style={{ color: "var(--accent)" }}
+                >
                   {value}
                 </p>
                 <p className="font-sans text-[11px] font-light tracking-[0.16em] uppercase text-[var(--grey)]">

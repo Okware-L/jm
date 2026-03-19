@@ -1,4 +1,6 @@
-// Import the functions you need from the SDKs you need
+//    root/firebseConfig.js
+
+
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";

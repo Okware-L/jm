@@ -11,6 +11,7 @@ interface HeroSectionProps {
 export default function HeroSection({ triggerAnimation }: HeroSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const animated   = useRef(false); // prevent double-fire
+  
 
   useEffect(() => {
     // Don't run until loader says go, and only once
@@ -48,16 +49,17 @@ export default function HeroSection({ triggerAnimation }: HeroSectionProps) {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative min-h-svh grid grid-rows-[1fr_auto] overflow-hidden
+      className="bg-slate-100 relative min-h-svh grid grid-rows-[1fr_auto] overflow-hidden
                  px-6 md:px-[clamp(24px,5vw,72px)]"
       style={{ paddingTop: "calc(clamp(18px, 2.5vw, 32px) * 2 + 40px)" }}
     >
       {/* Vertical side label — desktop */}
+
       <p
         className="hero-side hidden lg:block absolute right-6 md:right-[clamp(24px,5vw,72px)]
                    top-1/2 -translate-y-1/2 rotate-90 origin-center
                    font-sans text-[10px] font-light tracking-[0.3em] uppercase
-                   text-[var(--line)] whitespace-nowrap pointer-events-none"
+                   text-[var(--black)] whitespace-nowrap pointer-events-none"
         aria-hidden="true"
       >
         Global Wealth Management &nbsp;·&nbsp; Est. 2018
@@ -67,7 +69,7 @@ export default function HeroSection({ triggerAnimation }: HeroSectionProps) {
       <div className="flex flex-col justify-end pb-[clamp(36px,5vw,64px)]">
         {/* Kicker */}
         <p className="hero-kicker flex items-center gap-4 mb-[clamp(20px,3.5vw,44px)]
-                      font-sans text-[11px] font-light tracking-[0.22em] uppercase text-[var(--grey)]">
+                      font-sans text-[11px] font-light tracking-[0.22em] uppercase text-[var(--black)]">
           <span className="block w-6 h-px bg-[var(--grey)]" aria-hidden="true" />
           Redefining financial futures
         </p>
@@ -76,12 +78,14 @@ export default function HeroSection({ triggerAnimation }: HeroSectionProps) {
         <h1
           className="font-serif font-light leading-[0.88] tracking-[-0.05em]
                      text-[clamp(3.6rem,12vw,12.5rem)] text-[var(--black)]"
-          aria-label="Your Wealth. Your Legacy."
+          
         >
-          {(["Your", "Wealth.", "Your", "Legacy."] as const).map((word, i) => (
+          {(["Connect", "Grow.","Prosper."] as const).map((word, i) => (
             <span key={i} className="block overflow-hidden leading-[1]">
               {/* .hero-word is the GSAP target — starts at yPercent 110 via gsap.set */}
-              <span className={`hero-word block ${i % 2 === 1 ? "italic" : ""}`}>
+              <span className={`hero-word block ${i % 2 === 1 ? "italic" : ""}`}
+              style={ i === 1 ? { color: "var(--accent)" } : undefined }
+              >
                 {word}
               </span>
             </span>
@@ -96,7 +100,7 @@ export default function HeroSection({ triggerAnimation }: HeroSectionProps) {
                    pb-[clamp(56px,8vw,80px)]"
       >
         <p className="max-w-[340px] font-sans text-[clamp(13px,1.2vw,15px)]
-                      font-light leading-[1.8] text-[var(--grey)]">
+                      font-light leading-[1.8] text-[var(--black)]">
           JM-Qafri Methuselah is a global wealth manager committed to safeguarding
           your assets through innovative solutions — from DeFi to pharma,
           agriculture to real estate.
@@ -111,8 +115,8 @@ export default function HeroSection({ triggerAnimation }: HeroSectionProps) {
           Explore
           <span
             className="flex items-center justify-center w-[34px] h-[34px] rounded-full
-                       border border-[var(--black)] flex-shrink-0
-                       transition-[background] duration-300 group-hover:bg-[var(--black)]"
+                       border border-[var(--accent)] flex-shrink-0
+                       transition-[background] duration-300 group-hover:bg-[var(--accent)]"
           >
             <svg
               width="11" height="11" viewBox="0 0 24 24"

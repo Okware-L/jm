@@ -1,3 +1,7 @@
+"use client"
+
+
+
 import React from "react";
 
 import type { Metadata } from "next";
@@ -8,19 +12,27 @@ import { ThirdwebProvider } from "thirdweb/react";
 import Navbar from "@/components/Navbar";
 import { cormorant, dmSans } from "@/lib/Fonts";
 import { CursorProvider } from "@/components/CursorProvider";
+import { usePathname } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "JM-Qafri",
-  description: "JM-Qafri Methuselah is a forward-thinking global wealth manager committed to safeguarding your assets through innovative solutions.",
-};
+// export const metadata: Metadata = {
+//   title: "JM-Qafri",
+//   description: "JM-Qafri Methuselah is a forward-thinking global wealth manager committed to safeguarding your assets through innovative solutions.",
+// };
+
+
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+    const hideNavRoutes = ["/register", "/signin", "/Admin", "/dashboard", "/register/funding", "/register/company", "/register/worker", "/register/client", "/art"];
+
+  const shouldHideNav = hideNavRoutes.includes(pathname);
+
   return (
     <html lang="en"
      className={`${cormorant.variable} ${dmSans.variable}`}
@@ -28,7 +40,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <link rel="icon" href="/jmwhite.svg" sizes="any" />
         <ThirdwebProvider>
-          <Navbar/>
+          {!shouldHideNav && <Navbar />}
           <CursorProvider />
           {children}
           <Toaster />

@@ -19,6 +19,7 @@ const COMPANY = [
   { href: "/careers",   label: "Careers" },
   { href: "/charity",   label: "Charity" },
   { href: "/FAQ",       label: "F.A.Q" },
+  {href: "/membership",   label: "Membership"},
   { href: "/petition",  label: "Sign Our Petition" },
 ];
 
@@ -28,6 +29,7 @@ const SERVICES = [
   { href: "/pharma",       label: "Pharma" },
   { href: "/patnership",   label: "Partnership" },
   { href: "/contact",      label: "Contact" },
+
 ];
 
 const SOCIALS = ["Facebook", "Instagram", "LinkedIn", "YouTube"];
@@ -153,7 +155,9 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-[var(--line)] pt-6 flex flex-wrap items-center justify-between gap-3">
+      <div className="border-t pt-6 border-[var(--line)] pt-6 flex flex-wrap items-center justify-between gap-3"
+      style={{ borderColor: "rgba(37, 99, 168, 0.25)" }}
+      >
         <p className="text-[11px] font-light tracking-[0.06em] text-[var(--grey)]">
           ©2024 JM-Qafri Methuselah. All rights reserved.
         </p>

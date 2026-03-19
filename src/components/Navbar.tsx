@@ -90,7 +90,7 @@ export default function Navbar() {
         "transition-all duration-500",
         scrolled
           ? "border-b border-[var(--line)] bg-[var(--white)]/95 backdrop-blur-md"
-          : "border-b border-transparent bg-transparent",
+          : "border-b border-accent bg-transparent",
       ].join(" ")}
       style={{ opacity: 0 }} // GSAP will reveal
     >
@@ -98,7 +98,7 @@ export default function Navbar() {
       {/* Logo */}
       <Link
         href="/"
-        className="font-sans text-[11px] font-normal tracking-[0.22em] uppercase text-[var(--black)] leading-none"
+        className="font-sans text-[15px] font-normal tracking-[0.22em] uppercase text-[var(--black)] leading-none"
       >
         JM-Qafri
       </Link>
