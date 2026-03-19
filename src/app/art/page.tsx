@@ -4,6 +4,7 @@ import { JSX, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -323,9 +324,9 @@ function ImageCell({ cell, index }: { cell: GridCell; index: number }): JSX.Elem
         opacity: 0,
       }}
     >
-      <img
+      <Image
         ref={imgRef}
-        src={cell.imageUrl}
+        src={cell.imageUrl ?? ""}
         alt={cell.imageAlt ?? ""}
         className="w-full h-full object-cover"
         style={{ transformOrigin: "center center", willChange: "transform" }}

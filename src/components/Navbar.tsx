@@ -3,10 +3,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ConnectButton } from "thirdweb/react";
-import { client } from "@/app/client";
+//import { ConnectButton } from "thirdweb/react";
+//import { client } from "@/app/client";
 import { createWallet, inAppWallet } from "thirdweb/wallets";
-import { sepolia } from "thirdweb/chains";
+//import { sepolia } from "thirdweb/chains";
 import {
   Sheet,
   SheetContent,
@@ -15,16 +15,16 @@ import {
 import gsap from "gsap";
 
 /* ── Wallets ──────────────────────────────── */
-const wallets = [
-  inAppWallet({
-    auth: { options: ["google", "discord", "telegram", "email", "passkey"] },
-  }),
-  createWallet("io.metamask"),
-  createWallet("com.coinbase.wallet"),
-  createWallet("me.rainbow"),
-  createWallet("io.rabby"),
-  createWallet("io.zerion.wallet"),
-];
+// const wallets = [
+//   inAppWallet({
+//     auth: { options: ["google", "discord", "telegram", "email", "passkey"] },
+//   }),
+//   createWallet("io.metamask"),
+//   createWallet("com.coinbase.wallet"),
+//   createWallet("me.rainbow"),
+//   createWallet("io.rabby"),
+//   createWallet("io.zerion.wallet"),
+// ];
 
 /* ── Opaque-from-load pages ───────────────── */
 const OPAQUE_PAGES = [

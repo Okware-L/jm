@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../../../firebseConfig";
+import Link from "next/link";
 
 
 const ROLES = [
@@ -84,18 +85,18 @@ export default function RegisterPage() {
     <div className="min-h-screen bg-white" style={{ fontFamily: "'DM Sans', sans-serif" }}>
       {/* Nav strip */}
       <div className="border-b border-slate-200 px-6 py-4 flex items-center justify-between">
-        <a
+        <Link
           href="/"
           className="text-[10px] uppercase tracking-[0.28em] text-slate-400 hover:text-slate-700 transition-colors"
         >
           jmqafri.org
-        </a>
-        <a
+        </Link>
+        <Link
           href="/signin"
           className="text-[11px] uppercase tracking-[0.16em] text-slate-500 hover:text-[#2c5aa0] transition-colors"
         >
           Already registered? Sign in
-        </a>
+        </Link>
       </div>
 
       <div className="max-w-6xl mx-auto px-6 py-16">
@@ -117,7 +118,7 @@ export default function RegisterPage() {
             <em style={{ fontStyle: "italic", color: "#2c5aa0" }}>Community Hub</em>
           </h1>
           <p className="text-sm text-slate-500 leading-relaxed">
-            Select your role below and complete the registration form. You'll create your account at the end of the form — no sign-in required upfront.
+            Select your role below and complete the registration form. You&apos;ll create your account at the end of the form — no sign-in required upfront.
           </p>
         </div>
 

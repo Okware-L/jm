@@ -201,7 +201,7 @@ function PendingScreen({ profile }: { profile: UserProfile | null }) {
   );
 }
 
-function RejectedScreen({ profile }: { profile: UserProfile | null }) {
+function RejectedScreen({ }: { profile: UserProfile | null }) {
   return (
     <div className="min-h-screen bg-white flex items-center justify-center px-6" style={{ fontFamily: "'DM Sans', sans-serif" }}>
       <div className="max-w-md text-center">
@@ -215,7 +215,7 @@ function RejectedScreen({ profile }: { profile: UserProfile | null }) {
           className="text-slate-900 mb-4 leading-tight"
           style={{ fontFamily: "'Cormorant', serif", fontSize: "2.2rem", fontWeight: 300 }}
         >
-          We couldn't approve<br />
+          We couldn&apos;t approve<br />
           <em style={{ fontStyle: "italic", color: "#2c5aa0" }}>your application</em>
         </h2>
         <p className="text-sm text-slate-500 leading-relaxed mb-6">
@@ -356,7 +356,7 @@ function RoleDashboardShell({
         {anonymityToggle && anon && (
           <div className="border border-slate-200 bg-slate-900 px-5 py-3 flex items-center gap-3">
             <span>🕵</span>
-            <p className="text-sm text-white">Anonymity mode is <strong>active</strong> — clients see you as "Account Manager"</p>
+            <p className="text-sm text-white">Anonymity mode is <strong>active</strong> — clients see you as &quot;Account Manager&quot;</p>
           </div>
         )}
 

@@ -89,7 +89,7 @@ export default function NewsletterSection() {
             submitted ? "opacity-100" : "opacity-0 h-0 overflow-hidden",
           ].join(" ")}
         >
-          ✓ &nbsp;You're subscribed.
+          ✓ &nbsp;You&apos;re subscribed.
         </p>
 
         <p className="font-sans text-[11px] font-light tracking-[0.1em] text-white/28 mt-1">

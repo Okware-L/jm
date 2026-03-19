@@ -35,11 +35,6 @@ const ASSET_CLASSES = [
   },
 ];
 
-const OPPORTUNITIES = [
-  { amount: "$150M", sector: "Pharma Tech", name: "Mobile Diagnostics Expansion", status: "Open" },
-  { amount: "$75M", sector: "Agriculture", name: "Organic Fertilizer Scale-Up", status: "Open" },
-  { amount: "$200M", sector: "Real Estate", name: "Nairobi Commercial Development", status: "Closing Soon" },
-];
 
 export default function InvestPage() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -112,7 +107,7 @@ export default function InvestPage() {
               Enhanced Advisory Services
             </h3>
             <p className="font-sans text-[clamp(14px,1.4vw,17px)] font-light leading-[1.8] text-slate-600 mb-6">
-              Access JM-Qafri's extensive knowledge and capabilities to optimize your investment strategies with our advisory mandates.
+              Access JM-Qafri&apos;s extensive knowledge and capabilities to optimize your investment strategies with our advisory mandates.
             </p>
             <a href="#" className="inline-flex items-center gap-2 font-sans text-[11px] font-light tracking-[0.2em] uppercase text-[var(--accent)] hover:gap-3 transition-all duration-200">
               Discover more
@@ -165,11 +160,11 @@ export default function InvestPage() {
       {/* Descriptive Paragraph */}
       <section className="border-t border-slate-200 px-6 md:px-[var(--pad-x)] py-[var(--section-y)] bg-slate-50">
         <p className="desc-paragraph font-sans text-[clamp(14px,1.4vw,17px)] font-light leading-[1.9] text-slate-600 max-w-5xl mx-auto">
-          At JM-Qafri, we've been cultivating our investment expertise and offerings for generations. Throughout our history, we've recognized
-          that each individual's investment requirements are distinct and personalized. That's why our first priority is gaining a
+          At JM-Qafri, we&apos;ve been cultivating our investment expertise and offerings for generations. Throughout our history, we&apos;ve recognized
+          that each individual&apos;s investment requirements are distinct and personalized. That&apos;s why our first priority is gaining a
           comprehensive understanding of your circumstances, aspirations, and risk tolerance. With a clear grasp of your needs and objectives, we can then
           assist you in pinpointing and executing the ideal solution. Whether it involves a discretionary or advisory mandate, investing in a particular
-          asset class, crafting a customized structured product, or providing execution support, you'll leverage our extensive investment
+          asset class, crafting a customized structured product, or providing execution support, you&apos;ll leverage our extensive investment
           experience and global network to your advantage.
         </p>
       </section>

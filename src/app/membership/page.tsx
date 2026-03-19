@@ -254,7 +254,7 @@ export default function MembershipPage() {
                     Onboarding
                   </h3>
                   <p className="font-sans text-[13px] font-light leading-[1.7] text-slate-600">
-                    Upon approval, you'll receive your welcome package, directory access, and invitations to upcoming events and deal flow opportunities.
+                    Upon approval, you&apos;ll receive your welcome package, directory access, and invitations to upcoming events and deal flow opportunities.
                   </p>
                 </div>
               </div>

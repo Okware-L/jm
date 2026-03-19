@@ -1,3 +1,6 @@
+"use client";
+
+
 import React, { useRef, useEffect } from "react";
 import Footer from "@/components/Footer";
 import gsap from "gsap";

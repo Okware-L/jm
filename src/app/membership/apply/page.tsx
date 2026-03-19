@@ -475,7 +475,7 @@ export default function MembershipApplyPage() {
                   Discovery Call
                 </h3>
                 <p className="font-sans text-[13px] font-light leading-[1.7] text-slate-600">
-                  If approved, we'll schedule a confidential video call to discuss your goals and answer any questions.
+                  If approved, we&apos;ll schedule a confidential video call to discuss your goals and answer any questions.
                 </p>
               </div>
             </div>
@@ -487,7 +487,7 @@ export default function MembershipApplyPage() {
                   Welcome Package
                 </h3>
                 <p className="font-sans text-[13px] font-light leading-[1.7] text-slate-600">
-                  Upon final approval, you'll receive your membership materials, directory access, and first investment opportunities.
+                  Upon final approval, you&apos;ll receive your membership materials, directory access, and first investment opportunities.
                 </p>
               </div>
             </div>

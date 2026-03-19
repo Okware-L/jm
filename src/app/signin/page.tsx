@@ -44,7 +44,7 @@ export default function SignInPage() {
       }
     });
     return () => unsub();
-  }, [auth, db, router, from]);
+  }, [router, from]);
 
   const afterAuth = async () => {
     const snap = await getDoc(doc(db, "users", auth.currentUser!.uid));
@@ -132,7 +132,7 @@ export default function SignInPage() {
             className="text-white leading-[1.05] tracking-[-0.03em]"
             style={{ fontFamily: "'Cormorant', serif", fontSize: "clamp(2.4rem, 4vw, 3.6rem)", fontWeight: 300 }}
           >
-            Africa's First<br />
+            Africa&apos;s First<br />
             <em style={{ fontStyle: "italic", color: "#2c5aa0" }}>Blockchain</em><br />
             Community Hub
           </h1>
@@ -189,7 +189,7 @@ export default function SignInPage() {
               ) : (
                 <>
                   <p className="text-sm text-slate-500 mb-8 leading-relaxed">
-                    Enter the email address on your account and we'll send you a reset link.
+                    Enter the email address on your account and we&apos;ll send you a reset link.
                   </p>
                   {error && (
                     <div className="border border-red-200 bg-red-50 px-4 py-3 mb-5">

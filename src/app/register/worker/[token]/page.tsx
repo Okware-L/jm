@@ -7,7 +7,7 @@ import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "firebas
 import { doc, getDoc, updateDoc, Timestamp } from "firebase/firestore";
 import { auth, db } from "../../../../../firebseConfig";
 import { createUserProfile } from "@/lib/auth";
-import { SuccessScreen } from "../../company/page";
+//import { SuccessScreen } from "../../company/page";
 
 const INPUT = "w-full border-b border-slate-200 focus:border-[#2c5aa0] bg-transparent text-sm text-slate-700 pb-2 outline-none transition-colors duration-300";
 
@@ -40,7 +40,7 @@ interface FormData {
 export default function WorkerInvitePage() {
   const params = useParams();
   const token = params?.token as string;
-  const router = useRouter();
+  
 
 
   const [tokenState, setTokenState] = useState<"loading" | "valid" | "invalid" | "used" | "expired">("loading");
@@ -65,7 +65,7 @@ export default function WorkerInvitePage() {
       setInvite(data);
       setTokenState("valid");
     })();
-  }, [token, db]);
+  }, [token]);
 
   // Auth state
   useEffect(() => {
@@ -180,7 +180,7 @@ export default function WorkerInvitePage() {
         <div className="border border-[#2c5aa0]/20 bg-[#2c5aa0]/5 px-5 py-4 mb-10 flex items-start gap-3">
           <span className="text-xl">🔑</span>
           <div>
-            <p className="text-[10px] uppercase tracking-[0.18em] text-[#2c5aa0] mb-1">You've been invited</p>
+            <p className="text-[10px] uppercase tracking-[0.18em] text-[#2c5aa0] mb-1">You&apos;ve been invited</p>
             <p className="text-sm text-slate-700">
               <strong>{invite?.companyName}</strong> has invited you to join as an Account Manager.
             </p>
@@ -278,11 +278,11 @@ function WorkerSuccessScreen({ name, company }: { name: string; company: string 
         <p className="text-[10px] uppercase tracking-[0.22em] text-slate-400 mb-4">Welcome aboard</p>
         <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: "2.2rem", fontWeight: 300 }}
           className="text-slate-900 mb-4 leading-tight tracking-[-0.02em]">
-          You're in,<br />
+          You&apos;re in,<br />
           <em style={{ fontStyle: "italic", color: "#2c5aa0" }}>{name}</em>
         </h2>
         <p className="text-sm text-slate-500 mb-8">
-          You've joined <strong>{company}</strong> as an Account Manager. Your dashboard is ready immediately.
+          You&apos;ve joined <strong>{company}</strong> as an Account Manager. Your dashboard is ready immediately.
         </p>
         <a href="/dashboard" className="inline-block px-7 py-2.5 text-[11px] uppercase tracking-[0.18em] border border-[#2c5aa0] bg-[#2c5aa0] text-white hover:bg-[#1e3f73] transition-all duration-300">
           Go to Dashboard

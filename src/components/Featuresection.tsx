@@ -64,13 +64,13 @@ export default function FeatureSection() {
           Featured Research — 2024
         </p>
         <h2 className="ft-title font-serif text-[clamp(2rem,5vw,4.6rem)] font-light tracking-[-0.04em] leading-[0.93] mb-[clamp(20px,3.5vw,36px)] opacity-0">
-          AI's Rapid Growth<br />
+          AI&apos;s Rapid Growth<br />
           Spurs a <em>New</em><br />
           Investment Cycle.
         </h2>
         <p className="ft-body font-sans text-[clamp(14px,1.4vw,17px)] font-light leading-[1.9] text-[var(--black] mb-[clamp(28px,4vw,44px)] opacity-0">
           The rapid development of Artificial Intelligence has initiated a new investment cycle.
-          JM-Qafri's global forum is at the forefront of this conversation, exploring what the
+          JM-Qafri&apos;s global forum is at the forefront of this conversation, exploring what the
           future holds for investors across healthcare, agriculture, and finance.
         </p>
         <Link

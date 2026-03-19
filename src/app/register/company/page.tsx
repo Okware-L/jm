@@ -65,7 +65,7 @@ export default function CompanyRegisterPage() {
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const router = useRouter();
+ 
   
 
   const set = (key: keyof FormData, value: string | boolean) =>
@@ -375,7 +375,7 @@ export function SuccessScreen({ name, role }: { name: string; role: string }) {
           <em style={{ fontStyle: "italic", color: "#2c5aa0" }}>{name}</em>
         </h2>
         <p className="text-sm text-slate-500 leading-relaxed mb-8">
-          Your <strong>{role}</strong> application is under review. You'll receive an email within 24–48 hours once your application has been approved.
+          Your <strong>{role}</strong> application is under review. You&apos;ll receive an email within 24–48 hours once your application has been approved.
         </p>
         <div className="border border-slate-200 px-5 py-4 mb-8 text-left">
           <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400 mb-3">What happens next</p>

@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { getFirestore, addDoc, collection, Timestamp } from "firebase/firestore";
+import {  addDoc, collection, Timestamp } from "firebase/firestore";
 import { createUserProfile } from "../../../lib/auth";
 import AuthPanel from "../../../components/AuthPanel";
 import { SuccessScreen } from "../company/page";

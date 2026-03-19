@@ -98,12 +98,12 @@ export default function AboutSection() {
           <p>
             As a global wealth manager, we recognise the significance of your financial
             objectives and adopt a forward-thinking approach to safeguarding your assets.
-            Whether you're embarking on a new venture, strategising for retirement, or
+            Whether you&apos;re embarking on a new venture, strategising for retirement, or
             securing the future of your family — our team identifies tailored solutions
             that resonate with you.
           </p>
           <p>
-            In today's rapidly evolving financial landscape, our commitment to
+            In today&apos;s rapidly evolving financial landscape, our commitment to
             understanding your needs and leveraging innovative solutions, including DeFi,
             ensures that we remain equipped to guide you toward your financial goals.
           </p>

@@ -93,7 +93,7 @@ export default function ContactPage() {
           Get in <em className="italic" style={{ color: "var(--accent)" }}>Touch</em>
         </h1>
         <p className="contact-hero-desc font-sans text-[clamp(15px,1.6vw,19px)] font-light leading-[1.8] text-slate-600 max-w-2xl">
-          Whether you're exploring investment opportunities or seeking strategic advice, we're here to listen.
+          Whether you&apos;re exploring investment opportunities or seeking strategic advice, we&apos;re here to listen.
         </p>
       </section>
 
@@ -222,7 +222,7 @@ export default function ContactPage() {
 
               {submitted && (
                 <p className="font-sans text-[11px] font-light tracking-[0.18em] text-[var(--accent)]">
-                  ✓ Message sent. We'll respond within 24 hours.
+                  ✓ Message sent. We&apos;ll respond within 24 hours.
                 </p>
               )}
             </form>
