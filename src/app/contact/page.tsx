@@ -88,8 +88,8 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen" ref={sectionRef}>
       {/* Compact Hero */}
-      <section className="px-6 md:px-[var(--pad-x)] pt-[calc(clamp(64px,8vh,72px)+clamp(48px,7vw,88px))] pb-[clamp(48px,7vw,88px)] border-b border-slate-200">
-        <h1 className="contact-hero-title font-serif text-[clamp(2.8rem,7vw,6rem)] font-light tracking-[-0.04em] leading-[1.05] mb-6">
+      <section className="px-6 bg-teal-50 md:px-[var(--pad-x)] pt-[calc(clamp(64px,8vh,72px)+clamp(48px,7vw,88px))] pb-[clamp(48px,7vw,88px)] border-b border-slate-200">
+        <h1 className="contact-hero-title p-6 bg-slate-900 text-white font-serif text-[clamp(2.8rem,7vw,6rem)] font-light tracking-[-0.04em] leading-[1.05] mb-6">
           Get in <em className="italic" style={{ color: "var(--accent)" }}>Touch</em>
         </h1>
         <p className="contact-hero-desc font-sans text-[clamp(15px,1.6vw,19px)] font-light leading-[1.8] text-slate-600 max-w-2xl">
@@ -267,7 +267,7 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="border-t border-slate-200 px-6 md:px-[var(--pad-x)] py-[var(--section-y)] bg-slate-50">
+      <section className="border-t bg-slate-900 border-slate-200 px-6 md:px-[var(--pad-x)] py-[var(--section-y)] bg-slate-50">
         <p className="flex items-center gap-5 font-sans text-[11px] font-light tracking-[0.22em] uppercase text-slate-400 mb-[var(--gap-lg)]">
           Frequently Asked Questions
           <span className="flex-1 h-px bg-slate-200" />
