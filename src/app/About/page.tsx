@@ -50,17 +50,14 @@ export default function AboutPage() {
     <div className="min-h-screen" ref={sectionRef}>
       {/* Compact Hero */}
       <section className="bg-teal-50 px-6 md:px-[var(--pad-x)] pt-[calc(clamp(64px,8vh,72px)+clamp(48px,7vw,88px))] pb-[clamp(48px,7vw,88px)] border-b border-slate-200">
-        <h1 className="about-hero-title font-serif text-[clamp(2.8rem,7vw,6rem)] font-light tracking-[-0.04em] leading-[1.05] mb-6">
-          Who <em className="italic" style={{ color: "var(--accent)" }}>We </em>Are
+        <h1 className="p-6 bg-slate-900 about-hero-title font-serif text-[clamp(2.8rem,7vw,6rem)] font-light tracking-[-0.04em] leading-[1.05] mb-6">
+          <p className="text-white">Who </p><em className="italic" style={{ color: "var(--accent)" }}>We </em><p className="text-white" >Are</p>
         </h1>
-        <p className="about-hero-desc font-sans text-[clamp(15px,1.6vw,10px)] font-light leading-[1.8] text-slate-900 max-w-2xl">
-          A dynamic community of business leaders fostering collaboration, growth, and innovation.
-        </p>
       </section>
 
       {/* Intro Paragraph */}
       <section className="border-t border-slate-200 px-6 md:px-[var(--pad-x)] py-[var(--section-y)] bg-slate-50">
-        <p className="intro-paragraph font-sans text-[clamp(14px,1.4vw,17px)] font-bold leading-[1.9] text-slate-600 text-[20px] italic max-w-5xl mx-auto">
+        <p className="font-serif text-[clamp(1.7rem,4vw,3.4rem)] font-light tracking-[-0.03em] leading-[1.25] max-w-5xl mx-auto text-left text-slate-700">
           The JM-Qafri Network is a dynamic and influential community of business leaders, dedicated to fostering collaboration, growth,
           and innovation. Our network brings together forward-thinking entrepreneurs, executives, and industry experts from various
           sectors and backgrounds, creating a powerful ecosystem that drives meaningful change in the business world.
@@ -99,7 +96,7 @@ export default function AboutPage() {
           </div>
 
           {/* Values - Small Box */}
-          <div className="bento-box lg:col-span-5 border border-slate-200 p-[var(--gap-md)]" style={{ backgroundColor: "var(--accent)" }}>
+          <div className="bento-box bg-slate-950 lg:col-span-5 border border-slate-200 p-[var(--gap-md)]" >
             <h3 className="font-serif text-[clamp(1.6rem,3vw,2.4rem)] font-light tracking-[-0.02em] leading-[1.1] mb-4 text-white">
               Core Values
             </h3>

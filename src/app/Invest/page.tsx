@@ -85,9 +85,9 @@ export default function InvestPage() {
   return (
     <div className="min-h-screen" ref={sectionRef}>
       {/* Compact Hero */}
-      <section className="px-6 md:px-[var(--pad-x)] pt-[calc(clamp(64px,8vh,72px)+clamp(48px,7vw,88px))] pb-[clamp(48px,7vw,88px)] border-b border-slate-200">
-        <h1 className="invest-hero-title font-serif text-[clamp(2.8rem,7vw,6rem)] font-light tracking-[-0.04em] leading-[1.05] mb-6">
-          Investment <em className="italic" style={{ color: "var(--accent)" }}>Excellence</em>
+      <section className="px-6 bg-teal-50 md:px-[var(--pad-x)] pt-[calc(clamp(64px,8vh,72px)+clamp(48px,7vw,88px))] pb-[clamp(48px,7vw,88px)] border-b border-slate-200">
+        <h1 className="invest-hero-title font-serif p-6 bg-slate-900 text-[clamp(2.8rem,7vw,6rem)] font-light tracking-[-0.04em] leading-[1.05] mb-6">
+          <p className="text-white">Investment</p> <em className="italic" style={{ color: "var(--accent)" }}>Excellence</em>
         </h1>
         <p className="invest-hero-desc font-sans text-[clamp(15px,1.6vw,19px)] font-light leading-[1.8] text-slate-600 max-w-2xl">
           Disciplined, data-driven strategies across traditional and emerging markets.
@@ -147,12 +147,12 @@ export default function InvestPage() {
             </a>
           </div>
         </div>
-      </section>
+      </section> 
 
       {/* Philosophy Statement */}
       <section className="philosophy-section border-t border-slate-200 px-6 md:px-[var(--pad-x)] py-[var(--section-y)] bg-white">
         <p className="font-serif text-[clamp(1.7rem,4vw,3.4rem)] font-light tracking-[-0.03em] leading-[1.25] max-w-5xl mx-auto text-left text-slate-700">
-          We invest where others hesitate. Our thesis is simple: the future belongs to those who can see past volatility to value,
+          Our thesis is simple: the future belongs to those who can see past volatility to value,
           past disruption to infrastructure, and past innovation to impact.
         </p>
       </section>
