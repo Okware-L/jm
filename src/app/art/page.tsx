@@ -35,7 +35,7 @@ const CELLS: GridCell[] = [
   },
   {
     type: "image",
-    imageUrl: "https://images.unsplash.com/photo-1762843354674-adabdd6c4072?w=800&q=80",
+    imageUrl: "/fasion.jpeg",
     imageAlt: "Editorial Fashion",
     label: "Fashion",
     colSpan: 1,
@@ -43,7 +43,7 @@ const CELLS: GridCell[] = [
   },
   {
     type: "image",
-    imageUrl: "https://images.unsplash.com/photo-1734600446034-8908c30ba715?w=800&q=80",
+    imageUrl: "/bluefish.jpeg",
     imageAlt: "Bleu de Chanel",
     label: "Bleu de Chanel",
     colSpan: 1,
@@ -57,7 +57,7 @@ const CELLS: GridCell[] = [
   },
   {
     type: "image",
-    imageUrl: "https://images.unsplash.com/photo-1763129636673-df7c37cf251d?w=800&q=80",
+    imageUrl: "/marry.jpeg",
     imageAlt: "Dom Pérignon",
     label: "Bottle Art",
     colSpan: 1,
@@ -65,7 +65,7 @@ const CELLS: GridCell[] = [
   },
   {
     type: "image",
-    imageUrl: "https://images.unsplash.com/photo-1761382691150-e84983807653?w=800&q=80",
+    imageUrl: "/pinkcar.jpeg",
     imageAlt: "Lifestyle",
     label: "Lifestyle",
     colSpan: 2,
@@ -78,7 +78,7 @@ const CELLS: GridCell[] = [
   },
   {
     type: "image",
-    imageUrl: "https://images.unsplash.com/photo-1737920459846-2d0318700658?w=800&q=80",
+    imageUrl: "/fragrance.jpeg",
     imageAlt: "Fragrance",
     label: "Fragrance Campaign",
     colSpan: 1,
@@ -94,7 +94,7 @@ const CELLS: GridCell[] = [
   },
   {
     type: "image",
-    imageUrl: "https://images.unsplash.com/photo-1554151447-b9d2197448f9?w=800&q=80",
+    imageUrl: "/watch.jpeg",
     imageAlt: "Timepiece",
     label: "Timepiece",
     colSpan: 1,
@@ -102,7 +102,7 @@ const CELLS: GridCell[] = [
   },
   {
     type: "image",
-    imageUrl: "https://images.unsplash.com/photo-1760595955091-fb86f40bc5be?w=800&q=80",
+    imageUrl: "/potrait.jpeg",
     imageAlt: "Portrait Series",
     label: "Portrait Series",
     colSpan: 1,
@@ -204,7 +204,7 @@ function Nav(): JSX.Element {
       className="fixed top-0 left-0 right-0 flex items-center justify-between px-6 h-14"
       style={{
         zIndex: 9999,
-        background: "rgba(15,23,42,0.88)",
+        background: "rgba(0, 3, 8, 0.88)",
         backdropFilter: "blur(14px)",
         borderBottom: "1px solid rgba(212,168,75,0.14)",
       }}
@@ -216,7 +216,7 @@ function Nav(): JSX.Element {
           fontWeight: 900,
           fontSize: "17px",
           letterSpacing: "0.22em",
-          color: "#d4a84b",
+          color: "#fffefb",
           opacity: 0,
         }}
       >
@@ -233,7 +233,7 @@ function Nav(): JSX.Element {
               fontFamily: '"Barlow Condensed", sans-serif',
               fontSize: "11px",
               letterSpacing: "0.18em",
-              color: "#94a3b8",
+              color: "#173053",
               textDecoration: "none",
               opacity: 0,
             }}
@@ -328,6 +328,7 @@ function ImageCell({ cell, index }: { cell: GridCell; index: number }): JSX.Elem
         ref={imgRef}
         src={cell.imageUrl ?? ""}
         alt={cell.imageAlt ?? ""}
+        fill
         className="w-full h-full object-cover"
         style={{ transformOrigin: "center center", willChange: "transform" }}
       />
@@ -583,6 +584,7 @@ export default function ArtPage(): JSX.Element {
   const smootherRef = useRef<ScrollSmoother | null>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (wrapperRef.current && contentRef.current) {
@@ -599,10 +601,34 @@ export default function ArtPage(): JSX.Element {
     };
   }, []);
 
+  useEffect(() => {
+    const onMove = (event: MouseEvent) => {
+      if (cursorRef.current) {
+        cursorRef.current.style.left = `${event.clientX}px`;
+        cursorRef.current.style.top = `${event.clientY}px`;
+      }
+    };
+    window.addEventListener("mousemove", onMove);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+    };
+  }, []);
+
   return (
     <>
       <Grain />
       <Nav />
+      <div
+        ref={cursorRef}
+        className="fixed pointer-events-none z-50 rounded-full border border-white bg-white/95"
+        style={{
+          width: "10px",
+          height: "10px",
+          transform: "translate(-50%, -50%)",
+          transition: "width 0.12s ease, height 0.12s ease, background-color 0.12s ease",
+          pointerEvents: "none",
+        }}
+      />
 
       {/* ScrollSmoother outer wrapper — must be fixed+overflow hidden */}
       <div
@@ -614,6 +640,7 @@ export default function ArtPage(): JSX.Element {
           width: "100%",
           height: "100%",
           overflow: "hidden",
+          cursor: "none",
         }}
       >
         {/* ScrollSmoother inner content */}
@@ -621,7 +648,7 @@ export default function ArtPage(): JSX.Element {
           ref={contentRef}
           style={{
             background:
-              "linear-gradient(180deg, #0f172a 0%, #1e293b 35%, #0f172a 70%, #020617 100%)",
+              "linear-gradient(180deg, #f3f3f3 0%, #1e293b 35%, #a5a5a5 70%, #000000 100%)",
             paddingTop: "56px",
           }}
         >
@@ -664,7 +691,7 @@ export default function ArtPage(): JSX.Element {
                 color: "#334155",
               }}
             >
-              © Detroit Paris — AI Production House
+              © Jm-qafri Methuselah Art Exhibition || @2026 Contest
             </span>
             <span
               style={{
