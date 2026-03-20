@@ -124,8 +124,8 @@ const CELLS: GridCell[] = [
   },
   {
     type: "accent",
-    headline: "LUXURY",
-    sub: "Est. 2026",
+    headline: "SHOP",
+    sub: "...",
     colSpan: 1,
     rowSpan: 1,
     mobileColSpan: 1,
