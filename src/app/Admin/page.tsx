@@ -147,7 +147,7 @@ export default function AdminPage() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user || !allowedEmails.includes(user.email!)) {
-        router.push("/signIn");
+        router.push("/signin");
       } else {
         setUserEmail(user.email!);
         setLoading(false);
