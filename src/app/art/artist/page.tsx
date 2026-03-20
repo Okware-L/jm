@@ -84,7 +84,7 @@ function Grain(): JSX.Element {
 
 // ─── Nav ───────────────────────────────────────────────────────────────────
 
-const NAV_LINKS = [{ label: "CONTEST", href: "/contest" }, { label: "ARTISTS", href: "/artists" }];
+const NAV_LINKS = [{ label: "CONTEST", href: "/contest" }, { label: "ARTISTS", href: "/artist" }];
 
 function Nav(): JSX.Element {
   const [menuOpen, setMenuOpen] = useState(false);
