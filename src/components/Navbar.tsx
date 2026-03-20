@@ -13,6 +13,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import gsap from "gsap";
+import Image from "next/image";
 
 /* ── Wallets ──────────────────────────────── */
 // const wallets = [
@@ -97,9 +98,14 @@ export default function Navbar() {
       {/* Logo */}
       <Link
         href="/"
-        className="font-sans text-[15px] font-normal tracking-[0.22em] uppercase text-[var(--black)] leading-none"
       >
-        JM-Qafri
+        <Image
+          src="/jmlogoblack.svg"
+          alt="JM-Qafri Logo"
+          width={120}
+          height={40}
+          className="w-auto h-20"
+        />
       </Link>
 
       {/* Desktop links */}

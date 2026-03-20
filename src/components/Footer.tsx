@@ -28,6 +28,7 @@ const SERVICES = [
   { href: "/Acquisitions", label: "Acquisitions" },
   { href: "/pharma",       label: "Pharma" },
   { href: "/patnership",   label: "Partnership" },
+  {href: "/art",         label: "Art" },
   { href: "/contact",      label: "Contact" },
 
 ];

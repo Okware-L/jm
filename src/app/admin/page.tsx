@@ -19,7 +19,7 @@ import BlogPublishing from "./components/BlogPublishing";
 import PartnerApplications from "./components/PartnerApplications";
 import AirdropSubmissions from "./components/AirdropSubmissions";
 
-// ── New Community Hub components ─────────────────────────────────────────────
+// ── Community Hub components ──────────────────────────────────────────────────
 import CompanyApprovals from "./components/CompanyApprovals";
 import IndustryManagement from "./components/IndustryManagement";
 import BlockchainMonitoring from "./components/BlockchainMonitoring";
@@ -56,12 +56,6 @@ function usePendingCount() {
   return count;
 }
 
-const allowedEmails = [
-  "lewisokware@gmail.com",
-  "claireatienowork@gmail.com",
-  "atienoclaire17@gmail.com",
-];
-
 // ── Tab definitions ───────────────────────────────────────────────────────────
 type TabGroup = {
   label: string;
@@ -76,36 +70,36 @@ const TAB_GROUPS: TabGroup[] = [
   {
     label: "Content",
     tabs: [
-      { key: "createJob", label: "Create Job" },
-      { key: "createTender", label: "Create Tender" },
+      { key: "createJob",      label: "Create Job" },
+      { key: "createTender",   label: "Create Tender" },
       { key: "blogPublishing", label: "Blog" },
     ],
   },
   {
     label: "Submissions",
     tabs: [
-      { key: "contactSubmissions", label: "Contact" },
-      { key: "jobSubmissions", label: "Jobs" },
-      { key: "tenderSubmissions", label: "Tenders" },
+      { key: "contactSubmissions",      label: "Contact" },
+      { key: "jobSubmissions",          label: "Jobs" },
+      { key: "tenderSubmissions",       label: "Tenders" },
       { key: "acquisitionsSubmissions", label: "Acquisitions" },
-      { key: "airdropSubmissions", label: "Airdrop" },
-      { key: "partnerApplications", label: "Partners" },
+      { key: "airdropSubmissions",      label: "Airdrop" },
+      { key: "partnerApplications",     label: "Partners" },
     ],
   },
   {
     label: "Community Hub",
     tabs: [
-      { key: "approvalsQueue",     label: "Approvals",         liveCount: true },
-      { key: "companyApprovals",   label: "Company Approvals", badge: "New" },
-      { key: "industryManagement", label: "Industries",        badge: "New" },
-      { key: "blockchainMonitoring", label: "Blockchain",      badge: "New" },
-      { key: "integrationSettings",  label: "Integrations",   badge: "New" },
+      { key: "approvalsQueue",       label: "Approvals Queue",  liveCount: true },
+      { key: "companyApprovals",     label: "Company Reviews",  badge: "New" },
+      { key: "industryManagement",   label: "Industries",       badge: "New" },
+      { key: "blockchainMonitoring", label: "Blockchain",       badge: "New" },
+      { key: "integrationSettings",  label: "Integrations",     badge: "New" },
     ],
   },
   {
     label: "Platform",
     tabs: [
-      { key: "analytics", label: "Analytics" },
+      { key: "analytics",      label: "Analytics" },
       { key: "userManagement", label: "Users" },
     ],
   },
@@ -114,45 +108,74 @@ const TAB_GROUPS: TabGroup[] = [
 // ── Component router ──────────────────────────────────────────────────────────
 function ActiveComponent({ tab }: { tab: string }) {
   switch (tab) {
-    case "createJob":              return <Create />;
-    case "createTender":           return <Createdtender />;
-    case "contactSubmissions":     return <ContactFormSubmissions />;
-    case "jobSubmissions":         return <JobSubmissions />;
-    case "tenderSubmissions":      return <TenderSubmissions />;
-    case "acquisitionsSubmissions":return <AcquisitionsSubmissions />;
-    case "analytics":              return <Analytics />;
-    case "userManagement":         return <UserManagement />;
-    case "blogPublishing":         return <BlogPublishing />;
-    case "airdropSubmissions":     return <AirdropSubmissions />;
-    case "partnerApplications":    return <PartnerApplications />;
-    case "approvalsQueue":         return <ApprovalsQueue />;
-    case "companyApprovals":       return <CompanyApprovals />;
-    case "industryManagement":     return <IndustryManagement />;
-    case "blockchainMonitoring":   return <BlockchainMonitoring />;
-    case "integrationSettings":    return <IntegrationSettings />;
-    default:                       return <Dashboard />;
+    case "createJob":               return <Create />;
+    case "createTender":            return <Createdtender />;
+    case "contactSubmissions":      return <ContactFormSubmissions />;
+    case "jobSubmissions":          return <JobSubmissions />;
+    case "tenderSubmissions":       return <TenderSubmissions />;
+    case "acquisitionsSubmissions": return <AcquisitionsSubmissions />;
+    case "analytics":               return <Analytics />;
+    case "userManagement":          return <UserManagement />;
+    case "blogPublishing":          return <BlogPublishing />;
+    case "airdropSubmissions":      return <AirdropSubmissions />;
+    case "partnerApplications":     return <PartnerApplications />;
+    case "approvalsQueue":          return <ApprovalsQueue />;
+    case "companyApprovals":        return <CompanyApprovals />;
+    case "industryManagement":      return <IndustryManagement />;
+    case "blockchainMonitoring":    return <BlockchainMonitoring />;
+    case "integrationSettings":     return <IntegrationSettings />;
+    default:                        return <Dashboard />;
   }
 }
 
 // ── Main page ─────────────────────────────────────────────────────────────────
 export default function AdminPage() {
-  const [activeTab, setActiveTab] = useState("dashboard");
-  const [loading, setLoading] = useState(true);
-  const [userEmail, setUserEmail] = useState("");
+  const [activeTab, setActiveTab]   = useState("dashboard");
+  const [loading, setLoading]       = useState(true);
+  const [userEmail, setUserEmail]   = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pendingCount = usePendingCount();
   const router = useRouter();
-  const auth = getAuth();
+  const auth   = getAuth();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (!user || !allowedEmails.includes(user.email!)) {
-        router.push("/signin");
-      } else {
-        setUserEmail(user.email!);
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (!user?.email) {
+        // No session at all — back to sign in
+        router.replace("/signin");
+        return;
+      }
+
+      // ── Verify the signed-in email server-side against ADMIN_EMAILS ──────
+      // We call the same /api/admin/verify endpoint but only need the email
+      // check here (password has already been validated during sign-in).
+      // We send a sentinel password so the route doesn't reject on missing
+      // fields, but the route will only pass if the email is whitelisted —
+      // IP is also re-checked here as a second-visit guard.
+      try {
+        const res  = await fetch("/api/admin/verify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          // We don't have the password here; pass the email only.
+          // The route skips the password check when `skipPasswordCheck` is true.
+          body: JSON.stringify({ email: user.email, __sessionCheck: true }),
+        });
+        const data = await res.json() as { ok: boolean };
+
+        if (!data.ok) {
+          await signOut(auth);
+          router.replace("/signin");
+          return;
+        }
+
+        setUserEmail(user.email);
         setLoading(false);
+      } catch {
+        await signOut(auth);
+        router.replace("/signin");
       }
     });
+
     return () => unsubscribe();
   }, [auth, router]);
 
@@ -186,7 +209,6 @@ export default function AdminPage() {
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
           lg:translate-x-0 lg:static lg:z-auto
         `}>
-          {/* Logo area */}
           <div className="px-6 py-6 border-b border-slate-200">
             <p className="text-[10px] uppercase tracking-[0.22em] text-slate-400 mb-1">jmqafri.org</p>
             <h1 className="font-['Cormorant'] font-light text-xl text-slate-900 tracking-tight leading-tight">
@@ -194,13 +216,11 @@ export default function AdminPage() {
             </h1>
           </div>
 
-          {/* User info */}
           <div className="px-6 py-4 border-b border-slate-100">
             <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400 mb-0.5">Signed in as</p>
             <p className="text-xs text-slate-600 truncate">{userEmail}</p>
           </div>
 
-          {/* Nav */}
           <nav className="flex-1 overflow-y-auto py-4">
             {TAB_GROUPS.map((group) => (
               <div key={group.label} className="mb-4">
@@ -220,13 +240,11 @@ export default function AdminPage() {
                     `}
                   >
                     <span>{tab.label}</span>
-                    {/* Live pending count badge */}
                     {tab.liveCount && pendingCount > 0 && (
                       <span className="flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-amber-400 text-white text-[9px] font-medium">
                         {pendingCount > 99 ? "99+" : pendingCount}
                       </span>
                     )}
-                    {/* Static "New" badge */}
                     {tab.badge && !tab.liveCount && (
                       <span className="text-[8px] uppercase tracking-[0.16em] border border-[#2c5aa0]/40 text-[#2c5aa0] px-1.5 py-0.5">
                         {tab.badge}
@@ -238,7 +256,6 @@ export default function AdminPage() {
             ))}
           </nav>
 
-          {/* Sign out */}
           <div className="px-6 py-5 border-t border-slate-200">
             <button
               onClick={handleSignOut}
@@ -249,7 +266,6 @@ export default function AdminPage() {
           </div>
         </aside>
 
-        {/* Sidebar overlay (mobile) */}
         {sidebarOpen && (
           <div
             className="fixed inset-0 z-30 bg-slate-900/20 lg:hidden"
@@ -259,10 +275,8 @@ export default function AdminPage() {
 
         {/* ── Main content ─────────────────────────────────────────────────── */}
         <div className="flex-1 flex flex-col min-w-0">
-          {/* Topbar */}
           <header className="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between sticky top-0 z-20">
             <div className="flex items-center gap-4">
-              {/* Hamburger (mobile) */}
               <button
                 onClick={() => setSidebarOpen(true)}
                 className="lg:hidden text-slate-500 hover:text-slate-700"
@@ -271,7 +285,6 @@ export default function AdminPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
               </button>
-              {/* Breadcrumb */}
               <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.16em]">
                 <span className="text-slate-400">Admin</span>
                 <span className="text-slate-200">/</span>
@@ -299,7 +312,6 @@ export default function AdminPage() {
             </div>
           </header>
 
-          {/* Content area */}
           <main className="flex-1 p-6 md:p-10">
             <ActiveComponent tab={activeTab} />
           </main>
@@ -315,7 +327,6 @@ export default function AdminPage() {
 function Dashboard() {
   return (
     <div className="space-y-10">
-      {/* Heading */}
       <div className="border-b border-slate-200 pb-6">
         <p className="text-[10px] uppercase tracking-[0.22em] text-slate-400 mb-2">
           Overview
@@ -326,15 +337,14 @@ function Dashboard() {
         </h2>
       </div>
 
-      {/* Stat grid */}
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-px bg-slate-200 border border-slate-200">
         {[
-          { label: "Total Users",       value: "—",  accent: false },
-          { label: "Active Jobs",        value: "36", accent: true  },
-          { label: "Open Tenders",       value: "12", accent: false },
-          { label: "New Submissions",    value: "—",  accent: false },
-          { label: "Revenue",            value: "—",  accent: false },
-          { label: "Platform Uptime",    value: "—",  accent: false },
+          { label: "Total Users",     value: "—",  accent: false },
+          { label: "Active Jobs",     value: "36", accent: true  },
+          { label: "Open Tenders",    value: "12", accent: false },
+          { label: "New Submissions", value: "—",  accent: false },
+          { label: "Revenue",         value: "—",  accent: false },
+          { label: "Platform Uptime", value: "—",  accent: false },
         ].map(({ label, value, accent }) => (
           <div key={label} className="bg-white px-6 py-6 hover:bg-slate-50 transition-colors">
             <p className={`text-3xl font-['Cormorant'] font-light ${accent ? "text-[#2c5aa0]" : "text-slate-700"}`}>
@@ -345,7 +355,6 @@ function Dashboard() {
         ))}
       </div>
 
-      {/* Community Hub quick links */}
       <div>
         <p className="text-[10px] uppercase tracking-[0.22em] text-slate-400 mb-5">
           Community Hub Modules
@@ -354,31 +363,37 @@ function Dashboard() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-slate-200 border border-slate-200">
           {[
             {
-              label: "Company Approvals",
-              desc: "Review and approve company registration applications with document verification.",
-              icon: "🏢",
-              key: "companyApprovals",
+              label: "Approvals Queue",
+              desc:  "Live aggregated view of all pending approvals across companies, clients, funding recipients and workers.",
+              icon:  "📋",
+              key:   "approvalsQueue",
+            },
+            {
+              label: "Company Reviews",
+              desc:  "Review and approve company registration applications with document verification.",
+              icon:  "🏢",
+              key:   "companyApprovals",
             },
             {
               label: "Industry Management",
-              desc: "Configure and manage industry categories used across the platform directory.",
-              icon: "🏭",
-              key: "industryManagement",
+              desc:  "Configure and manage industry categories used across the platform directory.",
+              icon:  "🏭",
+              key:   "industryManagement",
             },
             {
               label: "Blockchain Monitoring",
-              desc: "Track on-chain transactions, yield pool performance and smart contract activity.",
-              icon: "🔗",
-              key: "blockchainMonitoring",
+              desc:  "Track on-chain transactions, yield pool performance and smart contract activity.",
+              icon:  "🔗",
+              key:   "blockchainMonitoring",
             },
             {
               label: "Integration Settings",
-              desc: "Connect and configure third-party APIs — healthcare, banking, government and more.",
-              icon: "⚙️",
-              key: "integrationSettings",
+              desc:  "Connect and configure third-party APIs — healthcare, banking, government and more.",
+              icon:  "⚙️",
+              key:   "integrationSettings",
             },
           ].map((item) => (
-            <div key={item.key} className="bg-white px-6 py-5 hover:bg-slate-50 transition-colors group">
+            <div key={item.key} className="bg-white px-6 py-5 hover:bg-slate-50 transition-colors">
               <div className="flex items-start gap-4">
                 <span className="text-xl mt-0.5">{item.icon}</span>
                 <div className="flex-1 min-w-0">

@@ -30,9 +30,9 @@ interface GridCell {
 
 const CELLS: GridCell[] = [
   {
-    type: "text",
-    label: "— JM-Qafri · 2026",
-    headline: "ART\nCULTURE",
+    type: "accent",
+    label: "",
+    headline: "ART\n&\nCULTURE",
     colSpan: 2,
     rowSpan: 2,
     mobileColSpan: 2,
@@ -124,7 +124,7 @@ const CELLS: GridCell[] = [
   },
   {
     type: "accent",
-    headline: "LUX\nURY",
+    headline: "LUXURY",
     sub: "Est. 2026",
     colSpan: 1,
     rowSpan: 1,
@@ -191,7 +191,10 @@ function Grain(): JSX.Element {
 
 // ─── Nav ──────────────────────────────────────────────────────────────────────
 
-const NAV_LINKS: string[] = ["CONTEST"];
+const NAV_LINKS = [
+  { label: "CONTEST", href: "/art/contest" },
+  { label: "ARTISTS", href: "/art/artist" },
+];
 
 function Nav(): JSX.Element {
   const navRef = useRef<HTMLElement>(null);
@@ -218,6 +221,7 @@ function Nav(): JSX.Element {
       ref={navRef}
       className="fixed top-0 left-0 right-0 flex items-center justify-between"
       style={{
+        
         zIndex: 9999,
         padding: "0 clamp(16px, 4vw, 24px)",
         height: "clamp(48px, 7vw, 56px)",
@@ -246,37 +250,35 @@ function Nav(): JSX.Element {
           alt="JM-Qafri Logo"
           width={0}
           height={0}
-          style={{ display: "block", width: "auto", height: "clamp(100px, 4vw, 180px)" }}
+          style={{ display: "block", width: "auto", height: "clamp(80px, 4vw, 80px)" }}
         />
         </Link>
       </div>
 
       <div className="flex gap-6">
         {NAV_LINKS.map((link) => (
-          <a
-            key={link}
-            data-nav-item
-            href="#"
-            style={{
-              fontFamily: '"Barlow Condensed", sans-serif',
-              fontSize: "clamp(9px, 2.5vw, 11px)",
-              letterSpacing: "0.18em",
-              color: "#94a3b8",
-              textDecoration: "none",
-              opacity: 0,
-              /* Larger tap target on mobile */
-              padding: "8px 4px",
-            }}
-            onMouseEnter={(e) =>
-              gsap.to(e.currentTarget, { color: "#d4a84b", duration: 0.2 })
-            }
-            onMouseLeave={(e) =>
-              gsap.to(e.currentTarget, { color: "#94a3b8", duration: 0.2 })
-            }
-          >
-            {link}
-          </a>
-        ))}
+  <Link
+    key={link.label}
+    data-nav-item
+    href={link.href}
+    style={{
+      fontFamily: '"Barlow Condensed", sans-serif',
+      fontSize: "11px",
+      letterSpacing: "0.18em",
+      color: "#ffffff",
+      textDecoration: "none",
+      opacity: 0,
+    }}
+    onMouseEnter={(e) =>
+      gsap.to(e.currentTarget, { color: "#d4a84b", duration: 0.2 })
+    }
+    onMouseLeave={(e) =>
+      gsap.to(e.currentTarget, { color: "#ffffff", duration: 0.2 })
+    }
+  >
+    {link.label}
+  </Link>
+))}
       </div>
     </nav>
   );
