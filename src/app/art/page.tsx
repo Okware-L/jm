@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import Image from "next/image";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -21,6 +22,8 @@ interface GridCell {
   sub?: string;
   colSpan?: number;
   rowSpan?: number;
+  /** Override col span on mobile (default: always 2 = full width) */
+  mobileColSpan?: number;
 }
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -32,6 +35,7 @@ const CELLS: GridCell[] = [
     headline: "ART\nCULTURE",
     colSpan: 2,
     rowSpan: 2,
+    mobileColSpan: 2,
   },
   {
     type: "image",
@@ -40,6 +44,7 @@ const CELLS: GridCell[] = [
     label: "Fashion",
     colSpan: 1,
     rowSpan: 2,
+    mobileColSpan: 2,
   },
   {
     type: "image",
@@ -48,12 +53,14 @@ const CELLS: GridCell[] = [
     label: "Bleu de Chanel",
     colSpan: 1,
     rowSpan: 1,
+    mobileColSpan: 1,
   },
   {
     type: "accent",
     headline: "PRINT.\nOIL.\nDIGITAL MEDIA.",
     colSpan: 1,
     rowSpan: 1,
+    mobileColSpan: 1,
   },
   {
     type: "image",
@@ -62,6 +69,7 @@ const CELLS: GridCell[] = [
     label: "Bottle Art",
     colSpan: 1,
     rowSpan: 2,
+    mobileColSpan: 2,
   },
   {
     type: "image",
@@ -70,11 +78,13 @@ const CELLS: GridCell[] = [
     label: "Lifestyle",
     colSpan: 2,
     rowSpan: 1,
+    mobileColSpan: 2,
   },
   {
     type: "empty",
     colSpan: 1,
     rowSpan: 1,
+    mobileColSpan: 2,
   },
   {
     type: "image",
@@ -83,6 +93,7 @@ const CELLS: GridCell[] = [
     label: "Fragrance Campaign",
     colSpan: 1,
     rowSpan: 2,
+    mobileColSpan: 2,
   },
   {
     type: "text",
@@ -91,6 +102,7 @@ const CELLS: GridCell[] = [
     sub: "Caption here",
     colSpan: 2,
     rowSpan: 1,
+    mobileColSpan: 2,
   },
   {
     type: "image",
@@ -99,6 +111,7 @@ const CELLS: GridCell[] = [
     label: "Timepiece",
     colSpan: 1,
     rowSpan: 2,
+    mobileColSpan: 1,
   },
   {
     type: "image",
@@ -107,6 +120,7 @@ const CELLS: GridCell[] = [
     label: "Portrait Series",
     colSpan: 1,
     rowSpan: 1,
+    mobileColSpan: 1,
   },
   {
     type: "accent",
@@ -114,6 +128,7 @@ const CELLS: GridCell[] = [
     sub: "Est. 2026",
     colSpan: 1,
     rowSpan: 1,
+    mobileColSpan: 1,
   },
 ];
 
@@ -201,11 +216,14 @@ function Nav(): JSX.Element {
   return (
     <nav
       ref={navRef}
-      className="fixed top-0 left-0 right-0 flex items-center justify-between px-6 h-14"
+      className="fixed top-0 left-0 right-0 flex items-center justify-between"
       style={{
         zIndex: 9999,
+        padding: "0 clamp(16px, 4vw, 24px)",
+        height: "clamp(48px, 7vw, 56px)",
         background: "rgba(0, 3, 8, 0.88)",
         backdropFilter: "blur(14px)",
+        WebkitBackdropFilter: "blur(14px)",
         borderBottom: "1px solid rgba(212,168,75,0.14)",
       }}
     >
@@ -214,16 +232,26 @@ function Nav(): JSX.Element {
         style={{
           fontFamily: '"Barlow Condensed", sans-serif',
           fontWeight: 900,
-          fontSize: "17px",
+          fontSize: "clamp(14px, 3.5vw, 17px)",
           letterSpacing: "0.22em",
           color: "#ffffff",
-          opacity: 100,
         }}
       >
-        JM-QAFRI
+        <Link
+        href={'/'}
+        >
+        <Image
+        
+          src="/jmwhite.svg"
+          alt="JM-Qafri Logo"
+          width={0}
+          height={0}
+          style={{ display: "block", width: "auto", height: "clamp(100px, 4vw, 180px)" }}
+        />
+        </Link>
       </div>
 
-      <div className="flex gap-8">
+      <div className="flex gap-6">
         {NAV_LINKS.map((link) => (
           <a
             key={link}
@@ -231,11 +259,13 @@ function Nav(): JSX.Element {
             href="#"
             style={{
               fontFamily: '"Barlow Condensed", sans-serif',
-              fontSize: "11px",
+              fontSize: "clamp(9px, 2.5vw, 11px)",
               letterSpacing: "0.18em",
-              color: "#173053",
+              color: "#94a3b8",
               textDecoration: "none",
               opacity: 0,
+              /* Larger tap target on mobile */
+              padding: "8px 4px",
             }}
             onMouseEnter={(e) =>
               gsap.to(e.currentTarget, { color: "#d4a84b", duration: 0.2 })
@@ -250,6 +280,24 @@ function Nav(): JSX.Element {
       </div>
     </nav>
   );
+}
+
+// ─── Responsive col-span helper ───────────────────────────────────────────────
+
+/**
+ * Returns a CSS `gridColumn: span N` value.
+ * On mobile (≤ 640 px) we always use mobileColSpan (default 2 = full width).
+ * We rely on a CSS custom property set on the grid to communicate breakpoint.
+ * Simpler approach: just use the mobileColSpan as a data-attr and let a
+ * <style> tag handle it.
+ */
+function colSpanStyle(cell: GridCell) {
+  // Desktop spans handled inline; mobile handled via CSS classes below
+  return {
+    "--col-span": cell.colSpan ?? 1,
+    "--row-span": cell.rowSpan ?? 1,
+    "--mobile-col-span": cell.mobileColSpan ?? 2,
+  } as React.CSSProperties;
 }
 
 // ─── Cell components ──────────────────────────────────────────────────────────
@@ -275,7 +323,7 @@ function ImageCell({ cell, index }: { cell: GridCell; index: number }): JSX.Elem
         delay: (index % 4) * 0.07,
         scrollTrigger: {
           trigger: el,
-          start: "top 90%",
+          start: "top 92%",
           toggleActions: "play none none none",
         },
       }
@@ -297,17 +345,28 @@ function ImageCell({ cell, index }: { cell: GridCell; index: number }): JSX.Elem
     const img = imgRef.current;
     const label = labelRef.current;
 
+    // Hover (desktop only — touch devices get label always visible)
+    const isTouchDevice = () => window.matchMedia("(pointer: coarse)").matches;
+
     const onEnter = () => {
+      if (isTouchDevice()) return;
       if (img) gsap.to(img, { scale: 1.2, duration: 0.55, ease: "power2.out" });
       if (label) gsap.to(label, { opacity: 1, y: 0, duration: 0.3 });
     };
     const onLeave = () => {
+      if (isTouchDevice()) return;
       if (img) gsap.to(img, { scale: 1, duration: 0.55, ease: "power2.inOut" });
       if (label) gsap.to(label, { opacity: 0, y: 8, duration: 0.3 });
     };
 
     el.addEventListener("mouseenter", onEnter);
     el.addEventListener("mouseleave", onLeave);
+
+    // On touch devices show label always
+    if (isTouchDevice() && label) {
+      gsap.set(label, { opacity: 1, y: 0 });
+    }
+
     return () => {
       el.removeEventListener("mouseenter", onEnter);
       el.removeEventListener("mouseleave", onLeave);
@@ -317,10 +376,9 @@ function ImageCell({ cell, index }: { cell: GridCell; index: number }): JSX.Elem
   return (
     <div
       ref={wrapRef}
-      className="relative overflow-hidden cursor-pointer"
+      className="art-cell relative overflow-hidden cursor-pointer"
       style={{
-        gridColumn: `span ${cell.colSpan ?? 1}`,
-        gridRow: `span ${cell.rowSpan ?? 1}`,
+        ...colSpanStyle(cell),
         opacity: 0,
       }}
     >
@@ -329,6 +387,7 @@ function ImageCell({ cell, index }: { cell: GridCell; index: number }): JSX.Elem
         src={cell.imageUrl ?? ""}
         alt={cell.imageAlt ?? ""}
         fill
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         className="w-full h-full object-cover"
         style={{ transformOrigin: "center center", willChange: "transform" }}
       />
@@ -339,23 +398,12 @@ function ImageCell({ cell, index }: { cell: GridCell; index: number }): JSX.Elem
             "linear-gradient(to top, rgba(15,23,42,0.8) 0%, rgba(15,23,42,0.1) 45%, transparent 100%)",
         }}
       />
-      {/* Gold hover line */}
-      <div
-        className="absolute bottom-0 left-0 right-0"
-        style={{
-          height: "2px",
-          background: "linear-gradient(to right, #d4a84b, transparent)",
-          transform: "scaleX(0)",
-          transformOrigin: "left",
-          transition: "transform 0.4s ease",
-        }}
-      />
       <span
         ref={labelRef}
-        className="absolute bottom-4 left-4"
+        className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4"
         style={{
           fontFamily: '"Barlow Condensed", sans-serif',
-          fontSize: "10px",
+          fontSize: "clamp(9px, 2.2vw, 10px)",
           letterSpacing: "0.2em",
           textTransform: "uppercase",
           color: "#d4a84b",
@@ -404,10 +452,10 @@ function TextCell({ cell, index }: { cell: GridCell; index: number }): JSX.Eleme
   return (
     <div
       ref={wrapRef}
-      className="flex flex-col justify-end p-7"
+      className="art-cell flex flex-col justify-end"
       style={{
-        gridColumn: `span ${cell.colSpan ?? 1}`,
-        gridRow: `span ${cell.rowSpan ?? 1}`,
+        ...colSpanStyle(cell),
+        padding: "clamp(16px, 4vw, 28px)",
         opacity: 0,
         background:
           "radial-gradient(ellipse at 20% 80%, rgba(212,168,75,0.06) 0%, transparent 60%)",
@@ -417,11 +465,11 @@ function TextCell({ cell, index }: { cell: GridCell; index: number }): JSX.Eleme
         <span
           style={{
             fontFamily: '"Barlow Condensed", sans-serif',
-            fontSize: "10px",
+            fontSize: "clamp(9px, 2.2vw, 10px)",
             letterSpacing: "0.24em",
             textTransform: "uppercase",
             color: "#d4a84b",
-            marginBottom: "12px",
+            marginBottom: "10px",
           }}
         >
           {cell.label}
@@ -433,7 +481,7 @@ function TextCell({ cell, index }: { cell: GridCell; index: number }): JSX.Eleme
         style={{
           fontFamily: '"Barlow Condensed", sans-serif',
           fontWeight: 900,
-          fontSize: "clamp(56px, 7vw, 110px)",
+          fontSize: "clamp(42px, 10vw, 110px)",
           lineHeight: 0.86,
           letterSpacing: "-0.02em",
           textTransform: "uppercase",
@@ -446,11 +494,11 @@ function TextCell({ cell, index }: { cell: GridCell; index: number }): JSX.Eleme
         <p
           style={{
             fontFamily: '"Barlow Condensed", sans-serif',
-            fontSize: "12px",
+            fontSize: "clamp(10px, 2.5vw, 12px)",
             letterSpacing: "0.1em",
             textTransform: "uppercase",
             color: "#64748b",
-            marginTop: "16px",
+            marginTop: "14px",
           }}
         >
           {cell.sub}
@@ -494,10 +542,10 @@ function AccentCell({ cell, index }: { cell: GridCell; index: number }): JSX.Ele
   return (
     <div
       ref={wrapRef}
-      className="flex flex-col justify-center items-start p-6"
+      className="art-cell flex flex-col justify-center items-start"
       style={{
-        gridColumn: `span ${cell.colSpan ?? 1}`,
-        gridRow: `span ${cell.rowSpan ?? 1}`,
+        ...colSpanStyle(cell),
+        padding: "clamp(14px, 3.5vw, 24px)",
         opacity: 0,
         background: "linear-gradient(145deg, #140e00 0%, #2a1c00 100%)",
         borderLeft: "2px solid #d4a84b",
@@ -509,7 +557,7 @@ function AccentCell({ cell, index }: { cell: GridCell; index: number }): JSX.Ele
         style={{
           fontFamily: '"Barlow Condensed", sans-serif',
           fontWeight: 900,
-          fontSize: "clamp(36px, 4vw, 68px)",
+          fontSize: "clamp(28px, 6vw, 68px)",
           lineHeight: 0.88,
           letterSpacing: "-0.01em",
           textTransform: "uppercase",
@@ -522,11 +570,11 @@ function AccentCell({ cell, index }: { cell: GridCell; index: number }): JSX.Ele
         <span
           style={{
             fontFamily: '"Barlow Condensed", sans-serif',
-            fontSize: "10px",
+            fontSize: "clamp(9px, 2.2vw, 10px)",
             letterSpacing: "0.24em",
             textTransform: "uppercase",
             color: "#7a5c1a",
-            marginTop: "12px",
+            marginTop: "10px",
           }}
         >
           {cell.sub}
@@ -539,15 +587,14 @@ function AccentCell({ cell, index }: { cell: GridCell; index: number }): JSX.Ele
 function EmptyCell({ cell }: { cell: GridCell }): JSX.Element {
   return (
     <div
+      className="art-cell"
       style={{
-        gridColumn: `span ${cell.colSpan ?? 1}`,
-        gridRow: `span ${cell.rowSpan ?? 1}`,
+        ...colSpanStyle(cell),
         background: "rgba(15,23,42,0.4)",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* Subtle gold radial glow */}
       <div
         style={{
           position: "absolute",
@@ -556,7 +603,6 @@ function EmptyCell({ cell }: { cell: GridCell }): JSX.Element {
             "radial-gradient(ellipse at 50% 50%, rgba(212,168,75,0.05) 0%, transparent 70%)",
         }}
       />
-      {/* Corner brackets */}
       {(
         [
           { top: 10, left: 10, borderTop: "1px solid #d4a84b", borderLeft: "1px solid #d4a84b" },
@@ -565,13 +611,7 @@ function EmptyCell({ cell }: { cell: GridCell }): JSX.Element {
       ).map((s, i) => (
         <div
           key={i}
-          style={{
-            position: "absolute",
-            width: 18,
-            height: 18,
-            opacity: 0.25,
-            ...s,
-          }}
+          style={{ position: "absolute", width: 18, height: 18, opacity: 0.25, ...s }}
         />
       ))}
     </div>
@@ -587,7 +627,10 @@ export default function ArtPage(): JSX.Element {
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (wrapperRef.current && contentRef.current) {
+    // ScrollSmoother only on non-touch / desktop
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+
+    if (!isTouchDevice && wrapperRef.current && contentRef.current) {
       smootherRef.current = ScrollSmoother.create({
         wrapper: wrapperRef.current,
         content: contentRef.current,
@@ -595,13 +638,18 @@ export default function ArtPage(): JSX.Element {
         effects: true,
       });
     }
+
     return () => {
       smootherRef.current?.kill();
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
 
+  // Custom cursor — desktop only
   useEffect(() => {
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+    if (isTouchDevice) return;
+
     const onMove = (event: MouseEvent) => {
       if (cursorRef.current) {
         cursorRef.current.style.left = `${event.clientX}px`;
@@ -609,18 +657,82 @@ export default function ArtPage(): JSX.Element {
       }
     };
     window.addEventListener("mousemove", onMove);
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-    };
+    return () => window.removeEventListener("mousemove", onMove);
   }, []);
+
+  const navHeight = "clamp(48px, 7vw, 56px)";
 
   return (
     <>
+      {/* ── Responsive grid styles ─────────────────────────────────── */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&display=swap');
+
+        * { box-sizing: border-box; }
+
+        /* Mobile: 2-column grid, row = 45vw tall */
+        .art-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-auto-rows: 45vw;
+          gap: 2px;
+          padding: 2px;
+        }
+
+        /* Desktop: 4-column grid, row = half viewport */
+        @media (min-width: 640px) {
+          .art-grid {
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: calc((100vh - clamp(48px, 7vw, 56px)) / 2);
+          }
+        }
+
+        /* Cell spans */
+        .art-cell {
+          grid-column: span var(--mobile-col-span, 2);
+          grid-row:    span var(--row-span, 1);
+        }
+
+        @media (min-width: 640px) {
+          .art-cell {
+            grid-column: span var(--col-span, 1);
+          }
+        }
+
+        /* ScrollSmoother wrapper — only on desktop */
+        @media (min-width: 640px) {
+          .smooth-wrapper {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            cursor: none;
+          }
+        }
+
+        /* On mobile: normal scrolling */
+        @media (max-width: 639px) {
+          .smooth-wrapper {
+            position: relative;
+            overflow: visible;
+            cursor: auto;
+          }
+        }
+
+        /* Hide custom cursor on touch */
+        @media (pointer: coarse) {
+          .custom-cursor { display: none !important; }
+        }
+      `}</style>
+
       <Grain />
       <Nav />
+
+      {/* Custom cursor (hidden on touch via CSS) */}
       <div
         ref={cursorRef}
-        className="fixed pointer-events-none z-50 rounded-full border border-white bg-white/95"
+        className="custom-cursor fixed pointer-events-none z-10000 rounded-full border border-white bg-white/95"
         style={{
           width: "10px",
           height: "10px",
@@ -630,38 +742,17 @@ export default function ArtPage(): JSX.Element {
         }}
       />
 
-      {/* ScrollSmoother outer wrapper — must be fixed+overflow hidden */}
-      <div
-        ref={wrapperRef}
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          overflow: "hidden",
-          cursor: "none",
-        }}
-      >
-        {/* ScrollSmoother inner content */}
+      <div ref={wrapperRef} className="smooth-wrapper">
         <div
           ref={contentRef}
           style={{
             background:
               "linear-gradient(180deg, #f3f3f3 0%, #1e293b 35%, #a5a5a5 70%, #000000 100%)",
-            paddingTop: "56px",
+            paddingTop: navHeight,
           }}
         >
-          {/* ── Fluid grid ───────────────────────────────────────── */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gridAutoRows: "calc((100vh - 56px) / 2)",
-              gap: "2px",
-              padding: "2px",
-            }}
-          >
+          {/* ── Grid ──────────────────────────────────────────── */}
+          <div className="art-grid">
             {CELLS.map((cell, i) => {
               switch (cell.type) {
                 case "image":  return <ImageCell  key={i} cell={cell} index={i} />;
@@ -672,20 +763,22 @@ export default function ArtPage(): JSX.Element {
             })}
           </div>
 
-          {/* ── Footer ───────────────────────────────────────────── */}
+          {/* ── Footer ─────────────────────────────────────────── */}
           <div
             style={{
               display: "flex",
+              flexWrap: "wrap",
               alignItems: "center",
               justifyContent: "space-between",
-              padding: "28px 24px",
+              gap: "8px",
+              padding: "clamp(16px, 4vw, 28px) clamp(14px, 4vw, 24px)",
               borderTop: "1px solid rgba(212,168,75,0.12)",
             }}
           >
             <span
               style={{
                 fontFamily: '"Barlow Condensed", sans-serif',
-                fontSize: "10px",
+                fontSize: "clamp(8px, 2vw, 10px)",
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
                 color: "#334155",
@@ -696,7 +789,7 @@ export default function ArtPage(): JSX.Element {
             <span
               style={{
                 fontFamily: '"Barlow Condensed", sans-serif',
-                fontSize: "10px",
+                fontSize: "clamp(8px, 2vw, 10px)",
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
                 color: "#d4a84b",
