@@ -12,7 +12,6 @@ import Link from "next/link";
 const ROLES = [
   {
     key: "company",
-    icon: "🏢",
     title: "Company",
     subtitle: "Register your business",
     description:
@@ -23,7 +22,6 @@ const ROLES = [
   },
   {
     key: "client",
-    icon: "👤",
     title: "Client",
     subtitle: "Access services",
     description:
@@ -34,7 +32,6 @@ const ROLES = [
   },
   {
     key: "funding_recipient",
-    icon: "💎",
     title: "Funding Recipient",
     subtitle: "Earn yield & fund growth",
     description:
@@ -45,7 +42,6 @@ const ROLES = [
   },
   {
     key: "worker",
-    icon: "🔑",
     title: "Account Manager",
     subtitle: "Invite only",
     description:
@@ -133,7 +129,7 @@ export default function RegisterPage() {
             >
               <div className="flex items-start justify-between mb-5">
                 <div>
-                  <span className="text-2xl block mb-3">{role.icon}</span>
+        
                   <p
                     className="text-slate-900 leading-tight tracking-[-0.02em]"
                     style={{
