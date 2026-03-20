@@ -1,23 +1,39 @@
+"use client";
 
-import Hero from "../components/Hero";
-import Categories from "../components/categories";
-import About from "../components/About";
-import Insight from "../components/Insight";
-import Posts from "@/components/Blog";
-import Footer from "../components/Footer";
-import Newsletter from "../components/Newsletter";
+import React, { useState } from "react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Loader from "@/components/Loader";
+import HeroSection from "@/components/HeroSection";
+import TickerBar from "@/components/TickerBar";
+import ServicesSection from "@/components/ServiceSection";
+import AboutSection from "@/components/Aboutsection";
+import InsightsSection from "@/components/Insightssection";
+import FeatureSection from "@/components/Featuresection";
+import NewsletterSection from "@/components/Newslettersection";
 
-export default async function Home() {
+export default function HomePage() {
+  const [ready, setReady] = useState(false);
+ 
   return (
-    <div className="font-times">
-      
-      <Hero />
-      <Categories />
-      <About />
-      <Posts />
-      <Insight /> 
-      <Newsletter />
+    <>
+      {/* Loader sits on top at z-[9000] — page is mounted underneath immediately */}
+      <Loader onComplete={() => setReady(true)} />
+ 
+      {/* Page is always in the DOM — hero manages its own hidden→visible state via GSAP */}
+      <Navbar />
+ 
+      <main>
+        <HeroSection triggerAnimation={ready} />
+        <TickerBar />
+        <ServicesSection />
+        <AboutSection />
+        <InsightsSection />
+        <FeatureSection />
+        <NewsletterSection />
+      </main>
+ 
       <Footer />
-    </div>
+    </>
   );
 }

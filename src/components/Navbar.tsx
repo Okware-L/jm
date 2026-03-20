@@ -1,244 +1,180 @@
-// In your About page, ensure you're using the same Navbar component
-// The scroll detection is already built into the Navbar component
-
-// If you need to customize the scroll threshold for About page,
-// modify the Navbar component to accept props:
-
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+import { usePathname } from "next/navigation";
+//import { ConnectButton } from "thirdweb/react";
+//import { client } from "@/app/client";
+//import { createWallet, inAppWallet } from "thirdweb/wallets";
+//import { sepolia } from "thirdweb/chains";
 import {
   Sheet,
   SheetContent,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ConnectButton } from "thirdweb/react";
-import { client } from "../app/client";
-import { createWallet, inAppWallet } from "thirdweb/wallets";
-import { sepolia } from "thirdweb/chains";
-import { usePathname } from 'next/navigation';
+import gsap from "gsap";
 
-const wallets = [
-  inAppWallet({
-    auth: {
-      options: ["google", "discord", "telegram", "email", "passkey"],
-    },
-  }),
-  createWallet("io.metamask"),
-  createWallet("com.coinbase.wallet"),
-  createWallet("me.rainbow"),
-  createWallet("io.rabby"),
-  createWallet("io.zerion.wallet"),
+/* ── Wallets ──────────────────────────────── */
+// const wallets = [
+//   inAppWallet({
+//     auth: { options: ["google", "discord", "telegram", "email", "passkey"] },
+//   }),
+//   createWallet("io.metamask"),
+//   createWallet("com.coinbase.wallet"),
+//   createWallet("me.rainbow"),
+//   createWallet("io.rabby"),
+//   createWallet("io.zerion.wallet"),
+// ];
+
+/* ── Opaque-from-load pages ───────────────── */
+const OPAQUE_PAGES = [
+  "/Architecture", "/About", "/Airdrop", "/Invest", "/user",
+  "/pharma", "/contact", "/petition", "/careers", "/charity",
+  "/blog", "/FAQ", "/patnership", "/Acquisitions", "/Admin",
 ];
 
+/* ── Nav link data ────────────────────────── */
+const NAV_LINKS = [
+  { href: "/About",    label: "About" },
+  { href: "/Invest",   label: "Solutions" },
+  { href: "/contact",  label: "Contact" },
+];
 
-const Navbar: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+const MOBILE_LINKS = [
+  { href: "/About",        label: "About" },
+  { href: "/Invest",       label: "Solutions" },
+  { href: "/Acquisitions", label: "Acquisitions" },
+  { href: "/pharma",       label: "Pharma" },
+  { href: "/charity",      label: "Charity" },
+  { href: "/FAQ",          label: "FAQ" },
+  { href: "/contact",      label: "Contact" },
+];
+
+/* ─────────────────────────────────────────────
+   Component
+───────────────────────────────────────────── */
+export default function Navbar() {
   const pathname = usePathname();
-  
-  // Pages where nav should start opaque
-  const opaquePages = ['/Architecture', '/About', '/Airdrop', '/Invest', '/user' , '/pharma', '/contact' ,'/petition',
-    '/careers' , '/charity', '/blog', '/FAQ', '/patnership', '/Acquisitions', '/Admin'
-  ]; // Add your routes
-  
+  const [scrolled, setScrolled] = useState(false);
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+
+  /* Scroll detection */
   useEffect(() => {
-    if (opaquePages.includes(pathname)) {
-      setIsScrolled(true);
+    if (OPAQUE_PAGES.includes(pathname)) {
+      setScrolled(true);
       return;
     }
-
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, [pathname]);
 
+  /* GSAP entrance — runs once after mount */
+  useEffect(() => {
+    if (!navRef.current) return;
+    gsap.fromTo(
+      navRef.current,
+      { y: -40, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 2.2 }
+    );
+  }, []);
+
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed z-50 w-full border-b transition-all duration-300 ${
-        isScrolled 
-          ? "border-slate-700/50 bg-slate-900/95 backdrop-blur-lg backdrop-filter text-slate-100" 
-          : "border-transparent bg-transparent text-slate-100"
-      }`}
+    <nav
+      ref={navRef}
+      className={[
+        "fixed top-0 left-0 right-0 z-50 flex items-center justify-between",
+        "px-6 md:px-[clamp(24px,5vw,72px)] py-5 md:py-6",
+        "transition-all duration-500",
+        scrolled
+          ? "border-b border-[var(--line)] bg-[var(--accent)]/5 backdrop-blur-md"
+          : "border-b border-accent bg-transparent ",
+      ].join(" ")}
+      style={{ opacity: 0 }} // GSAP will reveal
     >
-      {/* Rest of Navbar component remains the same */}
-      <div className="container mx-auto flex items-center justify-between px-4 py-4 md:px-0">
-        <Link href="/" className="flex items-center space-x-2">
-          <Image src="/jmwhite.svg" alt="Logo" width={84} height={54} />
 
-        </Link>
+      {/* Logo */}
+      <Link
+        href="/"
+        className="font-sans text-[15px] font-normal tracking-[0.22em] uppercase text-[var(--black)] leading-none"
+      >
+        JM-Qafri
+      </Link>
 
-        <NavigationMenu className="hidden md:flex">
-          <NavigationMenuList className="flex items-center space-x-4">
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className={`bg-transparent hover:bg-slate-800 hover:text-slate-300 data-[state=open]:bg-slate-800 data-[state=open]:text-slate-300 ${
-                isScrolled ? "text-slate-100" : "text-slate-100"
-              }`}>
-                About
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-white border border-slate-200">
-                  <ListItem href="/About" title="About Us">
-                    Learn more about our company and mission.
-                  </ListItem>
-                  <ListItem href="/careers" title="Careers">
-                    Join our team and make a difference.
-                  </ListItem>
-                  <ListItem href="/FAQ" title="FAQ">
-                    Frequently asked questions about our services.
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
+      {/* Desktop links */}
+      <ul className="hidden md:flex items-center gap-9 list-none">
+        {NAV_LINKS.map(({ href, label }) => (
+          <li key={href}>
+            <Link
+              href={href}
+              className={[
+                "relative text-[11px] font-light tracking-[0.16em] uppercase transition-colors duration-200",
+                pathname.startsWith(href)
+                  ? "text-[var(--black)]"
+                  : "text-[var(--grey)] hover:text-[var(--black)]",
+                "after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:right-0 after:h-px",
+                "after:bg-[var(--black)] after:scale-x-0 after:origin-left after:transition-transform after:duration-300",
+                "hover:after:scale-x-100",
+              ].join(" ")}
+            >
+              {label}
+            </Link>
+          </li>
+        ))}
+      </ul>
 
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className={`bg-transparent hover:bg-slate-800 hover:text-slate-300 data-[state=open]:bg-slate-800 data-[state=open]:text-slate-300 ${
-                isScrolled ? "text-slate-100" : "text-slate-100"
-              }`}>
-                Services
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white border border-slate-200">
-                  <ListItem href="/Invest" title="Invest">
-                    Explore investment opportunities with us.
-                  </ListItem>
-                  <ListItem href="/Acquisitions" title="Acquisitions">
-                    Learn about our acquisition strategies.
-                  </ListItem>
-                  <ListItem href="/pharma" title="Pharma">
-                    Discover our pharmaceutical ventures.
-                  </ListItem>
-                  <ListItem href="/partnership" title="Partnership">
-                    Partner with us for mutual growth.
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
+      {/* Right actions */}
+      <div className="flex items-center gap-4">
 
-            <NavigationMenuList>
-              <NavigationMenuLink
-                href="/charity"
-                className={`hover:bg-slate-800 hover:text-slate-300 px-3 py-2 rounded-md transition-colors ${
-                  isScrolled ? "text-slate-100" : "text-slate-100"
-                }`}
-              >
-                Charity
-              </NavigationMenuLink>
-            </NavigationMenuList>
-          </NavigationMenuList>
-        </NavigationMenu>
+        {/* Mobile menu — shadcn Sheet */}
+        <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+          <SheetTrigger asChild>
+            <button
+              className="md:hidden flex flex-col gap-[5px] p-1"
+              aria-label="Open menu"
+            >
+              <span
+                className={[
+                  "block w-[20px] h-px bg-[var(--black)] transition-all duration-300",
+                  sheetOpen ? "rotate-45 translate-y-[6px]" : "",
+                ].join(" ")}
+              />
+              <span
+                className={[
+                  "block w-[20px] h-px bg-[var(--black)] transition-all duration-300",
+                  sheetOpen ? "-rotate-45 -translate-y-[1.5px]" : "",
+                ].join(" ")}
+              />
+            </button>
+          </SheetTrigger>
 
-        <div className="flex items-center space-x-4">
-          <ConnectButton
-            client={client}
-            theme="dark"
-            chain={sepolia}
-            wallets={wallets}
-            connectModal={{
-              size: "compact",
-              showThirdwebBranding: false,
-            }}
-            connectButton={{
-              label: "Sign in",
-            }}
-            detailsButton={{
-              displayBalanceToken: {
-                [sepolia.id]: "0x973C22B3b109E94Fdf90F65E98cdABc5D7E1aCAd",
-              },
-            }}
-            supportedTokens={{
-              [sepolia.id]: [
-                {
-                  address: "0x973C22B3b109E94Fdf90F65E98cdABc5D7E1aCAd",
-                  name: "JM-Qafri Token",
-                  symbol: "JMQ",
-                  icon: "https://yourdomain.com/icon.png",
-                },
-              ],
-            }}
-          />
-
-          <Sheet>
-            <SheetTrigger asChild>
-              <button aria-label="Open Menu" className="md:hidden">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="h-6 w-6 text-slate-100"
+          <SheetContent
+            side="right"
+            className="w-full max-w-sm bg-[var(--white)] border-l border-[var(--line)] p-0 flex flex-col justify-end"
+          >
+            <nav className="px-8 pb-16 pt-24 flex flex-col">
+              {MOBILE_LINKS.map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={() => setSheetOpen(false)}
+                  className={[
+                    "block font-serif text-[clamp(2.2rem,8vw,4.5rem)] font-light",
+                    "tracking-[-0.025em] leading-[1.05]",
+                    "border-t border-[var(--line)] py-3",
+                    "text-[var(--black)] hover:text-[var(--grey)] transition-colors duration-200",
+                    "last:border-b",
+                  ].join(" ")}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"
-                  />
-                </svg>
-              </button>
-            </SheetTrigger>
-            <SheetContent className="bg-slate-800 border-slate-700 text-slate-100">
-              <SheetHeader>
-                <SheetTitle className="text-slate-100">Menu</SheetTitle>
-              </SheetHeader>
-              <nav className="mt-6">
-                <ul className="space-y-4">
-                  <MobileNavItem href="/about" label="About Us" />
-                  <MobileNavItem href="/careers" label="Careers" />
-                  <MobileNavItem href="/charity" label="Charity" />
-                  <MobileNavItem href="/faq" label="FAQ" />
-                  <MobileNavItem href="/invest" label="Invest" />
-                  <MobileNavItem href="/acquisitions" label="Acquisitions" />
-                  <MobileNavItem href="/pharma" label="Pharma" />
-                  <MobileNavItem href="/partnership" label="Partnership" />
-                  <MobileNavItem href="/contact" label="Contact" />
-                </ul>
-              </nav>
-            </SheetContent>
-          </Sheet>
-        </div>
+                  {label}
+                </Link>
+              ))}
+
+            </nav>
+          </SheetContent>
+        </Sheet>
       </div>
-    </motion.nav>
+    </nav>
   );
-};
-
-const ListItem: React.FC<{ href: string; title: string; children: React.ReactNode }> = ({
-  href,
-  title,
-  children,
-}) => (
-  <li>
-    <Link href={href} className="block p-3 text-sm font-medium text-slate-900 hover:bg-slate-100">
-      {title}
-      <p className="text-sm text-slate-600">{children}</p>
-    </Link>
-  </li>
-);
-
-const MobileNavItem: React.FC<{ href: string; label: string }> = ({ href, label }) => (
-  <li>
-    <Link href={href} className="block p-2 text-base font-medium text-slate-300 hover:bg-slate-700/50">
-      {label}
-    </Link>
-  </li>
-);
-
-export default Navbar;
+}
