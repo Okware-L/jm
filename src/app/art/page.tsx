@@ -51,7 +51,7 @@ const CELLS: GridCell[] = [
   },
   {
     type: "accent",
-    headline: "PRINT.\nOIL.\nCGI.\nNFT",
+    headline: "PRINT.\nOIL.\nDIGITAL MEDIA.",
     colSpan: 1,
     rowSpan: 1,
   },
@@ -176,7 +176,7 @@ function Grain(): JSX.Element {
 
 // ─── Nav ──────────────────────────────────────────────────────────────────────
 
-const NAV_LINKS: string[] = ["TALENTS", "PROJECTS", "SHOP", "CONTEST"];
+const NAV_LINKS: string[] = ["CONTEST"];
 
 function Nav(): JSX.Element {
   const navRef = useRef<HTMLElement>(null);
@@ -216,8 +216,8 @@ function Nav(): JSX.Element {
           fontWeight: 900,
           fontSize: "17px",
           letterSpacing: "0.22em",
-          color: "#fffefb",
-          opacity: 0,
+          color: "#ffffff",
+          opacity: 100,
         }}
       >
         JM-QAFRI
