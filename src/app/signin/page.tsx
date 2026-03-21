@@ -1,16 +1,15 @@
-// app/signin/page.tsx
 "use client";
 
 import React, { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
-import { auth, db } from "../../../firebseConfig";
+import { auth } from "../../../firebseConfig";
 import {
   authWithGoogle,
   signInWithEmail,
   resetPassword,
 } from "../../lib/auth";
+import { ensureUserDoc, roleToRoute } from "../../lib/Ensureuserdoc";
 import AdminSignInModal from "./compnents/AdminSingInModal";
 
 type View = "signin" | "forgot";
@@ -48,12 +47,13 @@ function SignInPageClient() {
   const params = useSearchParams();
   const from   = params.get("from") || "/dashboard";
 
-  // Redirect already-signed-in users
+  // ── On mount: if Firebase already has a session, redirect immediately ─────
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const snap = await getDoc(doc(db, "users", user.uid));
-        router.replace(snap.exists() ? from : "/register");
+        // ensureUserDoc creates the doc if missing, returns role
+        const userDoc = await ensureUserDoc(user);
+        router.replace(roleToRoute(userDoc.role, from));
       } else {
         setChecking(false);
       }
@@ -61,9 +61,12 @@ function SignInPageClient() {
     return () => unsub();
   }, [router, from]);
 
+  // ── After any sign-in: ensure doc exists, then route by role ─────────────
   const afterAuth = async () => {
-    const snap = await getDoc(doc(db, "users", auth.currentUser!.uid));
-    router.replace(snap.exists() ? from : "/register");
+    const user = auth.currentUser;
+    if (!user) return;
+    const userDoc = await ensureUserDoc(user);
+    router.replace(roleToRoute(userDoc.role, from));
   };
 
   const handleGoogle = async () => {
@@ -136,14 +139,13 @@ function SignInPageClient() {
 
   return (
     <>
-      {/* ── Admin sign-in modal ───────────────────────────────────────────── */}
       {showAdminModal && (
         <AdminSignInModal onClose={() => setShowAdminModal(false)} />
       )}
 
       <div className="min-h-screen bg-white flex" style={{ fontFamily: "'DM Sans', sans-serif" }}>
 
-        {/* ── Left decorative panel ───────────────────────────────────────── */}
+        {/* ── Left panel ──────────────────────────────────────────────────── */}
         <div className="hidden lg:flex lg:w-1/2 bg-slate-900 flex-col justify-between p-16 relative overflow-hidden">
           <div
             className="absolute inset-0 opacity-[0.03]"
@@ -171,7 +173,7 @@ function SignInPageClient() {
 
             <p className="lg:hidden text-[10px] uppercase tracking-[0.28em] text-slate-400 mb-8">jmqafri.org</p>
 
-            {/* ── Forgot password view ──────────────────────────────────── */}
+            {/* ── Forgot password ───────────────────────────────────────── */}
             {view === "forgot" && (
               <>
                 <button
@@ -200,7 +202,7 @@ function SignInPageClient() {
                   <div className="border border-emerald-200 bg-emerald-50 px-4 py-4 mt-6">
                     <p className="text-sm text-emerald-700 mb-1 font-medium">Check your inbox</p>
                     <p className="text-sm text-emerald-600">
-                      A reset link has been sent to <strong>{resetEmail}</strong>. Follow the link to set a new password.
+                      A reset link has been sent to <strong>{resetEmail}</strong>.
                     </p>
                   </div>
                 ) : (
@@ -214,9 +216,7 @@ function SignInPageClient() {
                       </div>
                     )}
                     <div className="mb-6">
-                      <label className="block text-[10px] uppercase tracking-[0.22em] text-slate-400 mb-2">
-                        Email Address
-                      </label>
+                      <label className="block text-[10px] uppercase tracking-[0.22em] text-slate-400 mb-2">Email Address</label>
                       <input
                         type="email"
                         value={resetEmail}
@@ -239,7 +239,7 @@ function SignInPageClient() {
               </>
             )}
 
-            {/* ── Sign in view ──────────────────────────────────────────── */}
+            {/* ── Sign in ───────────────────────────────────────────────── */}
             {view === "signin" && (
               <>
                 <p className="text-[10px] uppercase tracking-[0.22em] text-slate-400 mb-4">
@@ -263,7 +263,6 @@ function SignInPageClient() {
                   </div>
                 )}
 
-                {/* Google button */}
                 <button
                   onClick={handleGoogle}
                   disabled={loading}
@@ -280,14 +279,12 @@ function SignInPageClient() {
                   </span>
                 </button>
 
-                {/* Divider */}
                 <div className="flex items-center gap-4 mb-5">
                   <div className="flex-1 h-px bg-slate-100" />
                   <span className="text-[10px] uppercase tracking-[0.18em] text-slate-300">or</span>
                   <div className="flex-1 h-px bg-slate-100" />
                 </div>
 
-                {/* Email + password */}
                 <div className="space-y-5 mb-5">
                   <div>
                     <label className="block text-[10px] uppercase tracking-[0.22em] text-slate-400 mb-2">Email Address</label>
@@ -341,7 +338,6 @@ function SignInPageClient() {
                   {loading ? "Signing in…" : "Sign In"}
                 </button>
 
-                {/* Register CTA */}
                 <p className="text-center text-sm text-slate-500 mb-4">
                   No account?{" "}
                   <a href="/register" className="text-[#2c5aa0] hover:underline text-[11px] uppercase tracking-[0.14em]">
@@ -349,12 +345,9 @@ function SignInPageClient() {
                   </a>
                 </p>
 
-                {/* ── Admin access ──────────────────────────────────────── */}
                 <div className="relative flex items-center gap-3 my-4">
                   <div className="flex-1 h-px bg-slate-100" />
-                  <span className="text-[9px] uppercase tracking-[0.22em] text-slate-300 shrink-0">
-                    Restricted access
-                  </span>
+                  <span className="text-[9px] uppercase tracking-[0.22em] text-slate-300 shrink-0">Restricted access</span>
                   <div className="flex-1 h-px bg-slate-100" />
                 </div>
 

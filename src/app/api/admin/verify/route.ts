@@ -19,7 +19,7 @@ function getClientIP(req: NextRequest): string {
 }
 
 function getAllowedEmails(): string[] {
-  return (process.env.ADMIN_EMAILS ?? "")
+  return (process.env.NEXT_PUBLIC_ADMIN_EMAILS ?? "")
     .split(",")
     .map((e) => e.trim().toLowerCase())
     .filter(Boolean);
