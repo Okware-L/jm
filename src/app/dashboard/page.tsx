@@ -141,8 +141,8 @@ export default function DashboardPage() {
     return <SuspendedScreen />;
   }
 
-  // Approved — route to role dashboard
-  if (state === "approved" && profile) {
+  // Active/approved — route to role dashboard
+  if ((state === "approved" || state === "active") && profile) {
     switch (profile.role) {
       case "company":           return <CompanyDashboard profile={profile} />;
       case "worker":            return <WorkerDashboard profile={profile} />;

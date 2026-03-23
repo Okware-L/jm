@@ -24,10 +24,12 @@ export type UserRole =
   | "company"
   | "worker"
   | "client"
+  | "superadmin"
   | "funding_recipient"
   | null;
 
 export type UserStatus =
+  | "active"
   | "pending"
   | "approved"
   | "rejected"
@@ -54,6 +56,7 @@ export type AuthState =
   | "loading"
   | "unauthenticated"
   | "no_profile"
+  | "active"
   | "pending"
   | "approved"
   | "rejected"
@@ -84,7 +87,7 @@ export function useAuthState() {
       }
       const data = snap.data() as UserProfile;
       setProfile({ ...data, uid: firebaseUser.uid });
-      setState((data.status as AuthState) ?? "pending");
+      setState((data.status as AuthState) ?? "approved");
     });
     return () => unsub();
   }, [auth, db]);
@@ -150,7 +153,7 @@ export async function createUserProfile(
   const db = getFirestore();
   await setDoc(doc(db, "users", uid), {
     ...data,
-    status: data.status ?? "pending",
+    status: data.status ?? "approved",
     createdAt: Timestamp.now(),
     updatedAt: Timestamp.now(),
   });
@@ -181,5 +184,6 @@ export const ROLE_LABELS: Record<NonNullable<UserRole>, string> = {
   company:           "Company",
   worker:            "Account Manager",
   client:            "Client",
+  superadmin:        "Superadmin",
   funding_recipient: "Funding Recipient",
 };

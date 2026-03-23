@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { createUserProfile } from "../../../lib/auth";
 import AuthPanel from "../../../components/AuthPanel";
-import { SuccessScreen } from "../company/page";
+import RegistrationSuccessScreen from "../../../components/RegistrationSuccessScreen";
 import {  db } from "../../../../firebseConfig";
 
 
@@ -116,7 +116,7 @@ export default function FundingRegisterPage() {
       await addDoc(collection(db, "funding_applications"), {
         ...form,
         email,
-        status: "pending",
+        status: "approved",
         ownerId: uid,
         submittedAt: Timestamp.now(),
       });
@@ -124,7 +124,7 @@ export default function FundingRegisterPage() {
         email,
         displayName: `${form.firstName} ${form.lastName}`,
         role: "funding_recipient",
-        status: "pending",
+        status: "approved",
       });
       setSubmitted(true);
     } finally {
@@ -133,7 +133,7 @@ export default function FundingRegisterPage() {
   };
 
   if (submitted) {
-    return <SuccessScreen name={`${form.firstName} ${form.lastName}`} role="Funding Recipient" />;
+    return <RegistrationSuccessScreen name={`${form.firstName} ${form.lastName}`} role="Funding Recipient" />;
   }
 
   return (
@@ -391,7 +391,7 @@ export default function FundingRegisterPage() {
               displayName={`${form.firstName} ${form.lastName}`.trim() || "Funding Recipient"}
               onAuth={handleAuth}
               submitting={submitting}
-              submitLabel="Submit Funding Application"
+              submitLabel="Create Funding Account"
             />
           </div>
         )}

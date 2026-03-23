@@ -43,12 +43,12 @@ const ROLES = [
   {
     key: "worker",
     title: "Account Manager",
-    subtitle: "Invite only",
+    subtitle: "Register directly",
     description:
-      "Account Managers are invited directly by a company admin. If you have an invite link, click it to complete your registration.",
-    bullets: ["Company-assigned role", "Client approvals & management", "Anonymous communication mode"],
-    href: null,
-    locked: true,
+      "Create an account as a worker to manage clients, coordinate requests, and work inside the platform.",
+    bullets: ["Client coordination", "Task and document management", "Platform workspace access"],
+    href: "/register/worker",
+    locked: false,
   },
 ];
 
@@ -114,7 +114,7 @@ export default function RegisterPage() {
             <em style={{ fontStyle: "italic", color: "#2c5aa0" }}>Community Hub</em>
           </h1>
           <p className="text-sm text-slate-500 leading-relaxed">
-            Select your role below and complete the registration form. You&apos;ll create your account at the end of the form — no sign-in required upfront.
+            Select your role below and complete the registration form. Your account will be created with the role you choose.
           </p>
         </div>
 
@@ -144,11 +144,6 @@ export default function RegisterPage() {
                     {role.subtitle}
                   </p>
                 </div>
-                {role.locked && (
-                  <span className="text-[9px] uppercase tracking-[0.18em] border border-slate-200 text-slate-400 px-2 py-1 shrink-0">
-                    Invite only
-                  </span>
-                )}
               </div>
 
               <p className="text-sm text-slate-500 leading-relaxed mb-5 flex-1">
@@ -172,25 +167,19 @@ export default function RegisterPage() {
                 ))}
               </ul>
 
-              {role.locked ? (
-                <p className="text-[11px] uppercase tracking-[0.16em] text-slate-300">
-                  Check your email for an invite link
-                </p>
-              ) : (
-                <a
-                  href={role.href!}
-                  className="inline-block px-6 py-2.5 text-[11px] uppercase tracking-[0.18em] border border-[#2c5aa0] text-[#2c5aa0] hover:bg-[#2c5aa0] hover:text-white transition-all duration-300 text-center"
-                >
-                  Register as {role.title}
-                </a>
-              )}
+              <a
+                href={role.href!}
+                className="inline-block px-6 py-2.5 text-[11px] uppercase tracking-[0.18em] border border-[#2c5aa0] text-[#2c5aa0] hover:bg-[#2c5aa0] hover:text-white transition-all duration-300 text-center"
+              >
+                Register as {role.title}
+              </a>
             </div>
           ))}
         </div>
 
         {/* Footer note */}
         <p className="text-center text-xs text-slate-400 mt-8">
-          Registrations are reviewed and approved within 24–48 hours.
+          Superadmin access is managed separately and is not available through public registration.
         </p>
       </div>
     </div>

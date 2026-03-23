@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import {  addDoc, collection, Timestamp } from "firebase/firestore";
 import { createUserProfile } from "../../../lib/auth";
 import AuthPanel from "../../../components/AuthPanel";
-import { SuccessScreen } from "../company/page";
+import RegistrationSuccessScreen from "../../../components/RegistrationSuccessScreen";
 import {  db } from "../../../../firebseConfig";
 
 
@@ -90,7 +90,7 @@ export default function ClientRegisterPage() {
         country: form.country,
         serviceNeeds: form.serviceNeeds,
         description: form.description,
-        status: "pending",
+        status: "approved",
         ownerId: uid,
         submittedAt: Timestamp.now(),
       });
@@ -98,7 +98,7 @@ export default function ClientRegisterPage() {
         email,
         displayName: `${form.firstName} ${form.lastName}`,
         role: "client",
-        status: "pending",
+        status: "approved",
       });
       setSubmitted(true);
     } finally {
@@ -107,7 +107,7 @@ export default function ClientRegisterPage() {
   };
 
   if (submitted) {
-    return <SuccessScreen name={`${form.firstName} ${form.lastName}`} role="Client" />;
+    return <RegistrationSuccessScreen name={`${form.firstName} ${form.lastName}`} role="Client" />;
   }
 
   return (
@@ -141,7 +141,7 @@ export default function ClientRegisterPage() {
             <em style={{ fontStyle: "italic", color: "#2c5aa0" }}>yourself</em>
           </h1>
           <p className="text-sm text-slate-500 leading-relaxed">
-            Fill in your details below, then create your account at the end. You&apos;ll be assigned a dedicated account manager once approved.
+            Fill in your details below, then create your account at the end. Your client profile will be available immediately after registration.
           </p>
         </div>
 
@@ -235,7 +235,7 @@ export default function ClientRegisterPage() {
             displayName={`${form.firstName} ${form.lastName}`.trim() || "Client"}
             onAuth={handleAuth}
             submitting={submitting}
-            submitLabel="Submit Client Registration"
+            submitLabel="Create Client Account"
           />
         </div>
       </div>

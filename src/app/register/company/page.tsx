@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { createUserProfile } from "../../../lib/auth";
 import AuthPanel from "../../../components/AuthPanel";
+import RegistrationSuccessScreen from "../../../components/RegistrationSuccessScreen";
 import {  db } from "../../../../firebseConfig";
 
 
@@ -109,7 +110,7 @@ export default function CompanyRegisterPage() {
         country: form.country,
         fundingNeeds: form.fundingNeeds,
         fundingAmount: form.fundingAmount,
-        status: "pending",
+        status: "approved",
         ownerId: uid,
         documentsUploaded: 0,
         documentsRequired: 5,
@@ -119,7 +120,7 @@ export default function CompanyRegisterPage() {
         email,
         displayName: form.companyName,
         role: "company",
-        status: "pending",
+        status: "approved",
         companyId: companyRef.id,
         companyName: form.companyName,
         registrationNumber: form.registrationNumber,
@@ -132,7 +133,7 @@ export default function CompanyRegisterPage() {
   };
 
   if (submitted) {
-    return <SuccessScreen name={form.companyName} role="Company" />;
+    return <RegistrationSuccessScreen name={form.companyName} role="Company" />;
   }
 
   return (
@@ -306,7 +307,7 @@ export default function CompanyRegisterPage() {
               displayName={form.companyName}
               onAuth={handleAuth}
               submitting={submitting}
-              submitLabel="Submit Company Application"
+              submitLabel="Create Company Account"
             />
           </div>
         )}
@@ -348,54 +349,6 @@ export default function CompanyRegisterPage() {
             </button>
           </div>
         )}
-      </div>
-    </div>
-  );
-}
-
-// ── Shared success screen (exported for re-use) ───────────────────────────────
-export function SuccessScreen({ name, role }: { name: string; role: string }) {
-  return (
-    <div
-      className="min-h-screen bg-white flex items-center justify-center px-6"
-      style={{ fontFamily: "'DM Sans', sans-serif" }}
-    >
-      <div className="max-w-md text-center">
-        <div className="w-12 h-12 border border-[#2c5aa0] flex items-center justify-center mx-auto mb-8">
-          <svg className="w-5 h-5 text-[#2c5aa0]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-        <p className="text-[10px] uppercase tracking-[0.22em] text-slate-400 mb-4">Registration Submitted</p>
-        <h2
-          className="text-slate-900 mb-4 leading-tight tracking-[-0.02em]"
-          style={{ fontFamily: "'Cormorant', serif", fontSize: "2.2rem", fontWeight: 300 }}
-        >
-          Thank you,<br />
-          <em style={{ fontStyle: "italic", color: "#2c5aa0" }}>{name}</em>
-        </h2>
-        <p className="text-sm text-slate-500 leading-relaxed mb-8">
-          Your <strong>{role}</strong> application is under review. You&apos;ll receive an email within 24–48 hours once your application has been approved.
-        </p>
-        <div className="border border-slate-200 px-5 py-4 mb-8 text-left">
-          <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400 mb-3">What happens next</p>
-          {[
-            "A worker will verify your documents",
-            "You'll receive an approval notification",
-            "Your dashboard will be unlocked",
-          ].map((s, i) => (
-            <div key={s} className="flex items-start gap-3 mt-2.5">
-              <span className="text-[10px] text-[#2c5aa0] mt-0.5 font-mono">0{i + 1}</span>
-              <span className="text-sm text-slate-600">{s}</span>
-            </div>
-          ))}
-        </div>
-        <a
-          href="/signin"
-          className="inline-block px-7 py-2.5 text-[11px] uppercase tracking-[0.18em] border border-[#2c5aa0] text-[#2c5aa0] hover:bg-[#2c5aa0] hover:text-white transition-all duration-300"
-        >
-          Return to Sign In
-        </a>
       </div>
     </div>
   );

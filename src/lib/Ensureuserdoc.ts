@@ -2,15 +2,17 @@
 //
 // Called on every sign-in (email, Google, or admin modal).
 // • If the user doc already exists → returns it untouched.
-// • If it does NOT exist → creates it with the correct role.
+// • If it does NOT exist:
+//   - admins get a superadmin doc created automatically
+//   - everyone else is treated as unregistered
 //
 // Role detection order:
 //   1. If the email matches ADMIN_EMAILS env var → superadmin
-//   2. Otherwise → "pending_registration" (redirected to /register to pick role)
+//   2. Otherwise → no profile exists yet
 //
-// This means your two manually-created Firebase Auth admins get their
-// Firestore doc auto-created with role: "superadmin" on first sign-in.
-// Every other new user gets a skeleton doc and is sent to /register.
+// This means manually-created Firebase Auth admins get their Firestore doc
+// auto-created with role: "superadmin" on first sign-in. Every other user
+// must already have completed registration and have a Firestore profile.
 
 import {
   doc,
@@ -24,18 +26,17 @@ import { db } from "../../firebseConfig"; // adjust path if needed
 // ── Types ─────────────────────────────────────────────────────────────────────
 export type UserRole =
   | "superadmin"
-  | "company_admin"
+  | "company"
   | "worker"
   | "client"
-  | "funding_recipient"
-  | "pending_registration";
+  | "funding_recipient";
 
 export interface UserDoc {
   uid:           string;
   email:         string;
   displayName:   string;
   role:          UserRole;
-  status:        "active" | "pending" | "suspended" | "rejected";
+  status:        "active" | "approved" | "pending" | "suspended" | "rejected";
   companyId:     string | null;
   walletAddress: string | null;
   anonymousMode: boolean;
@@ -64,7 +65,7 @@ function getAdminEmails(): Set<string> {
 }
 
 // ── Main function ─────────────────────────────────────────────────────────────
-export async function ensureUserDoc(user: User): Promise<UserDoc> {
+export async function ensureUserDoc(user: User): Promise<UserDoc | null> {
   const ref  = doc(db, "users", user.uid);
   const snap = await getDoc(ref);
 
@@ -87,12 +88,16 @@ export async function ensureUserDoc(user: User): Promise<UserDoc> {
   const emailLower  = (user.email ?? "").toLowerCase();
   const isSuperAdmin = adminEmails.has(emailLower);
 
+  if (!isSuperAdmin) {
+    return null;
+  }
+
   const newDoc: UserDoc = {
     uid:           user.uid,
     email:         user.email ?? "",
     displayName:   user.displayName ?? user.email?.split("@")[0] ?? "User",
-    role:          isSuperAdmin ? "superadmin" : "pending_registration",
-    status:        isSuperAdmin ? "active"     : "pending",
+    role:          "superadmin",
+    status:        "active",
     companyId:     null,
     walletAddress: null,
     anonymousMode: false,
@@ -115,11 +120,10 @@ export async function ensureUserDoc(user: User): Promise<UserDoc> {
 export function roleToRoute(role: UserRole | string | undefined, fallback = "/dashboard"): string {
   switch (role) {
     case "superadmin":          return "/admin";
-    case "company_admin":       return "/dashboard/company";
-    case "worker":              return "/dashboard/worker";
-    case "client":              return "/dashboard/client";
-    case "funding_recipient":   return "/dashboard/funding";
-    case "pending_registration":return "/register";
+    case "company":             return "/dashboard";
+    case "worker":              return "/dashboard";
+    case "client":              return "/dashboard";
+    case "funding_recipient":   return "/dashboard";
     default:                    return fallback;
   }
 }

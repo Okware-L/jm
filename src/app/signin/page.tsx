@@ -2,7 +2,7 @@
 
 import React, { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../../firebseConfig";
 import {
   authWithGoogle,
@@ -51,9 +51,15 @@ function SignInPageClient() {
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        // ensureUserDoc creates the doc if missing, returns role
         const userDoc = await ensureUserDoc(user);
-        router.replace(roleToRoute(userDoc.role, from));
+        if (userDoc) {
+          router.replace(roleToRoute(userDoc.role, from));
+          return;
+        }
+
+        await signOut(auth).catch(() => {});
+        setError("No user found. Please register first.");
+        setChecking(false);
       } else {
         setChecking(false);
       }
@@ -66,6 +72,10 @@ function SignInPageClient() {
     const user = auth.currentUser;
     if (!user) return;
     const userDoc = await ensureUserDoc(user);
+    if (!userDoc) {
+      await signOut(auth).catch(() => {});
+      throw new Error("no-user-profile");
+    }
     router.replace(roleToRoute(userDoc.role, from));
   };
 
@@ -77,8 +87,11 @@ function SignInPageClient() {
       await afterAuth();
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "";
-      if (!msg.includes("popup-closed"))
+      if (msg.includes("no-user-profile")) {
+        setError("No user found. Please register first.");
+      } else if (!msg.includes("popup-closed")) {
         setError("Google sign-in failed. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -94,8 +107,9 @@ function SignInPageClient() {
       await afterAuth();
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "";
-      if (
-        msg.includes("user-not-found") ||
+      if (msg.includes("no-user-profile") || msg.includes("user-not-found")) {
+        setError("No user found. Please register first.");
+      } else if (
         msg.includes("wrong-password") ||
         msg.includes("invalid-credential")
       ) {
@@ -213,6 +227,11 @@ function SignInPageClient() {
                     {error && (
                       <div className="border border-red-200 bg-red-50 px-4 py-3 mb-5">
                         <p className="text-sm text-red-600">{error}</p>
+                        {error.includes("Please register first.") && (
+                          <a href="/register" className="mt-2 inline-block text-sm text-[#2c5aa0] hover:underline">
+                            Go to registration
+                          </a>
+                        )}
                       </div>
                     )}
                     <div className="mb-6">
@@ -260,6 +279,11 @@ function SignInPageClient() {
                 {error && (
                   <div className="border border-red-200 bg-red-50 px-4 py-3 mb-6">
                     <p className="text-sm text-red-600">{error}</p>
+                    {error.includes("Please register first.") && (
+                      <a href="/register" className="mt-2 inline-block text-sm text-[#2c5aa0] hover:underline">
+                        Go to registration
+                      </a>
+                    )}
                   </div>
                 )}
 
