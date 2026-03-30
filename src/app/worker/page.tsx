@@ -3,23 +3,38 @@
 import RoleWorkspaceShell from "@/components/RoleWorkspaceShell";
 import type { UserProfile } from "@/lib/auth";
 import { useRequireRole } from "@/lib/auth";
+import { useWorkspaceActions } from "@/lib/workspace-actions";
 import { useWorkspaceData } from "@/lib/workspace-data";
 
-export default function AdminPage() {
-  const { state, profile } = useRequireRole(["superadmin"]);
+export default function WorkerPage() {
+  const { state, profile } = useRequireRole(["worker"]);
 
   if (state === "loading" || !profile) {
-    return <LoadingScreen label="Opening superadmin workspace" />;
+    return <LoadingScreen label="Opening worker console" />;
   }
 
-  return <AdminWorkspace profile={profile} />;
+  return <WorkerWorkspace profile={profile} />;
 }
 
-function AdminWorkspace({ profile }: { profile: UserProfile }) {
-  const { workspace, loading } = useWorkspaceData("superadmin", profile);
+function WorkerWorkspace({ profile }: { profile: UserProfile }) {
+  const { workspace, loading, reload } = useWorkspaceData("worker", profile);
+  const {
+    busyAction,
+    notice,
+    dialog,
+    closeDialog,
+    submitDialog,
+    updateDialogValue,
+    handlePrimaryAction,
+    handleTableAction,
+  } = useWorkspaceActions({
+    role: "worker",
+    profile,
+    reload,
+  });
 
   if (loading) {
-    return <LoadingScreen label="Loading live platform oversight" />;
+    return <LoadingScreen label="Loading live worker console" />;
   }
 
   return (
@@ -33,6 +48,15 @@ function AdminWorkspace({ profile }: { profile: UserProfile }) {
       tables={workspace.tables}
       sidebarGroups={workspace.sidebarGroups}
       primaryActions={workspace.primaryActions}
+      onPrimaryAction={handlePrimaryAction}
+      onTableAction={handleTableAction}
+      busyAction={busyAction}
+      actionNotice={notice}
+      actionDialog={dialog}
+      onDialogClose={closeDialog}
+      onDialogSubmit={submitDialog}
+      onDialogValueChange={updateDialogValue}
+      showOrganizationSwitcher
     />
   );
 }

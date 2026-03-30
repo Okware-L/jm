@@ -2,11 +2,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { addDoc, collection, Timestamp } from "firebase/firestore";
-import { createUserProfile } from "../../../lib/auth";
 import AuthPanel from "../../../components/AuthPanel";
 import RegistrationSuccessScreen from "../../../components/RegistrationSuccessScreen";
-import {  db } from "../../../../firebseConfig";
+import { createFundingRecipientAccount } from "../../../lib/platform";
 
 
 const INPUT =
@@ -39,7 +37,7 @@ const FUNDING_SECTORS = [
   "Community Growth", "Education", "Renewable Energy", "Any Sector",
 ];
 
-const STEPS = ["Personal Details", "Investment Profile", "KYC & Account"];
+const STEPS = ["Personal Details", "Investment Profile", "KYC & Identity"];
 
 interface FormData {
   firstName: string;
@@ -113,18 +111,22 @@ export default function FundingRegisterPage() {
     if (!validateStep()) throw new Error("Please fix the form errors above.");
     setSubmitting(true);
     try {
-      await addDoc(collection(db, "funding_applications"), {
-        ...form,
-        email,
-        status: "approved",
-        ownerId: uid,
-        submittedAt: Timestamp.now(),
-      });
-      await createUserProfile(uid, {
+      await createFundingRecipientAccount({
+        uid,
         email,
         displayName: `${form.firstName} ${form.lastName}`,
-        role: "funding_recipient",
-        status: "approved",
+        firstName: form.firstName,
+        lastName: form.lastName,
+        phone: form.phone,
+        city: form.city,
+        country: form.country,
+        idType: form.idType,
+        idNumber: form.idNumber,
+        investmentBackground: form.investmentBackground,
+        yieldPreference: form.yieldPreference,
+        fundingSectors: form.fundingSectors,
+        initialStakeAmount: form.initialStakeAmount,
+        sourceOfFunds: form.sourceOfFunds,
       });
       setSubmitted(true);
     } finally {
@@ -133,7 +135,7 @@ export default function FundingRegisterPage() {
   };
 
   if (submitted) {
-    return <RegistrationSuccessScreen name={`${form.firstName} ${form.lastName}`} role="Funding Recipient" />;
+    return <RegistrationSuccessScreen name={`${form.firstName} ${form.lastName}`} role="Funding Recipient" href="/funding" />;
   }
 
   return (
@@ -392,6 +394,7 @@ export default function FundingRegisterPage() {
               onAuth={handleAuth}
               submitting={submitting}
               submitLabel="Create Funding Account"
+              roleLabel="funding workspace"
             />
           </div>
         )}

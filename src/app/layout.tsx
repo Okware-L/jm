@@ -1,18 +1,9 @@
-"use client"
-
-
-
 import React from "react";
-
-// import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/ui/sonner";
-import { ThirdwebProvider } from "thirdweb/react";
-import Navbar from "@/components/Navbar";
 import { cormorant, dmSans } from "@/lib/Fonts";
-import { CursorProvider } from "@/components/CursorProvider";
-import { usePathname } from "next/navigation";
+import AppChrome from "@/components/AppChrome";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,23 +19,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
-    const hideNavRoutes = ["/register", "/signin", "/admin", "/dashboard", "/register/funding", "/register/company", "/register/worker", "/register/client", "/art"];
-
-  const shouldHideNav = hideNavRoutes.includes(pathname);
-
   return (
     <html lang="en"
      className={`${cormorant.variable} ${dmSans.variable}`}
      >
       <body className={inter.className}>
         <link rel="icon" href="/jmwhite.svg" sizes="any" />
-        <ThirdwebProvider>
-          {!shouldHideNav && <Navbar />}
-          <CursorProvider />
-          {children}
-          <Toaster />
-        </ThirdwebProvider>
+        <ClerkProvider>
+          <AppChrome>{children}</AppChrome>
+        </ClerkProvider>
       </body>
     </html>
   );

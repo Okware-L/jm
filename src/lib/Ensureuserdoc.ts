@@ -15,18 +15,22 @@
 // must already have completed registration and have a Firestore profile.
 
 import {
+  collection,
   doc,
   getDoc,
+  getDocs,
+  query,
   setDoc,
   serverTimestamp,
+  updateDoc,
+  where,
 } from "firebase/firestore";
-import { User } from "firebase/auth";
 import { db } from "../../firebseConfig"; // adjust path if needed
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 export type UserRole =
   | "superadmin"
-  | "company"
+  | "company_admin"
   | "worker"
   | "client"
   | "funding_recipient";
@@ -36,8 +40,11 @@ export interface UserDoc {
   email:         string;
   displayName:   string;
   role:          UserRole;
+  platformRole:  "superadmin" | "company_user" | "client" | "funding_recipient";
+  orgRole:       "org:admin" | "org:worker" | null;
   status:        "active" | "approved" | "pending" | "suspended" | "rejected";
   companyId:     string | null;
+  clerkOrganizationId: string | null;
   walletAddress: string | null;
   anonymousMode: boolean;
   createdAt:     ReturnType<typeof serverTimestamp> | Date;
@@ -65,8 +72,15 @@ function getAdminEmails(): Set<string> {
 }
 
 // ── Main function ─────────────────────────────────────────────────────────────
-export async function ensureUserDoc(user: User): Promise<UserDoc | null> {
-  const ref  = doc(db, "users", user.uid);
+interface IdentityInput {
+  id: string;
+  email: string;
+  displayName?: string | null;
+  imageUrl?: string | null;
+}
+
+export async function ensureUserDoc(user: IdentityInput): Promise<UserDoc | null> {
+  const ref  = doc(db, "users", user.id);
   const snap = await getDoc(ref);
 
   // ── Doc already exists — just update lastLoginAt and return ───────────────
@@ -89,19 +103,92 @@ export async function ensureUserDoc(user: User): Promise<UserDoc | null> {
   const isSuperAdmin = adminEmails.has(emailLower);
 
   if (!isSuperAdmin) {
-    return null;
+    const membershipSnapshot = await getDocs(
+      query(collection(db, "companyMemberships"), where("inviteEmail", "==", user.email ?? ""))
+    );
+
+    const invitedMembership = membershipSnapshot.docs[0];
+
+    if (!invitedMembership) {
+      return null;
+    }
+
+    const membershipData = invitedMembership.data() as {
+      companyId: string;
+      clerkOrganizationId?: string | null;
+      orgRole?: "org:admin" | "org:worker" | null;
+      role?: "company_admin" | "worker";
+    };
+
+    const workerSnapshot = await getDocs(
+      query(
+        collection(db, "workers"),
+        where("companyId", "==", membershipData.companyId),
+        where("email", "==", user.email ?? "")
+      )
+    );
+
+    const invitedWorker = workerSnapshot.docs[0];
+    const derivedOrgRole =
+      membershipData.orgRole ?? (membershipData.role === "company_admin" ? "org:admin" : "org:worker");
+    const derivedRole = derivedOrgRole === "org:admin" ? "company_admin" : "worker";
+
+    const invitedDoc: UserDoc = {
+      uid: user.id,
+      email: user.email ?? "",
+      displayName: user.displayName ?? user.email?.split("@")[0] ?? "User",
+      role: derivedRole,
+      platformRole: "company_user",
+      orgRole: derivedOrgRole,
+      status: "active",
+      companyId: membershipData.companyId,
+      clerkOrganizationId: membershipData.clerkOrganizationId ?? null,
+      walletAddress: null,
+      anonymousMode: false,
+      photoURL: user.imageUrl ?? null,
+      createdAt: serverTimestamp(),
+      lastLoginAt: serverTimestamp(),
+    };
+
+    await setDoc(ref, invitedDoc);
+
+    await updateDoc(invitedMembership.ref, {
+      userId: user.id,
+      status: "active",
+      claimedAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
+    });
+
+    if (invitedWorker) {
+      await updateDoc(invitedWorker.ref, {
+        userId: user.id,
+        status: "active",
+        inviteStatus: "accepted",
+        clerkOrganizationId: membershipData.clerkOrganizationId ?? null,
+        updatedAt: serverTimestamp(),
+      });
+    }
+
+    return {
+      ...invitedDoc,
+      createdAt: new Date(),
+      lastLoginAt: new Date(),
+    };
   }
 
   const newDoc: UserDoc = {
-    uid:           user.uid,
+    uid:           user.id,
     email:         user.email ?? "",
     displayName:   user.displayName ?? user.email?.split("@")[0] ?? "User",
     role:          "superadmin",
+    platformRole:  "superadmin",
+    orgRole:       null,
     status:        "active",
     companyId:     null,
+    clerkOrganizationId: null,
     walletAddress: null,
     anonymousMode: false,
-    photoURL:      user.photoURL ?? null,
+    photoURL:      user.imageUrl ?? null,
     createdAt:     serverTimestamp(),
     lastLoginAt:   serverTimestamp(),
   };
@@ -120,10 +207,10 @@ export async function ensureUserDoc(user: User): Promise<UserDoc | null> {
 export function roleToRoute(role: UserRole | string | undefined, fallback = "/dashboard"): string {
   switch (role) {
     case "superadmin":          return "/admin";
-    case "company":             return "/dashboard";
-    case "worker":              return "/dashboard";
-    case "client":              return "/dashboard";
-    case "funding_recipient":   return "/dashboard";
+    case "company_admin":       return "/company";
+    case "worker":              return "/worker";
+    case "client":              return "/client";
+    case "funding_recipient":   return "/funding";
     default:                    return fallback;
   }
 }

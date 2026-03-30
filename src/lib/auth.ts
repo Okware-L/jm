@@ -1,35 +1,29 @@
-// lib/auth.ts
 import { useEffect, useState } from "react";
-import {
-  getAuth,
-  onAuthStateChanged,
-  User,
-  signInWithPopup,
-  GoogleAuthProvider,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  sendPasswordResetEmail,
-  updateProfile,
-} from "firebase/auth";
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc,
-  Timestamp,
-} from "firebase/firestore";
+import { useAuth, useClerk, useUser } from "@clerk/nextjs";
+import { collection, doc, getDoc, getDocs, query, where, type Timestamp } from "firebase/firestore";
 import { useRouter } from "next/navigation";
+import {
+  deriveEffectiveUserRole,
+  normalizeOrgRole,
+  normalizePlatformRole,
+} from "./domain-access";
+import { db } from "../../firebseConfig";
+import { ensureUserDoc } from "./Ensureuserdoc";
 
 export type UserRole =
-  | "company"
+  | "company_admin"
   | "worker"
   | "client"
   | "superadmin"
   | "funding_recipient"
   | null;
 
+export type PlatformRole = "company_user" | "client" | "superadmin" | "funding_recipient" | null;
+export type OrgMembershipRole = "org:admin" | "org:worker" | null;
+
 export type UserStatus =
   | "active"
+  | "registered"
   | "pending"
   | "approved"
   | "rejected"
@@ -42,9 +36,12 @@ export interface UserProfile {
   displayName: string;
   photoURL?: string;
   role: UserRole;
+  platformRole?: PlatformRole;
+  orgRole?: OrgMembershipRole;
   status: UserStatus;
   companyId?: string;
-  inviteToken?: string;
+  entityId?: string;
+  clerkOrganizationId?: string | null;
   createdAt: Timestamp | null;
   updatedAt: Timestamp | null;
   companyName?: string;
@@ -57,6 +54,7 @@ export type AuthState =
   | "unauthenticated"
   | "no_profile"
   | "active"
+  | "registered"
   | "pending"
   | "approved"
   | "rejected"
@@ -66,31 +64,95 @@ export type AuthState =
 
 export function useAuthState() {
   const [state, setState] = useState<AuthState>("loading");
-  const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
-  const auth = getAuth();
-  const db = getFirestore();
+  const { isLoaded, isSignedIn, orgId, orgRole } = useAuth();
+  const { user } = useUser();
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
-      if (!firebaseUser) {
-        setState("unauthenticated");
-        setUser(null);
-        setProfile(null);
+    let cancelled = false;
+
+    async function load() {
+      if (!isLoaded) {
+        if (!cancelled) {
+          setState("loading");
+        }
         return;
       }
-      setUser(firebaseUser);
-      const snap = await getDoc(doc(db, "users", firebaseUser.uid));
+
+      if (!isSignedIn || !user) {
+        if (!cancelled) {
+          setState("unauthenticated");
+          setProfile(null);
+        }
+        return;
+      }
+
+      await ensureUserDoc({
+        id: user.id,
+        email: user.primaryEmailAddress?.emailAddress || user.emailAddresses[0]?.emailAddress || "",
+        displayName: user.fullName,
+        imageUrl: user.imageUrl,
+      });
+
+      const snap = await getDoc(doc(db, "users", user.id));
       if (!snap.exists()) {
-        setState("no_profile");
+        if (!cancelled) {
+          setState("no_profile");
+          setProfile(null);
+        }
         return;
       }
-      const data = snap.data() as UserProfile;
-      setProfile({ ...data, uid: firebaseUser.uid });
-      setState((data.status as AuthState) ?? "approved");
-    });
-    return () => unsub();
-  }, [auth, db]);
+      const data = snap.data() as Partial<UserProfile> & {
+        role?: string | null;
+        platformRole?: string | null;
+        orgRole?: string | null;
+        clerkOrganizationId?: string | null;
+      };
+      const platformRole = normalizePlatformRole(data.platformRole ?? data.role);
+      const membershipRole = normalizeOrgRole(orgRole ?? data.orgRole ?? data.role);
+
+      let resolvedCompanyId = data.companyId;
+
+      if (orgId) {
+        const companySnapshot = await getDocs(
+          query(collection(db, "companies"), where("clerkOrganizationId", "==", orgId))
+        );
+
+        const activeCompany = companySnapshot.docs[0]?.data() as { id?: string } | undefined;
+        resolvedCompanyId = activeCompany?.id || resolvedCompanyId;
+      }
+
+      const normalizedProfile: UserProfile = {
+        uid: user.id,
+        email: data.email || user.primaryEmailAddress?.emailAddress || "",
+        displayName: data.displayName || user.fullName || user.username || "User",
+        photoURL: data.photoURL || user.imageUrl || undefined,
+        role: deriveEffectiveUserRole(platformRole, membershipRole),
+        platformRole,
+        orgRole: membershipRole,
+        status: (data.status as UserStatus) ?? "active",
+        companyId: resolvedCompanyId,
+        entityId: data.entityId,
+        clerkOrganizationId: orgId ?? data.clerkOrganizationId ?? null,
+        createdAt: (data.createdAt as Timestamp | null) ?? null,
+        updatedAt: (data.updatedAt as Timestamp | null) ?? null,
+        companyName: data.companyName,
+        registrationNumber: data.registrationNumber,
+        industry: data.industry,
+      };
+
+      if (!cancelled) {
+        setProfile(normalizedProfile);
+        setState((normalizedProfile.status as AuthState) ?? "active");
+      }
+    }
+
+    void load();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isLoaded, isSignedIn, orgId, orgRole, user]);
 
   return { state, user, profile };
 }
@@ -108,82 +170,34 @@ export function useRequireAuth() {
   return { state, user, profile };
 }
 
-// ── Auth helpers ──────────────────────────────────────────────────────────────
+export function useRequireRole(allowedRoles: NonNullable<UserRole>[]) {
+  const authState = useRequireAuth();
+  const router = useRouter();
 
-/** Google OAuth — returns uid */
-export async function authWithGoogle(): Promise<string> {
-  const auth = getAuth();
-  const result = await signInWithPopup(auth, new GoogleAuthProvider());
-  return result.user.uid;
-}
+  useEffect(() => {
+    if (authState.state === "loading" || !authState.profile) return;
+    const effectiveRole = authState.profile.role;
 
-/** Create email/password account — returns uid */
-export async function createEmailAccount(
-  email: string,
-  password: string,
-  displayName: string
-): Promise<string> {
-  const auth = getAuth();
-  const result = await createUserWithEmailAndPassword(auth, email, password);
-  await updateProfile(result.user, { displayName });
-  return result.user.uid;
-}
+    if (!effectiveRole || !allowedRoles.includes(effectiveRole as NonNullable<UserRole>)) {
+      router.replace("/dashboard");
+    }
+  }, [allowedRoles, authState.profile, authState.state, router]);
 
-/** Sign in with email/password — returns uid */
-export async function signInWithEmail(
-  email: string,
-  password: string
-): Promise<string> {
-  const auth = getAuth();
-  const result = await signInWithEmailAndPassword(auth, email, password);
-  return result.user.uid;
-}
-
-/** Send password reset email */
-export async function resetPassword(email: string): Promise<void> {
-  const auth = getAuth();
-  await sendPasswordResetEmail(auth, email);
-}
-
-/** Write Firestore user profile after auth */
-export async function createUserProfile(
-  uid: string,
-  data: Omit<UserProfile, "uid" | "createdAt" | "updatedAt">
-): Promise<void> {
-  const db = getFirestore();
-  await setDoc(doc(db, "users", uid), {
-    ...data,
-    status: data.status ?? "approved",
-    createdAt: Timestamp.now(),
-    updatedAt: Timestamp.now(),
-  });
-}
-
-/** Generate a worker invite token */
-export async function generateInviteToken(
-  companyId: string,
-  companyName: string,
-  email: string
-): Promise<string> {
-  const db = getFirestore();
-  const token = crypto.randomUUID();
-  await setDoc(doc(db, "worker_invites", token), {
-    companyId,
-    companyName,
-    email,
-    used: false,
-    createdAt: Timestamp.now(),
-    expiresAt: Timestamp.fromDate(
-      new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
-    ),
-  });
-  return token;
+  return authState;
 }
 
 export const ROLE_LABELS: Record<NonNullable<UserRole>, string> = {
-  company:           "Company",
+  company_admin:     "Company Admin",
   worker:            "Account Manager",
   client:            "Client",
   superadmin:        "Superadmin",
   funding_recipient: "Funding Recipient",
 };
+
+export function usePlatformSignOut() {
+  const { signOut } = useClerk();
+
+  return async () => {
+    await signOut({ redirectUrl: "/signin" });
+  };
+}

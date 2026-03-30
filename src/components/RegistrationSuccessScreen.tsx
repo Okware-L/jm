@@ -2,7 +2,15 @@
 
 import React from "react";
 
-export default function RegistrationSuccessScreen({ name, role }: { name: string; role: string }) {
+export default function RegistrationSuccessScreen({
+  name,
+  role,
+  href = "/dashboard",
+}: {
+  name: string;
+  role: string;
+  href?: string;
+}) {
   return (
     <div
       className="min-h-screen bg-white flex items-center justify-center px-6"
@@ -39,7 +47,7 @@ export default function RegistrationSuccessScreen({ name, role }: { name: string
           ))}
         </div>
         <a
-          href="/dashboard"
+          href={href}
           className="inline-block px-7 py-2.5 text-[11px] uppercase tracking-[0.18em] border border-[#2c5aa0] text-[#2c5aa0] hover:bg-[#2c5aa0] hover:text-white transition-all duration-300"
         >
           Go to Dashboard

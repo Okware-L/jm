@@ -1,15 +1,8 @@
-// components/AdminSignInModal.tsx
-//
-// Admin sign-in modal.
-// Credentials are validated entirely server-side via POST /api/admin/verify.
-// No emails, passwords, or IPs are present in this file or the client bundle.
-
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { auth } from "../../../../firebseConfig"; // adjust path if needed
+import { useSignIn } from "@clerk/nextjs";
 
 const INPUT =
   "w-full border-b border-slate-700 focus:border-white bg-transparent text-sm text-white pb-2 outline-none transition-colors duration-300 placeholder:text-slate-500";
@@ -31,57 +24,93 @@ const BLOCK_MESSAGES: Record<string, { title: string; body: string }> = {
   },
 };
 
+function getErrorMessage(error: unknown): string {
+  if (error instanceof Error && error.message) {
+    return error.message;
+  }
+
+  if (typeof error === "object" && error !== null) {
+    const maybeMessage = (error as { message?: unknown }).message;
+    if (typeof maybeMessage === "string" && maybeMessage) {
+      return maybeMessage;
+    }
+
+    const maybeErrors = (error as { errors?: Array<{ message?: string }> }).errors;
+    if (Array.isArray(maybeErrors) && maybeErrors[0]?.message) {
+      return maybeErrors[0].message;
+    }
+  }
+
+  return "";
+}
+
 export default function AdminSignInModal({ onClose }: Props) {
-  const [email, setEmail]       = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
-  const [error, setError]       = useState("");
-  const [loading, setLoading]   = useState(false);
-  const [stage, setStage]       = useState<Stage>("credentials");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [stage, setStage] = useState<Stage>("credentials");
 
   const overlayRef = useRef<HTMLDivElement>(null);
-  const router     = useRouter();
+  const router = useRouter();
+  const { signIn } = useSignIn();
 
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    const handler = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [onClose]);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, []);
 
   const handleSignIn = async () => {
     setError("");
-    if (!email.trim()) { setError("Email is required.");    return; }
-    if (!password)     { setError("Password is required."); return; }
+
+    if (!email.trim()) {
+      setError("Email is required.");
+      return;
+    }
+
+    if (!password) {
+      setError("Password is required.");
+      return;
+    }
 
     setLoading(true);
     setStage("verifying");
 
     try {
-      // ── Step 1: Server validates email + password + IP ──────────────────
-      const res  = await fetch("/api/admin/verify", {
+      const verifyResponse = await fetch("/api/admin/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), password }),
+        body: JSON.stringify({
+          email: email.trim(),
+          password,
+        }),
       });
 
-      const data = await res.json() as { ok: boolean; reason?: string };
+      const verifyData = (await verifyResponse.json()) as { ok: boolean; reason?: string };
 
-      if (!data.ok) {
-        if (data.reason === "ip") {
+      if (!verifyData.ok) {
+        if (verifyData.reason === "ip") {
           setStage("blocked_ip");
-        } else if (data.reason === "email") {
+        } else if (verifyData.reason === "email") {
           setStage("blocked_email");
-        } else if (data.reason === "password") {
+        } else if (verifyData.reason === "password") {
           setStage("credentials");
-          setError("Incorrect password.");
-        } else if (data.reason === "config") {
+          setError("Incorrect admin password.");
+        } else if (verifyData.reason === "config") {
           setStage("credentials");
-          setError("Admin access is not configured. Contact your system administrator.");
+          setError("Admin access is not configured correctly.");
         } else {
           setStage("credentials");
           setError("Access denied. Please try again.");
@@ -90,28 +119,51 @@ export default function AdminSignInModal({ onClose }: Props) {
         return;
       }
 
-      // ── Step 2: Server approved — sign into Firebase ────────────────────
-      await signInWithEmailAndPassword(auth, email.trim(), password);
+      if (!signIn) {
+        throw new Error("Clerk sign-in resource unavailable");
+      }
 
-      // ── Step 3: Redirect ────────────────────────────────────────────────
+      const passwordAttempt = await signIn.password({
+        emailAddress: email.trim(),
+        password,
+      });
+
+      if (passwordAttempt.error) {
+        throw new Error(getErrorMessage(passwordAttempt.error) || "Clerk password sign-in failed");
+      }
+
+      if (signIn.status !== "complete" || !signIn.createdSessionId) {
+        setStage("credentials");
+        setError(`Admin sign-in could not be completed. Clerk status: ${signIn.status}.`);
+        setLoading(false);
+        return;
+      }
+
+      const finalizeResult = await signIn.finalize();
+
+      if (finalizeResult.error) {
+        throw new Error(getErrorMessage(finalizeResult.error) || "Clerk could not finalize the admin session");
+      }
+
       router.push("/admin");
-
+      router.refresh();
+      onClose();
     } catch (err: unknown) {
-      await signOut(auth).catch(() => {});
+      const message = getErrorMessage(err);
       setStage("credentials");
 
-      const msg = err instanceof Error ? err.message : "";
-      if (
-        msg.includes("user-not-found") ||
-        msg.includes("wrong-password") ||
-        msg.includes("invalid-credential")
-      ) {
-        setError("Firebase sign-in failed. Ensure this email has a Firebase Auth account.");
-      } else if (msg.includes("too-many-requests")) {
-        setError("Too many failed attempts. Please try again later.");
+      if (message.toLowerCase().includes("password")) {
+        setError("Clerk rejected the password for this admin account.");
+      } else if (message.toLowerCase().includes("identifier")) {
+        setError("No Clerk admin account was found for this email.");
+      } else if (message.toLowerCase().includes("email")) {
+        setError(message);
+      } else if (message) {
+        setError(message);
       } else {
-        setError("Sign-in failed. Please try again.");
+        setError("Admin sign-in failed. Please try again.");
       }
+    } finally {
       setLoading(false);
     }
   };
@@ -122,12 +174,13 @@ export default function AdminSignInModal({ onClose }: Props) {
   return (
     <div
       ref={overlayRef}
-      onClick={(e) => { if (e.target === overlayRef.current) onClose(); }}
+      onClick={(event) => {
+        if (event.target === overlayRef.current) onClose();
+      }}
       className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm"
       style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
       <div className="relative w-full max-w-sm mx-4 bg-slate-900 border border-slate-700/60 shadow-2xl">
-
         <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-500 to-transparent" />
 
         <button
@@ -141,8 +194,6 @@ export default function AdminSignInModal({ onClose }: Props) {
         </button>
 
         <div className="px-8 py-8">
-
-          {/* ── HARD BLOCK ───────────────────────────────────────────────── */}
           {isBlocked && blockInfo && (
             <div className="text-center py-4">
               <div className="w-12 h-12 rounded-full border border-red-500/30 bg-red-500/10 flex items-center justify-center mx-auto mb-5">
@@ -161,17 +212,13 @@ export default function AdminSignInModal({ onClose }: Props) {
             </div>
           )}
 
-          {/* ── VERIFYING ────────────────────────────────────────────────── */}
           {stage === "verifying" && (
             <div className="text-center py-8">
               <div className="w-8 h-px bg-[#2c5aa0] mx-auto animate-pulse mb-6" />
-              <p className="text-[10px] uppercase tracking-[0.22em] text-slate-400">
-                Verifying credentials…
-              </p>
+              <p className="text-[10px] uppercase tracking-[0.22em] text-slate-400">Verifying credentials…</p>
             </div>
           )}
 
-          {/* ── CREDENTIALS FORM ─────────────────────────────────────────── */}
           {stage === "credentials" && (
             <>
               <div className="mb-7">
@@ -181,9 +228,7 @@ export default function AdminSignInModal({ onClose }: Props) {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
                     </svg>
                   </div>
-                  <p className="text-[9px] uppercase tracking-[0.28em] text-slate-500">
-                    Restricted · jmqafri.org
-                  </p>
+                  <p className="text-[9px] uppercase tracking-[0.28em] text-slate-500">Restricted · jmqafri.org</p>
                 </div>
                 <h2
                   className="text-white leading-tight tracking-[-0.02em]"
@@ -192,7 +237,7 @@ export default function AdminSignInModal({ onClose }: Props) {
                   Admin <em style={{ fontStyle: "italic", color: "#2c5aa0" }}>Access</em>
                 </h2>
                 <p className="text-[11px] text-slate-500 mt-1.5 leading-relaxed">
-                  Authorised personnel only. All access is verified server-side.
+                  Authorised personnel only. Access is checked server-side, then completed through Clerk.
                 </p>
               </div>
 
@@ -210,14 +255,15 @@ export default function AdminSignInModal({ onClose }: Props) {
                   <input
                     type="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && handleSignIn()}
+                    onChange={(event) => setEmail(event.target.value)}
+                    onKeyDown={(event) => event.key === "Enter" && void handleSignIn()}
                     className={INPUT}
                     placeholder="admin@example.com"
                     autoComplete="email"
                     autoFocus
                   />
                 </div>
+
                 <div>
                   <label className="block text-[9px] uppercase tracking-[0.24em] text-slate-500 mb-2">
                     Password
@@ -226,16 +272,16 @@ export default function AdminSignInModal({ onClose }: Props) {
                     <input
                       type={showPass ? "text" : "password"}
                       value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      onKeyDown={(e) => e.key === "Enter" && handleSignIn()}
+                      onChange={(event) => setPassword(event.target.value)}
+                      onKeyDown={(event) => event.key === "Enter" && void handleSignIn()}
                       className={INPUT}
                       placeholder="Admin password"
                       autoComplete="current-password"
                     />
                     <button
                       type="button"
-                      onClick={() => setShowPass((s) => !s)}
-                      className="absolute right-0 bottom-2 text-[9px] uppercase tracking-[0.14em] text-slate-500 hover:text-slate-300 transition-colors"
+                      onClick={() => setShowPass((value) => !value)}
+                      className="absolute right-0 bottom-2 text-[10px] uppercase tracking-[0.14em] text-slate-500 hover:text-slate-300 transition-colors"
                     >
                       {showPass ? "Hide" : "Show"}
                     </button>
@@ -244,21 +290,15 @@ export default function AdminSignInModal({ onClose }: Props) {
               </div>
 
               <button
-                onClick={handleSignIn}
+                onClick={() => void handleSignIn()}
                 disabled={loading}
-                className="w-full py-3 text-[11px] uppercase tracking-[0.2em] border border-[#2c5aa0] bg-[#2c5aa0] text-white hover:bg-[#1e3f73] hover:border-[#1e3f73] transition-all duration-300 disabled:opacity-50"
+                className="w-full py-3 text-[11px] uppercase tracking-[0.18em] border border-[#2c5aa0] bg-[#2c5aa0] text-white hover:bg-[#1f467c] transition-colors disabled:opacity-60"
               >
-                {loading ? "Verifying…" : "Sign In to Admin"}
+                {loading ? "Verifying…" : "Continue to Admin"}
               </button>
-
-              <p className="text-center text-[9px] uppercase tracking-[0.16em] text-slate-600 mt-5">
-                Session activity is logged
-              </p>
             </>
           )}
         </div>
-
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
       </div>
     </div>
   );

@@ -2,11 +2,9 @@
 "use client";
 
 import React, { useState } from "react";
-import {  addDoc, collection, Timestamp } from "firebase/firestore";
-import { createUserProfile } from "../../../lib/auth";
 import AuthPanel from "../../../components/AuthPanel";
 import RegistrationSuccessScreen from "../../../components/RegistrationSuccessScreen";
-import {  db } from "../../../../firebseConfig";
+import { createClientAccount } from "../../../lib/platform";
 
 
 const INPUT =
@@ -81,24 +79,17 @@ export default function ClientRegisterPage() {
     if (!validate()) throw new Error("Please fix the form errors above.");
     setSubmitting(true);
     try {
-      await addDoc(collection(db, "client_applications"), {
+      await createClientAccount({
+        uid,
+        email,
+        displayName: `${form.firstName} ${form.lastName}`,
         firstName: form.firstName,
         lastName: form.lastName,
-        email,
         phone: form.phone,
         city: form.city,
         country: form.country,
         serviceNeeds: form.serviceNeeds,
         description: form.description,
-        status: "approved",
-        ownerId: uid,
-        submittedAt: Timestamp.now(),
-      });
-      await createUserProfile(uid, {
-        email,
-        displayName: `${form.firstName} ${form.lastName}`,
-        role: "client",
-        status: "approved",
       });
       setSubmitted(true);
     } finally {
@@ -107,7 +98,7 @@ export default function ClientRegisterPage() {
   };
 
   if (submitted) {
-    return <RegistrationSuccessScreen name={`${form.firstName} ${form.lastName}`} role="Client" />;
+    return <RegistrationSuccessScreen name={`${form.firstName} ${form.lastName}`} role="Client" href="/client" />;
   }
 
   return (
@@ -236,6 +227,7 @@ export default function ClientRegisterPage() {
             onAuth={handleAuth}
             submitting={submitting}
             submitLabel="Create Client Account"
+            roleLabel="client workspace"
           />
         </div>
       </div>

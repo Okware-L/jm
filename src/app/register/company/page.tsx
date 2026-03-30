@@ -2,21 +2,13 @@
 "use client";
 
 import React, { useState } from "react";
-//import { useRouter } from "next/navigation";
-import { addDoc, collection, Timestamp } from "firebase/firestore";
-import { createUserProfile } from "../../../lib/auth";
+import { useOrganizationList } from "@clerk/nextjs";
 import AuthPanel from "../../../components/AuthPanel";
 import RegistrationSuccessScreen from "../../../components/RegistrationSuccessScreen";
-import {  db } from "../../../../firebseConfig";
+import { createCompanyAdminAccount, INDUSTRY_OPTIONS } from "../../../lib/platform";
 
 
-const INDUSTRIES = [
-  "Agriculture", "Healthcare", "Technology", "Finance", "Construction",
-  "Education", "Manufacturing", "Retail", "Transportation", "Energy",
-  "Hospitality", "Creative", "Other",
-];
-
-const STEPS = ["Company Details", "Contact & Web", "Create Account"];
+const STEPS = ["Company Details", "Contact & Web", "Confirm Identity"];
 
 const INPUT =
   "w-full border-b border-slate-200 focus:border-[#2c5aa0] bg-transparent text-sm text-slate-700 pb-2 outline-none transition-colors duration-300 appearance-none";
@@ -61,6 +53,7 @@ const EMPTY: FormData = {
 };
 
 export default function CompanyRegisterPage() {
+  const { isLoaded: organizationsLoaded, createOrganization, setActive } = useOrganizationList();
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<FormData>(EMPTY);
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
@@ -93,16 +86,29 @@ export default function CompanyRegisterPage() {
 
   // Called by AuthPanel once auth succeeds — receives uid + email
   const handleAuth = async (uid: string, email: string) => {
+    if (!organizationsLoaded || !createOrganization || !setActive) {
+      throw new Error("Clerk organizations are still loading. Please try again in a moment.");
+    }
+
     setSubmitting(true);
     try {
-      const companyRef = await addDoc(collection(db, "company_applications"), {
+      const organization = await createOrganization({
+        name: form.companyName.trim(),
+      });
+
+      await setActive({ organization: organization.id });
+
+      await createCompanyAdminAccount({
+        uid,
+        email,
+        displayName: form.companyName,
+        clerkOrganizationId: organization.id,
         companyName: form.companyName,
         registrationNumber: form.registrationNumber,
         industry: form.industry,
         description: form.description,
         employees: form.employees,
         founded: form.founded,
-        email,
         phone: form.phone,
         website: form.website,
         address: form.address,
@@ -110,21 +116,6 @@ export default function CompanyRegisterPage() {
         country: form.country,
         fundingNeeds: form.fundingNeeds,
         fundingAmount: form.fundingAmount,
-        status: "approved",
-        ownerId: uid,
-        documentsUploaded: 0,
-        documentsRequired: 5,
-        submittedAt: Timestamp.now(),
-      });
-      await createUserProfile(uid, {
-        email,
-        displayName: form.companyName,
-        role: "company",
-        status: "approved",
-        companyId: companyRef.id,
-        companyName: form.companyName,
-        registrationNumber: form.registrationNumber,
-        industry: form.industry,
       });
       setSubmitted(true);
     } finally {
@@ -133,7 +124,7 @@ export default function CompanyRegisterPage() {
   };
 
   if (submitted) {
-    return <RegistrationSuccessScreen name={form.companyName} role="Company" />;
+    return <RegistrationSuccessScreen name={form.companyName} role="Company Admin" href="/company" />;
   }
 
   return (
@@ -217,7 +208,7 @@ export default function CompanyRegisterPage() {
             <Field label="Industry" error={errors.industry}>
               <select value={form.industry} onChange={(e) => set("industry", e.target.value)} className={INPUT}>
                 <option value="">Select industry…</option>
-                {INDUSTRIES.map((i) => <option key={i} value={i}>{i}</option>)}
+                {INDUSTRY_OPTIONS.map((i) => <option key={i} value={i}>{i}</option>)}
               </select>
             </Field>
             <div className="grid grid-cols-2 gap-5">
@@ -307,7 +298,8 @@ export default function CompanyRegisterPage() {
               displayName={form.companyName}
               onAuth={handleAuth}
               submitting={submitting}
-              submitLabel="Create Company Account"
+              submitLabel="Create Company Workspace"
+              roleLabel="company workspace"
             />
           </div>
         )}

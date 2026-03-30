@@ -3,9 +3,9 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { onAuthStateChanged } from "firebase/auth";
+import { useAuth } from "@clerk/nextjs";
 import { doc, getDoc } from "firebase/firestore";
-import { auth, db } from "../../../firebseConfig";
+import { db } from "../../../firebseConfig";
 import Link from "next/link";
 
 
@@ -13,10 +13,10 @@ const ROLES = [
   {
     key: "company",
     title: "Company",
-    subtitle: "Register your business",
+    subtitle: "Become company admin",
     description:
-      "Access funding opportunities, build your team, manage clients and showcase your services in the industry directory.",
-    bullets: ["Funding applications", "Team & worker management", "Industry directory listing"],
+      "Register your organization and become the company admin responsible for your workspace, team, and client operations.",
+    bullets: ["Company workspace ownership", "Worker and client management", "Industry directory presence"],
     href: "/register/company",
     locked: false,
   },
@@ -43,31 +43,41 @@ const ROLES = [
   {
     key: "worker",
     title: "Account Manager",
-    subtitle: "Register directly",
+    subtitle: "Company managed",
     description:
-      "Create an account as a worker to manage clients, coordinate requests, and work inside the platform.",
-    bullets: ["Client coordination", "Task and document management", "Platform workspace access"],
+      "Workers are created and assigned by a company admin so access stays scoped to the correct company workspace.",
+    bullets: ["Assigned by company admin", "Scoped company access", "No public self-registration"],
     href: "/register/worker",
-    locked: false,
+    locked: true,
   },
 ];
 
 export default function RegisterPage() {
   const [checking, setChecking] = useState(true);
+  const [hasProfile, setHasProfile] = useState(false);
   const router = useRouter();
+  const { isLoaded, isSignedIn, userId } = useAuth();
 
 
   // If already fully registered, redirect to dashboard
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, async (u) => {
-      if (u) {
-        const snap = await getDoc(doc(db, "users", u.uid));
-        if (snap.exists()) { router.replace("/dashboard"); return; }
+    async function check() {
+      if (!isLoaded) return;
+
+      if (isSignedIn && userId) {
+        const snap = await getDoc(doc(db, "users", userId));
+        if (snap.exists()) {
+          setHasProfile(true);
+          router.replace("/dashboard");
+          return;
+        }
       }
+
       setChecking(false);
-    });
-    return () => unsub();
-  }, [ router]);
+    }
+
+    void check();
+  }, [isLoaded, isSignedIn, userId, router]);
 
   if (checking) {
     return (
@@ -88,10 +98,10 @@ export default function RegisterPage() {
           jmqafri.org
         </Link>
         <Link
-          href="/signin"
+          href={isSignedIn ? (hasProfile ? "/dashboard" : "/register") : "/sign-up"}
           className="text-[11px] uppercase tracking-[0.16em] text-slate-500 hover:text-[#2c5aa0] transition-colors"
         >
-          Already registered? Sign in
+          {isSignedIn ? (hasProfile ? "Continue to dashboard" : "Complete registration") : "Create your account"}
         </Link>
       </div>
 
@@ -114,7 +124,7 @@ export default function RegisterPage() {
             <em style={{ fontStyle: "italic", color: "#2c5aa0" }}>Community Hub</em>
           </h1>
           <p className="text-sm text-slate-500 leading-relaxed">
-            Select your role below and complete the registration form. Your account will be created with the role you choose.
+            Select your role below and complete the registration form. Company registrants become company admins, while client and funding profiles are created directly.
           </p>
         </div>
 
@@ -169,9 +179,13 @@ export default function RegisterPage() {
 
               <a
                 href={role.href!}
-                className="inline-block px-6 py-2.5 text-[11px] uppercase tracking-[0.18em] border border-[#2c5aa0] text-[#2c5aa0] hover:bg-[#2c5aa0] hover:text-white transition-all duration-300 text-center"
+                className={`inline-block px-6 py-2.5 text-[11px] uppercase tracking-[0.18em] border text-center transition-all duration-300 ${
+                  role.locked
+                    ? "border-slate-200 text-slate-400 hover:border-slate-300 hover:text-slate-600"
+                    : "border-[#2c5aa0] text-[#2c5aa0] hover:bg-[#2c5aa0] hover:text-white"
+                }`}
               >
-                Register as {role.title}
+                {role.locked ? "Learn how workers are added" : `Register as ${role.title}`}
               </a>
             </div>
           ))}
