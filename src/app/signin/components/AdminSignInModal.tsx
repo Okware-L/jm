@@ -24,26 +24,6 @@ const BLOCK_MESSAGES: Record<string, { title: string; body: string }> = {
   },
 };
 
-function getErrorMessage(error: unknown): string {
-  if (error instanceof Error && error.message) {
-    return error.message;
-  }
-
-  if (typeof error === "object" && error !== null) {
-    const maybeMessage = (error as { message?: unknown }).message;
-    if (typeof maybeMessage === "string" && maybeMessage) {
-      return maybeMessage;
-    }
-
-    const maybeErrors = (error as { errors?: Array<{ message?: string }> }).errors;
-    if (Array.isArray(maybeErrors) && maybeErrors[0]?.message) {
-      return maybeErrors[0].message;
-    }
-  }
-
-  return "";
-}
-
 export default function AdminSignInModal({ onClose }: Props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -124,12 +104,12 @@ export default function AdminSignInModal({ onClose }: Props) {
       }
 
       const passwordAttempt = await signIn.password({
-        emailAddress: email.trim(),
+        identifier: email.trim(),
         password,
       });
 
       if (passwordAttempt.error) {
-        throw new Error(getErrorMessage(passwordAttempt.error) || "Clerk password sign-in failed");
+        throw new Error(passwordAttempt.error.message || "Clerk password sign-in failed");
       }
 
       if (signIn.status !== "complete" || !signIn.createdSessionId) {
@@ -142,30 +122,27 @@ export default function AdminSignInModal({ onClose }: Props) {
       const finalizeResult = await signIn.finalize();
 
       if (finalizeResult.error) {
-        throw new Error(getErrorMessage(finalizeResult.error) || "Clerk could not finalize the admin session");
+        throw new Error(finalizeResult.error.message || "Clerk could not finalize the admin session");
       }
 
       router.push("/admin");
       router.refresh();
       onClose();
     } catch (err: unknown) {
-      const message = getErrorMessage(err);
+      const message = err instanceof Error ? err.message : "";
       setStage("credentials");
 
       if (message.toLowerCase().includes("password")) {
         setError("Clerk rejected the password for this admin account.");
       } else if (message.toLowerCase().includes("identifier")) {
         setError("No Clerk admin account was found for this email.");
-      } else if (message.toLowerCase().includes("email")) {
-        setError(message);
-      } else if (message) {
-        setError(message);
       } else {
         setError("Admin sign-in failed. Please try again.");
       }
     } finally {
       setLoading(false);
     }
+    
   };
 
   const isBlocked = stage === "blocked_ip" || stage === "blocked_email";
