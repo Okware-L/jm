@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -155,6 +156,57 @@ export default function InvestPage() {
           Our thesis is simple: the future belongs to those who can see past volatility to value,
           past disruption to infrastructure, and past innovation to impact.
         </p>
+      </section>
+
+      <section className="border-t border-slate-200 px-6 md:px-[var(--pad-x)] py-[var(--section-y)] bg-teal-50">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] items-start">
+          <div>
+            <p className="flex items-center gap-5 font-sans text-[11px] font-light tracking-[0.22em] uppercase text-slate-400 mb-[var(--gap-lg)]">
+              New Market Layer
+              <span className="flex-1 h-px bg-slate-200" />
+            </p>
+            <h2 className="font-serif text-[clamp(2rem,5vw,4.4rem)] font-light tracking-[-0.04em] leading-[1.02] mb-6 text-slate-900">
+              Explore sector markets built around
+              <em style={{ color: "var(--accent)" }}> curated conviction.</em>
+            </h2>
+            <p className="font-sans text-[clamp(14px,1.4vw,17px)] font-light leading-[1.9] text-slate-600 max-w-3xl">
+              The first-pass markets layer turns JM-Qafri&apos;s core investment sectors into AMM-style market
+              surfaces with visible pricing, liquidity, diligence, and access rules. It is designed to feel like
+              a natural extension of the broader investment thesis rather than a separate crypto product.
+            </p>
+          </div>
+
+          <div className="border border-slate-200 bg-white p-8">
+            <p className="font-sans text-[10px] font-light tracking-[0.22em] uppercase text-slate-400 mb-4">
+              Preview Routes
+            </p>
+            <div className="space-y-4 mb-8">
+              {[
+                "Markets index with sector pricing and access rules",
+                "Dedicated market detail, trade, and liquidity views",
+                "Portfolio dashboard for holdings and LP positions",
+              ].map((item) => (
+                <div key={item} className="border border-slate-200 p-4">
+                  <p className="font-sans text-[13px] font-light leading-[1.7] text-slate-600">{item}</p>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/markets"
+                className="inline-flex items-center gap-2 font-sans text-[11px] font-light tracking-[0.2em] uppercase px-7 py-3.5 border border-[var(--accent)] bg-[var(--accent)] text-white transition-all duration-300 hover:bg-transparent hover:text-[var(--accent)]"
+              >
+                Open Markets
+              </Link>
+              <Link
+                href="/portfolio"
+                className="inline-flex items-center gap-2 font-sans text-[11px] font-light tracking-[0.2em] uppercase px-7 py-3.5 border border-[var(--accent)] text-[var(--accent)] transition-all duration-300 hover:bg-[var(--accent)] hover:text-white"
+              >
+                View Portfolio
+              </Link>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Descriptive Paragraph */}
