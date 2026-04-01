@@ -1,32 +1,25 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
 import type { SVGProps } from "react";
+import { getFeaturedBlogPosts } from "@/lib/blog-content";
 
 export default function Posts() {
+  const posts = getFeaturedBlogPosts(5);
+
   return (
     <section className="bg-slate-50 py-12 text-slate-900 md:py-16 lg:py-20">
       <div className="px-4 md:px-6">
         <div className="no-scrollbar my-10 flex gap-6 overflow-x-auto">
-          <BlogCard
-            title="Revolutionising Agriculture with Organic Solutions."
-            href="/Invest/Agriculture"
-          />
-          <BlogCard
-            title="Mobile clinics: For kenya, helping with diagnostics and early disease detection."
-            href="/pharma/mobileclinic"
-          />
-          <BlogCard
-            title="Agreement with International Agency for the Euroasian Trade and Economic Cooperation"
-            href="/Invest/etec"
-          />
-          <BlogCard
-            title="Introduction to AI in Medicine."
-            href="/Invest/Medai"
-          />
-          <BlogCard
-            title="Real estate: Investment and a home away from home."
-            href="#"
-          />
+          {posts.map((post) => (
+            <BlogCard
+              key={post.slug}
+              title={post.title}
+              href={`/blog/${post.slug}`}
+              date={post.date}
+              readingTime={`${post.readingTime} MIN`}
+              category={post.category}
+            />
+          ))}
         </div>
         <div>
           <Link href="/blog">
@@ -38,10 +31,25 @@ export default function Posts() {
   );
 }
 
-function BlogCard({ title, href }: { title: string; href: string }) {
+function BlogCard({
+  title,
+  href,
+  date,
+  readingTime,
+  category,
+}: {
+  title: string;
+  href: string;
+  date: string;
+  readingTime: string;
+  category: string;
+}) {
   return (
     <div className="min-w-[300px] space-y-2">
       <h3 className="text-3xl font-extralight">{title}</h3>
+      <p className="text-sm uppercase tracking-[0.16em] text-slate-500">
+        {category}
+      </p>
 
       <Link
         href={href}
@@ -53,9 +61,9 @@ function BlogCard({ title, href }: { title: string; href: string }) {
       </Link>
       <div className="flex items-center space-x-2 text-sm text-gray-500">
         <CalendarIcon className="h-3 w-3" />
-        <span>01.03.2024</span>
+        <span>{date}</span>
         <ClockIcon className="h-3 w-3" />
-        <span>5 MIN</span>
+        <span>{readingTime}</span>
       </div>
     </div>
   );

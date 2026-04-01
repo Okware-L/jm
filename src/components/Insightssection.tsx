@@ -4,46 +4,16 @@ import React, { useRef, useEffect } from "react";
 import  Link  from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getFeaturedBlogPosts } from "@/lib/blog-content";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const POSTS = [
-  {
-    n: "01",
-    title: "Revolutionising Agriculture with Organic Solutions",
-    cat: "Agriculture",
-    time: "5 min",
-    href: "/blog/agriculture",
-  },
-  {
-    n: "02",
-    title: "Mobile Clinics: Diagnostics and Early Disease Detection for Kenya",
-    cat: "Pharma",
-    time: "6 min",
-    href: "/blog/mobile-clinic",
-  },
-  {
-    n: "03",
-    title: "Agreement with the Euroasian Trade and Economic Cooperation Agency",
-    cat: "Trade",
-    time: "4 min",
-    href: "/blog/etec",
-  },
-  {
-    n: "04",
-    title: "Introduction to AI in Medicine — The Next Investment Frontier",
-    cat: "Technology",
-    time: "7 min",
-    href: "/blog/ai-medicine",
-  },
-  {
-    n: "05",
-    title: "Real Estate: Investment and a Home Away from Home",
-    cat: "Real Estate",
-    time: "5 min",
-    href: "/blog/real-estate",
-  },
-];
+const POSTS = getFeaturedBlogPosts(5).map((post, index) => ({
+  n: String(index + 1).padStart(2, "0"),
+  title: post.title,
+  cat: post.category,
+  time: `${post.readingTime} min`,
+  href: `/blog/${post.slug}`,
+}));
 
 export default function InsightsSection() {
   const sectionRef = useRef<HTMLElement>(null);

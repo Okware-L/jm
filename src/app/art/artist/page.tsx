@@ -28,22 +28,22 @@ const ARTISTS: Artist[] = [
     id: 1, name: "Amara Osei-Bonsu", origin: "Accra, Ghana", medium: ["Digital", "Mixed Media"], bio: "Amara's work dissolves the boundary between the ancestral and the digital. Drawing from Akan textile patterns and re-weaving them through algorithmic processes, her pieces interrogate cultural memory in an age of synthetic reproduction.", imageUrl: "/potrait.jpeg", tags: ["Digital", "Identity", "Diaspora"], featured: true, year: "2025",
   },
   {
-    id: 2, name: "Leilani Nakamura", origin: "Osaka, Japan", medium: ["Oil", "Photography"], bio: "Leilani paints silence. Her large-format oils capture the emotional residue of spaces — vacant hotel rooms, train stations at 4am, coastal cliffs after rain. Critics have called her work 'photographic in precision, oceanic in depth.'", imageUrl: "/fasion.jpeg", tags: ["Oil", "Landscape", "Light"], featured: true, year: "2024",
+    id: 2, name: "Atieno Otieno", origin: "Nairobi, Kenya", medium: ["Oil", "Photography"], bio: "Atieno's work explores the intersection of memory and landscape. His photographs capture the quiet moments of fashion, revealing the complexity of urban existence.", imageUrl: "/fasion.jpeg", tags: ["Oil", "Landscape", "Light"], featured: true, year: "2024",
   },
   {
-    id: 3, name: "Théo Marchetti", origin: "Lyon, France", medium: ["3D", "CGI", "Sculpture"], bio: "Marchetti builds impossible architectures — grand structures that obey their own internal physics. His CGI installations have been exhibited across Paris, Dubai, and São Paulo, challenging viewers to renegotiate their sense of material reality.", imageUrl: "/watch.jpeg", tags: ["3D", "Architecture", "Digital"], year: "2023",
+    id: 3, name: "Anastasia Volkova", origin: "Saint Petersburg, Russia", medium: ["3D", "CGI", "Sculpture"], bio: "Anastasia builds speculative structures that feel half-monument, half-memory. Her digital environments borrow from stage design, public architecture, and ceremonial objects, creating works that feel both futuristic and haunted by history.", imageUrl: "/watch.jpeg", tags: ["3D", "Architecture", "Digital"], year: "2023",
   },
   {
     id: 4, name: "Seun Adeyemi", origin: "Lagos, Nigeria", medium: ["Photography", "Film"], bio: "Seun's lens is forensic. His documentary-style photography and short films capture Lagos in motion — the infrastructure of hustle, the choreography of survival. He was shortlisted for the JM-Qafri Prize in its inaugural year.", imageUrl: "/bluefish.jpeg", tags: ["Photography", "Documentary", "Urban"], year: "2023",
   },
   {
-    id: 5, name: "Margot Thiébault", origin: "Brussels, Belgium", medium: ["Print", "Installation"], bio: "A printmaker obsessed with repetition and deviation. Margot's editions are never truly identical — each copy accumulates a subtle distortion, building series that read as organisms rather than reproductions.", imageUrl: "/fragrance.jpeg", tags: ["Print", "Abstraction", "Series"], year: "2024",
+    id: 5, name: "Naledi Mokoena", origin: "Johannesburg, South Africa", medium: ["Print", "Installation"], bio: "Naledi's print practice draws from protest posters, township signage, and hand-cut stencil language. Her installations layer repetition with interruption, turning each edition into a record of movement, labor, and collective voice.", imageUrl: "/fragrance.jpeg", tags: ["Print", "Abstraction", "Series"], year: "2024",
   },
   {
     id: 6, name: "Kioni Waweru", origin: "Nairobi, Kenya", medium: ["Oil", "Mural"], bio: "Born and raised in Nairobi, Kioni's massive oil canvases channel the energy of East African street art while speaking the language of classical figuration. Her murals are landmarks; her studio work, intimate revelations.", imageUrl: "/marry.jpeg", tags: ["Oil", "Figurative", "East Africa"], year: "2025",
   },
   {
-    id: 7, name: "Daisuke Hirota", origin: "Tokyo, Japan", medium: ["AI", "Digital"], bio: "Daisuke trains machine learning models on his own body of work, then collaborates with the resulting systems to produce entirely new forms. His practice raises urgent questions about authorship, entropy, and aesthetic evolution.", imageUrl: "/pinkcar.jpeg", tags: ["AI", "Generative", "Digital"], year: "2026",
+    id: 7, name: "Wambui Njoroge", origin: "Nairobi, Kenya", medium: ["AI", "Digital"], bio: "Wambui works with machine learning as a cultural tool rather than a shortcut. Training systems on oral fragments, matatu graphics, and family archives, she builds digital pieces that ask who gets preserved, translated, and remembered.", imageUrl: "/pinkcar.jpeg", tags: ["AI", "Generative", "Digital"], year: "2026",
   },
 ];
 
@@ -84,7 +84,7 @@ function Grain(): JSX.Element {
 
 // ─── Nav ───────────────────────────────────────────────────────────────────
 
-const NAV_LINKS = [{ label: "CONTEST", href: "/contest" }, { label: "ARTISTS", href: "/artist" }];
+const NAV_LINKS = [{ label: "CONTEST", href: "/art/contest" }, { label: "ARTISTS", href: "/art/artist" }];
 
 function Nav(): JSX.Element {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -139,7 +139,7 @@ function HeroSection(): JSX.Element {
         <div ref={badgeRef} style={{ opacity: 0, display: "inline-block", ...label10, border: "1px solid rgba(212,168,75,0.3)", padding: "6px 12px", marginBottom: "28px" }}>JM-QAFRI · {ARTISTS.length} FEATURED ARTISTS</div>
         <div ref={headRef} className="whitespace-pre-line" style={{ ...heading, fontSize: "clamp(64px,16vw,140px)" }}>THE ARTISTS</div>
         <p ref={subRef} style={{ opacity: 0, marginTop: "28px", fontFamily: '"Barlow Condensed", sans-serif', fontSize: "16px", lineHeight: 1.6, letterSpacing: "0.04em", color: "#64748b", maxWidth: "520px" }}>
-          A curated roster of visual artists working across print, oil, digital media, film, and emerging technologies — recognised and championed by JM-Qafri.
+          A curated roster of visual artists from Kenya, across Africa, and one Russian voice working across print, oil, digital media, film, and emerging technologies — recognised and championed by JM-Qafri.
         </p>
       </div>
     </section>
@@ -296,10 +296,10 @@ function CTASection(): JSX.Element {
       <div data-reveal style={{ opacity: 0, ...label10, marginBottom: "12px" }}>— JOIN THE ROSTER</div>
       <div data-reveal style={{ opacity: 0, ...heading, fontSize: "clamp(44px,12vw,96px)", marginBottom: "24px" }}>ARE YOU<br />AN ARTIST?</div>
       <p data-reveal style={{ opacity: 0, fontFamily: '"Barlow Condensed", sans-serif', fontSize: "16px", lineHeight: 1.6, letterSpacing: "0.04em", color: "#64748b", maxWidth: "500px", marginBottom: "40px" }}>
-        JM-Qafri champions emerging and established artists across all disciplines. Enter the 2026 Prize and join our growing international community.
+        JM-Qafri champions emerging and established artists from Kenya, across Africa, and the wider global conversation. Enter the 2026 Prize and join a roster shaped by regional memory, craft, and contemporary vision.
       </p>
       <div data-reveal style={{ opacity: 0 }}>
-        <Link href="/contest" style={{ display: "inline-block", fontFamily: '"Barlow Condensed", sans-serif', fontWeight: 900, fontSize: "13px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#000308", background: "#d4a84b", padding: "18px 40px", textDecoration: "none", transition: "background 0.2s ease" }}
+        <Link href="/art/contest" style={{ display: "inline-block", fontFamily: '"Barlow Condensed", sans-serif', fontWeight: 900, fontSize: "13px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#000308", background: "#d4a84b", padding: "18px 40px", textDecoration: "none", transition: "background 0.2s ease" }}
           onMouseEnter={(e) => gsap.to(e.currentTarget, { background: "#e8c060", duration: 0.2 })}
           onMouseLeave={(e) => gsap.to(e.currentTarget, { background: "#d4a84b", duration: 0.2 })}>
           Enter the 2026 Prize →
@@ -314,7 +314,7 @@ function CTASection(): JSX.Element {
 function Footer(): JSX.Element {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "8px", padding: "28px 24px", borderTop: "1px solid rgba(212,168,75,0.12)", background: "#000308" }}>
-      <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#334155" }}>© JM-Qafri · Nairobi · 2026</span>
+      <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#334155" }}>© JM-Qafri Art Prize · Nairobi · Kisumu . Moscow , Saint Petersburg . 2026</span>
       <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#d4a84b" }}>Print · Film · AI · 3D · CGI</span>
     </div>
   );

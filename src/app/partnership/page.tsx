@@ -158,7 +158,7 @@ export default function IntermediariesPage() {
                 {opportunity.desc}
               </p>
               <Link
-                href="/intermediaries/apply"
+                href="/partnership/apply"
                 className="font-sans text-[11px] font-light tracking-[0.16em] uppercase hover:text-[var(--accent)] transition-colors duration-200"
                 style={{ color: "var(--accent)" }}
               >
@@ -179,7 +179,7 @@ export default function IntermediariesPage() {
             Partner with JM-Qafri to shape the future. Together, we can create sustainable, impactful solutions.
           </p>
           <Link
-            href="/intermediaries/apply"
+            href="/partnership/apply"
             className="inline-flex items-center font-sans text-[11px] font-light tracking-[0.2em] uppercase
                        px-7 py-3.5 border border-[var(--accent)] text-[var(--accent)]
                        transition-all duration-300 hover:bg-[var(--accent)] hover:text-white"

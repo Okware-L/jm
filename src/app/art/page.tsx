@@ -39,25 +39,25 @@ const CELLS: GridCell[] = [
   },
   {
     type: "image",
-    imageUrl: "/fasion.jpeg",
-    imageAlt: "Editorial Fashion",
-    label: "Fashion",
+    imageUrl: "/horizontal1.jpg",
+    imageAlt: "Canvas and Color",
+    label: "Oil",
     colSpan: 1,
     rowSpan: 2,
     mobileColSpan: 2,
   },
   {
     type: "image",
-    imageUrl: "/bluefish.jpeg",
-    imageAlt: "Bleu de Chanel",
-    label: "Bleu de Chanel",
+    imageUrl: "/ocean.jpg",
+    imageAlt: "Ocean Blue",
+    label: "Ocean Blue",
     colSpan: 1,
     rowSpan: 1,
     mobileColSpan: 1,
   },
   {
     type: "accent",
-    headline: "PRINT.\nOIL.\nDIGITAL MEDIA.",
+    headline: "PRINT.\nTEXTILE.\nDIGITAL MEDIA.",
     colSpan: 1,
     rowSpan: 1,
     mobileColSpan: 1,
@@ -65,8 +65,8 @@ const CELLS: GridCell[] = [
   {
     type: "image",
     imageUrl: "/marry.jpeg",
-    imageAlt: "Dom Pérignon",
-    label: "Bottle Art",
+    imageAlt: "Glass and Memory",
+    label: "Glass & Memory",
     colSpan: 1,
     rowSpan: 2,
     mobileColSpan: 2,
@@ -90,7 +90,7 @@ const CELLS: GridCell[] = [
     type: "image",
     imageUrl: "/fragrance.jpeg",
     imageAlt: "Fragrance",
-    label: "Fragrance Campaign",
+    label: "Scent of the Coast",
     colSpan: 1,
     rowSpan: 2,
     mobileColSpan: 2,
@@ -99,7 +99,7 @@ const CELLS: GridCell[] = [
     type: "text",
     label: "— JM-Qafri Studio",
     headline: "PRINT\n& FILM",
-    sub: "Caption here",
+    sub: "Contemporary African visual culture",
     colSpan: 2,
     rowSpan: 1,
     mobileColSpan: 2,
@@ -787,7 +787,10 @@ export default function ArtPage(): JSX.Element {
               }}
             >
               © Jm-qafri Methuselah Art Exhibition || @2026 Contest
+              <br/>
+              © JM-Qafri Art Prize · Nairobi · Kisumu . Moscow , Saint Petersburg . 2026
             </span>
+
             <span
               style={{
                 fontFamily: '"Barlow Condensed", sans-serif',
@@ -797,7 +800,7 @@ export default function ArtPage(): JSX.Element {
                 color: "#d4a84b",
               }}
             >
-              Print · Film · AI · 3D · CGI
+              Print · Film · AI 
             </span>
           </div>
         </div>

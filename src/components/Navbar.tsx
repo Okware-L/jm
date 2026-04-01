@@ -31,7 +31,7 @@ import Image from "next/image";
 const OPAQUE_PAGES = [
   "/Architecture", "/About", "/Airdrop", "/Invest", "/user",
   "/pharma", "/contact", "/petition", "/careers", "/charity",
-  "/blog", "/FAQ", "/patnership", "/Acquisitions", "/Admin",
+  "/blog", "/FAQ", "/partnership", "/Acquisitions", "/admin",
 ];
 
 /* ── Nav link data ────────────────────────── */

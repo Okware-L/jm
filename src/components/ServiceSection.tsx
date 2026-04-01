@@ -12,7 +12,7 @@ const SERVICES = [
     num: "01",
     title: "Wealth Planning",
     desc: "Strategies designed to navigate every stage of your financial life.",
-    href: "/wealth",
+    href: "/membership",
   },
   {
     num: "02",
@@ -24,13 +24,13 @@ const SERVICES = [
     num: "03",
     title: "Financing",
     desc: "Customised solutions for individual and startup capital needs.",
-    href: "/finance",
+    href: "/Acquisitions",
   },
   {
     num: "04",
     title: "Additional Services",
     desc: "Charity, pharma clinics, education, and acquisition strategies.",
-    href: "/services",
+    href: "/partnership",
   },
 ];
 

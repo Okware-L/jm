@@ -29,6 +29,7 @@ import {
   QueryDocumentSnapshot,
 } from "firebase/firestore";
 import RichTextEditor from "./RichTextEditor";
+import { BlogPostRecord, mergeBlogPosts } from "@/lib/blog-content";
 
 const blogSchema = z.object({
   title: z
@@ -40,10 +41,7 @@ const blogSchema = z.object({
 
 type BlogFormData = z.infer<typeof blogSchema>;
 
-interface BlogPost extends BlogFormData {
-  id: string;
-  slug: string;
-}
+type BlogPost = Pick<BlogPostRecord, "id" | "title" | "content" | "slug">;
 
 const BlogPublishing: React.FC = () => {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
@@ -79,7 +77,7 @@ const BlogPublishing: React.FC = () => {
   const fetchBlogs = async () => {
     const blogsCollection = collection(db, "blogs");
     const blogSnapshot = await getDocs(blogsCollection);
-    const blogList: BlogPost[] = blogSnapshot.docs.map(
+    const blogList = blogSnapshot.docs.map(
       (doc: QueryDocumentSnapshot<DocumentData>) => ({
         id: doc.id,
         title: doc.data().title,
@@ -87,7 +85,23 @@ const BlogPublishing: React.FC = () => {
         slug: doc.data().slug,
       }),
     );
-    setBlogs(blogList);
+    setBlogs(
+      mergeBlogPosts(
+        blogList.map((blog) => ({
+          ...blog,
+          author: "JM Group",
+          date: new Date().toISOString().split("T")[0],
+          readingTime: 1,
+          category: "Research",
+          excerpt: "",
+        })),
+      ).map(({ id, title, content, slug }) => ({
+        id,
+        title,
+        content,
+        slug,
+      })),
+    );
   };
 
   const onSubmit = async (data: BlogFormData) => {
@@ -113,6 +127,10 @@ const BlogPublishing: React.FC = () => {
   };
 
   const handleEdit = (blog: BlogPost) => {
+    if (blog.id.startsWith("seed-")) {
+      return;
+    }
+
     setEditingBlog(blog);
     form.reset({
       title: blog.title,
@@ -122,6 +140,10 @@ const BlogPublishing: React.FC = () => {
   };
 
   const handleDelete = async (id: string) => {
+    if (id.startsWith("seed-")) {
+      return;
+    }
+
     try {
       await deleteDoc(doc(db, "blogs", id));
       fetchBlogs();
@@ -212,6 +234,11 @@ const BlogPublishing: React.FC = () => {
           {blogs.map((blog) => (
             <div key={blog.id} className="rounded border p-4">
               <h3 className="text-lg font-semibold">{blog.title}</h3>
+              {blog.id.startsWith("seed-") && (
+                <p className="mt-2 text-xs uppercase tracking-[0.16em] text-slate-500">
+                  Imported from the current site content source
+                </p>
+              )}
               <div
                 className="mt-2 text-gray-600"
                 dangerouslySetInnerHTML={{
@@ -219,7 +246,11 @@ const BlogPublishing: React.FC = () => {
                 }}
               />
               <div className="mt-4 space-x-2">
-                <Button onClick={() => handleEdit(blog)} variant="ghost">
+                <Button
+                  onClick={() => handleEdit(blog)}
+                  variant="ghost"
+                  disabled={blog.id.startsWith("seed-")}
+                >
                   Edit
                 </Button>
 
@@ -227,6 +258,7 @@ const BlogPublishing: React.FC = () => {
                   onClick={() => handleDelete(blog.id)}
                   variant="destructive"
                   size="sm"
+                  disabled={blog.id.startsWith("seed-")}
                 >
                   Delete
                 </Button>

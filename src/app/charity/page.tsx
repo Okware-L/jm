@@ -145,7 +145,7 @@ export default function CharityPage() {
 
           <div className="text-center">
             <Link
-              href="/charity/donate"
+              href="/charity/Donate"
               className="inline-flex items-center font-sans text-[11px] font-light tracking-[0.2em] uppercase
                          px-7 py-3.5 border border-[var(--accent)] text-[var(--accent)]
                          transition-all duration-300 hover:bg-[var(--accent)] hover:text-white"

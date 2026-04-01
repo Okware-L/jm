@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 /* ── Data ──────────────────────────────────── */
 const LATEST = [
   { href: "/architecture",     title: "JM-QAFRI Network Architecture Contest", date: "01.02.2024" },
-  { href: "/Invest/Agriculture", title: "Invest in Farmers' Project",           date: "07.12.2023" },
+  { href: "/Invest", title: "Invest in Farmers' Project",           date: "07.12.2023" },
   { href: "https://learn.jmqafri.org", title: "Education Program Launch",       date: "27.11.2023" },
 ];
 
@@ -27,13 +27,18 @@ const SERVICES = [
   { href: "/Invest",       label: "Invest" },
   { href: "/Acquisitions", label: "Acquisitions" },
   { href: "/pharma",       label: "Pharma" },
-  { href: "/patnership",   label: "Partnership" },
+  { href: "/partnership",   label: "Partnership" },
   {href: "/art",         label: "Art" },
   { href: "/contact",      label: "Contact" },
 
 ];
 
-const SOCIALS = ["Facebook", "Instagram", "LinkedIn", "YouTube"];
+const SOCIALS = [
+  { label: "Facebook", href: "/contact" },
+  { label: "Instagram", href: "/contact" },
+  { label: "LinkedIn", href: "/contact" },
+  { label: "YouTube", href: "/contact" },
+];
 
 /* ─────────────────────────────────────────────
    Component
@@ -79,15 +84,15 @@ export default function Footer() {
             DeFi innovation, and sustainable impact investing.
           </p>
           <div className="flex flex-wrap gap-4">
-            {SOCIALS.map((s) => (
-              <a
-                key={s}
-                href="#"
-                aria-label={s}
+            {SOCIALS.map(({ label, href }) => (
+              <Link
+                key={label}
+                href={href}
+                aria-label={label}
                 className="text-[11px] font-light tracking-[0.14em] uppercase text-[var(--grey)] hover:text-[var(--black)] transition-colors duration-200"
               >
-                {s}
-              </a>
+                {label}
+              </Link>
             ))}
           </div>
         </div>
@@ -103,7 +108,7 @@ export default function Footer() {
                 key={href}
                 className="group pb-4 mb-0 border-b border-[var(--line)] last:border-none last:pb-0"
               >
-                <Link href={href}>
+                <Link href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined}>
                   <span className="block text-[13px] font-light leading-[1.5] text-[var(--grey)] group-hover:text-[var(--black)] transition-colors duration-200 mb-1">
                     {title}
                   </span>

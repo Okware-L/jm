@@ -32,8 +32,8 @@ interface FormData {
 
 const WINNERS: Winner[] = [
   { year: "2025", name: "Amara Osei-Bonsu", title: "Fractured Meridian", medium: "Digital Mixed Media", award: "Grand Prix — $15,000", imageUrl: "/potrait.jpeg" },
-  { year: "2024", name: "Leilani Nakamura", title: "Silk & Static", medium: "Oil on Canvas", award: "Grand Prix — $12,000", imageUrl: "/fasion.jpeg" },
-  { year: "2023", name: "Théo Marchetti", title: "The Weight of Gold", medium: "3D / CGI", award: "Grand Prix — $10,000", imageUrl: "/watch.jpeg" },
+  { year: "2024", name: "Atieno Otieno", title: "Red Dust, Soft Light", medium: "Oil on Canvas", award: "Grand Prix — $12,000", imageUrl: "/fasion.jpeg" },
+  { year: "2023", name: "Anastasia Volkova", title: "Monument for a Fading Future", medium: "3D / CGI", award: "Grand Prix — $10,000", imageUrl: "/watch.jpeg" },
 ];
 
 const PRIZES = [
@@ -90,7 +90,7 @@ function Grain(): JSX.Element {
 
 // ─── Nav ───────────────────────────────────────────────────────────────────
 
-const NAV_LINKS = [{ label: "CONTEST", href: "/contest" }, { label: "ARTISTS", href: "/artists" }];
+const NAV_LINKS = [{ label: "CONTEST", href: "/art/contest" }, { label: "ARTISTS", href: "/art/artist" }];
 
 function Nav(): JSX.Element {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -183,11 +183,15 @@ function DetailsSection(): JSX.Element {
       <div ref={headRef} data-reveal className="whitespace-pre-line" style={{ opacity: 0, ...heading, fontSize: "clamp(48px,12vw,86px)", marginBottom: "32px" }}>CONTEST DETAILS</div>
       <div data-reveal style={{ opacity: 0, width: "40px", height: "2px", background: "#d4a84b", marginBottom: "32px" }} />
       <p data-reveal style={{ opacity: 0, fontFamily: '"Barlow Condensed", sans-serif', fontSize: "16px", lineHeight: 1.65, letterSpacing: "0.03em", color: "#94a3b8", marginBottom: "40px" }}>
-        The JM-Qafri Art Prize is an internationally recognised open-call competition celebrating artists who push the boundaries of visual language — across print, oil, digital media, film, sculpture, and emerging technologies. Now in its third edition, the Prize draws entries from over 60 countries and awards more than $33,500 in prizes, exhibition opportunities, and collector introductions.
+        The JM-Qafri Art Prize launches as our first annual contest—created by and for this community. It honors resident and non-resident artists whose work deepens visual language across print, oil, digital media, film, sculpture, and emerging technologies.
+
+Our circle is intentional. We take care in selecting artists whose voices resonate with us. Privacy is respected. Cultural preservation guides what we choose to uplift. Entries are drawn from within—from artists who know us, and collectors who trust our perspective.
+
+In partnership with our galleries, we are proud to offer over $33,500 in awards, exhibition opportunities, and direct connections to our in-house collectors and buyers. New collectors and enthusiasts are warmly invited to join—to play a meaningful role in the life of this community.
       </p>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "2px" }}>
         {[
-          ["THEME", "LIMINAL — Art at the threshold of identity, memory, and transformation."],
+          ["THEME", "RIVERS, ROADS, AND RITUALS — Work shaped by memory, movement, land, inheritance, and changing urban life."],
           ["ELIGIBILITY", "Open to all artists 18 years and older, worldwide. All experience levels welcome."],
           ["FORMAT", "Submit up to 3 original works per application. Physical or digital delivery accepted."],
           ["JURY", "International panel of curators, collectors, and cultural critics. Results are final."],
@@ -337,7 +341,7 @@ function FormSection(): JSX.Element {
           </div>
           <div data-reveal style={{ opacity: 0 }}>
             <div style={{ ...label10, fontSize: "9px", color: "#475569", marginBottom: "8px" }}>ARTIST STATEMENT</div>
-            <textarea name="statement" value={form.statement} onChange={handleChange} rows={5} placeholder="Briefly describe your work and its relationship to this year's theme: LIMINAL"
+            <textarea name="statement" value={form.statement} onChange={handleChange} rows={5} placeholder="Briefly describe your work and its relationship to this year's theme: Rivers, Roads, and Rituals"
               style={{ ...inp("statement"), resize: "vertical" }} onFocus={() => setFocused("statement")} onBlur={() => setFocused(null)} />
           </div>
           <div data-reveal style={{ opacity: 0, marginTop: "12px" }}>
@@ -361,8 +365,8 @@ function FormSection(): JSX.Element {
 function Footer(): JSX.Element {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "8px", padding: "28px 24px", borderTop: "1px solid rgba(212,168,75,0.12)", background: "#000308" }}>
-      <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#334155" }}>© JM-Qafri Art Prize · Nairobi · 2026</span>
-      <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#d4a84b" }}>Print · Film · AI · 3D · CGI</span>
+      <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#334155" }}>© JM-Qafri Art Prize · Nairobi · Kisumu . Moscow , Saint Petersburg . 2026</span>
+      <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#d4a84b" }}>Print · Film · AI </span>
     </div>
   );
 }
