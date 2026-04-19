@@ -3,6 +3,7 @@
 import React, { useRef, useEffect } from "react";
 import Link from "next/link";
 import gsap from "gsap";
+import WebGLParticles from "@/components/WebGLParticles";
 
 interface HeroSectionProps {
   triggerAnimation: boolean;
@@ -53,6 +54,7 @@ export default function HeroSection({ triggerAnimation }: HeroSectionProps) {
                  px-6 md:px-[clamp(24px,5vw,72px)]"
       style={{ paddingTop: "calc(clamp(18px, 2.5vw, 32px) * 2 + 40px)" }}
     >
+      <WebGLParticles />
       {/* Vertical side label — desktop */}
 
       <p

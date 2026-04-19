@@ -10,7 +10,7 @@ export default function MarketCard({ market }: { market: SectorMarket }) {
       <div className="flex items-start justify-between gap-4 mb-6">
         <div>
           <p className="text-[10px] font-light tracking-[0.22em] uppercase text-[var(--grey)] mb-2">
-            {market.category}
+            {market.cluster} · {market.category}
           </p>
           <h2 className="font-serif text-[clamp(1.8rem,3vw,2.7rem)] font-light tracking-[-0.03em] leading-[1.05] text-[var(--black)]">
             {market.symbol}
@@ -63,16 +63,16 @@ export default function MarketCard({ market }: { market: SectorMarket }) {
         </div>
         <div>
           <p className="text-[10px] font-light tracking-[0.2em] uppercase text-[var(--grey)] mb-2">
-            Fee APR
+            Token Model
           </p>
           <p className="text-[13px] font-light text-[var(--black)]">
-            {market.feeApr.toFixed(1)}%
+            {market.tokenModel}
           </p>
         </div>
       </div>
 
       <div className="flex flex-wrap gap-2 mb-8">
-        {[market.access, market.diligenceStatus, market.risk].map((badge) => (
+        {[market.access, market.diligenceStatus, market.risk, `${market.feeApr.toFixed(1)}% APR`].map((badge) => (
           <span
             key={badge}
             className="border border-[var(--line)] px-3 py-1 text-[10px] font-light tracking-[0.14em] uppercase text-[var(--grey)]"

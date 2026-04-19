@@ -35,7 +35,7 @@ export default function LiquidityPanel({ market }: { market: SectorMarket }) {
 
         <div className="border border-[var(--line)] p-4 bg-teal-50">
           <p className="text-[10px] font-light tracking-[0.2em] uppercase text-[var(--grey)] mb-3">
-            Matching Sector Tokens
+            Matching Cluster Tokens
           </p>
           <div className="flex items-end justify-between gap-4">
             <p className="font-serif text-[2rem] font-light tracking-[-0.03em] text-[var(--black)]">

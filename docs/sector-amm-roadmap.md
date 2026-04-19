@@ -1,36 +1,39 @@
-# Sector AMM Roadmap
+# Cluster AMM Roadmap
 
 ## Overview
-JM-Qafri's investment surface already tells a consistent story: curated deal flow, sector conviction, due diligence, compliance, and relationship-led access. The proposed sector AMM extends that story by turning the major investment theses in the app into tradeable, liquidity-backed market surfaces.
+JM-Qafri's investment surface already tells a consistent story: curated deal flow, cluster conviction, due diligence, compliance, and relationship-led access. The proposed cluster AMM extends that story by turning the major investment theses in the app into tradeable, liquidity-backed market surfaces.
 
-This is not a generic crypto exchange. It is a member-aware capital market interface for curated sector exposure.
+This is not a generic crypto exchange. It is a member-aware capital market interface for curated cluster exposure.
 
 ## Core Idea
-Create on-platform markets for sector tokens that represent themed exposure rather than direct company equity.
+Create on-platform markets for cluster tokens that represent themed exposure rather than direct company equity.
 
-Initial market set:
-- `AGRI` for agriculture and food systems
-- `MEDAI` for medicine, diagnostics, and AI-enabled care
-- `TRADE` for trade infrastructure and cross-border commerce
-- `ETEC` for Eurasia-Africa trade corridors and industrial cooperation
-- `SPACE` for frontier and long-duration speculative innovation
+Initial market set, structured from the investment-cluster diagram:
+- `REAL` for Cluster 1: Real Assets
+- `VENT` for Cluster 2: Equity & Venture
+- `YLD` for Cluster 3: Debt & Fixed Yield
+- `LIQD` for Cluster 4: Digital & Liquid Assets
+- `ESG` for Cluster 5: Impact & ESG Credits
+
+Shared layer:
+- `NET-REF / JM-Credits` as the reward, reputation, and coordination backbone across all five clusters
 
 Initial pool structure:
-- `USDC / AGRI`
-- `USDC / MEDAI`
-- `USDC / TRADE`
-- `USDC / ETEC`
-- `USDC / SPACE`
+- `USDC / REAL`
+- `USDC / VENT`
+- `USDC / YLD`
+- `USDC / LIQD`
+- `USDC / ESG`
 
 ## Product Thesis
 The AMM should express the broader investment thesis already embedded in the app:
-- capital is routed into sectors, not random tokens
+- capital is routed into cluster pools, not random tokens
 - access is curated rather than fully open
 - diligence and compliance remain first-class
 - membership and trust shape participation
 - public pricing and private underwriting can coexist
 
-This makes the AMM the liquidity layer for JM-Qafri's sector narratives rather than a separate product category.
+This makes the AMM the liquidity layer for JM-Qafri's clustered investment architecture rather than a separate product category.
 
 ## Market Design
 ### Recommended model
@@ -40,7 +43,7 @@ Use a hybrid design:
 - a treasury reference price or NAV-like anchor keeps markets legible
 
 ### Why hybrid
-A pure Uniswap-style model works well for liquid crypto assets but fits poorly with slower-moving, diligence-heavy sector theses. A hybrid design preserves:
+A pure Uniswap-style model works well for liquid crypto assets but fits poorly with slower-moving, diligence-heavy cluster theses. A hybrid design preserves:
 - price discovery
 - member liquidity
 - treasury oversight
@@ -49,7 +52,7 @@ A pure Uniswap-style model works well for liquid crypto assets but fits poorly w
 ## User Roles
 The current workspace model already maps well onto the proposed markets.
 
-- `client`: discovers sectors, trades exposure, views holdings
+- `client`: discovers clusters, trades exposure, views holdings
 - `funding_recipient`: links wallet, stakes, tracks earnings and documents
 - `worker`: manages diligence, flags issues, reviews submissions
 - `company_admin`: submits opportunities and supporting information
@@ -60,7 +63,7 @@ The current workspace model already maps well onto the proposed markets.
 Goal: validate UX and product language.
 
 Deliverables:
-- sector market index
+- cluster market index
 - market detail pages
 - mock trade and liquidity panels
 - member/compliance gating banners
@@ -80,7 +83,7 @@ Deliverables:
 
 Still simulated pricing and balances.
 
-### Phase 3: Treasury-Backed Sector Tokens
+### Phase 3: Treasury-Backed Cluster Tokens
 Goal: introduce real market behavior under governance.
 
 Deliverables:
@@ -101,9 +104,9 @@ Deliverables:
 
 ## UI Implementation Plan
 ### Primary screens
-- `Markets Index`: all sector markets, filters, stats, entry points
-- `Market Detail`: sector thesis, chart, pool stats, diligence and disclosures
-- `Trade`: dedicated swap view for `USDC <-> sector`
+- `Markets Index`: all cluster markets, filters, stats, entry points
+- `Market Detail`: cluster thesis, chart, pool stats, diligence and disclosures
+- `Trade`: dedicated swap view for `USDC <-> cluster token`
 - `Liquidity`: add/remove liquidity and fee preview
 - `Portfolio`: holdings, LP positions, earnings, compliance status
 
@@ -125,7 +128,7 @@ Deliverables:
 ## Content Model
 Each market should include:
 - symbol
-- sector name
+- cluster name
 - one-line thesis
 - pool pair
 - live or mock price
@@ -145,12 +148,12 @@ The AMM layer should reuse current app themes and data concepts:
 - membership pages establish access and investor intent
 - funding workspace already models wallet, stake, earned, and documents
 - due diligence queues already exist in workspaces
-- sector pages already provide the underlying narratives
+- cluster source material already provides the underlying narratives
 
 This means the markets feature can feel native even before any on-chain logic exists.
 
 ## Risks And Constraints
-- sector tokens may imply regulated exposure if tied too directly to real returns
+- cluster tokens may imply regulated exposure if tied too directly to real returns
 - AMM pricing can diverge from slow-moving real-world value
 - liquidity UX can become misleading without treasury and disclosure context
 - compliance, jurisdiction, and membership rules must remain visible in the UI

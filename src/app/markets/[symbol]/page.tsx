@@ -34,7 +34,7 @@ export default async function MarketDetailPage({
       <main>
         <section className="px-6 bg-teal-50 md:px-[var(--pad-x)] pt-[calc(clamp(64px,8vh,72px)+clamp(48px,7vw,88px))] pb-[clamp(48px,7vw,88px)] border-b border-[var(--line)]">
           <p className="font-sans text-[11px] font-light tracking-[0.22em] uppercase text-[var(--grey)] mb-5">
-            {market.category} · {market.pair}
+            {market.cluster} · {market.category} · {market.pair}
           </p>
           <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
             <div>
@@ -64,6 +64,10 @@ export default async function MarketDetailPage({
               <div>
                 <p className="text-[10px] font-light tracking-[0.2em] uppercase text-[var(--grey)] mb-2">Volume</p>
                 <p className="text-[14px] font-light text-[var(--black)]">{formatCompactCurrency(market.volume24h)}</p>
+              </div>
+              <div>
+                <p className="text-[10px] font-light tracking-[0.2em] uppercase text-[var(--grey)] mb-2">Token Model</p>
+                <p className="text-[14px] font-light text-[var(--black)]">{market.tokenModel}</p>
               </div>
               <div>
                 <p className="text-[10px] font-light tracking-[0.2em] uppercase text-[var(--grey)] mb-2">Reference</p>
@@ -141,7 +145,7 @@ export default async function MarketDetailPage({
             <div>
               <p className="text-[10px] font-light tracking-[0.25em] uppercase text-slate-400 mb-5">Composition</p>
               <div className="space-y-4">
-                {market.composition.map((item) => (
+                {[...market.composition, `SVG sectors: ${market.sectors.join(" · ")}`].map((item) => (
                   <div key={item} className="border border-slate-700 p-5">
                     <p className="text-[13px] font-light leading-[1.8] text-slate-300">{item}</p>
                   </div>

@@ -53,6 +53,7 @@ export default async function MarketTradePage({
               </p>
               <div className="space-y-4">
                 {[
+                  `${market.cluster} · ${market.tokenModel}`,
                   `Pair: ${market.pair}`,
                   `Fee tier: ${market.feeBps} bps`,
                   `Reference price: $${market.treasuryReferencePrice.toFixed(2)}`,

@@ -26,8 +26,9 @@ export default function PortfolioPage() {
             </em>
           </h1>
           <p className="font-sans text-[clamp(15px,1.6vw,19px)] font-light leading-[1.8] text-slate-600 max-w-3xl">
-            A first-pass investor workspace for sector balances, LP positions, fee income, and compliance signals.
-            This route translates the funding and portfolio ideas in the app into a market-specific dashboard.
+            A first-pass investor workspace for cluster balances, LP positions, fee income, and compliance signals.
+            This route translates the DAO-style market architecture into a portfolio dashboard while keeping the
+            site&apos;s editorial investment tone.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10">

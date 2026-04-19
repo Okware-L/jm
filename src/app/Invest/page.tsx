@@ -166,13 +166,14 @@ export default function InvestPage() {
               <span className="flex-1 h-px bg-slate-200" />
             </p>
             <h2 className="font-serif text-[clamp(2rem,5vw,4.4rem)] font-light tracking-[-0.04em] leading-[1.02] mb-6 text-slate-900">
-              Explore sector markets built around
+              Explore cluster markets built around
               <em style={{ color: "var(--accent)" }}> curated conviction.</em>
             </h2>
             <p className="font-sans text-[clamp(14px,1.4vw,17px)] font-light leading-[1.9] text-slate-600 max-w-3xl">
-              The first-pass markets layer turns JM-Qafri&apos;s core investment sectors into AMM-style market
-              surfaces with visible pricing, liquidity, diligence, and access rules. It is designed to feel like
-              a natural extension of the broader investment thesis rather than a separate crypto product.
+              The first-pass markets layer turns JM-Qafri&apos;s five-cluster investment architecture into
+              AMM-style market surfaces with visible pricing, liquidity, diligence, and access rules. It is
+              designed to feel like a natural extension of the broader investment thesis rather than a separate
+              crypto product.
             </p>
           </div>
 
@@ -182,7 +183,7 @@ export default function InvestPage() {
             </p>
             <div className="space-y-4 mb-8">
               {[
-                "Markets index with sector pricing and access rules",
+                "Markets index with cluster pricing and access rules",
                 "Dedicated market detail, trade, and liquidity views",
                 "Portfolio dashboard for holdings and LP positions",
               ].map((item) => (

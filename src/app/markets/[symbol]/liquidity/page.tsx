@@ -51,6 +51,7 @@ export default async function MarketLiquidityPage({
               </p>
               <div className="space-y-4">
                 {[
+                  `${market.cluster} · ${market.tokenModel}`,
                   `Current liquidity mix: ${market.liquidityMix}`,
                   `Fee band: ${market.feeBps} bps with ${market.feeApr.toFixed(1)}% mock APR`,
                   `Reference price anchor: $${market.treasuryReferencePrice.toFixed(2)}`,
